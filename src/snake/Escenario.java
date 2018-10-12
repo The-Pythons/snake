@@ -14,17 +14,17 @@ public class Escenario  {
 		plano[obj.x][obj.y]=elementos.size();
 	}
 
-	public void  moverElemento(int x, int y , int x2,int y2){
-		int aux = plano[x][y];
-		plano[x][y]=0;
+	public void  moverElemento(ObjetoEnElPlano obj, int x,int y){
+		int aux = plano[obj.x][obj.y];
+		plano[obj.x][obj.y]=0;
 		plano[x][y]=aux;
 	}
 	public ObjetoEnElPlano getPorPosicion(int x, int y){
 		return elementos.get(plano[x][y]-1);
 	}
-	public void  quitar(int x, int y){
-		elementos.remove(plano[x][y]);
-		plano[x][y]=0;
+	public void  quitar(ObjetoEnElPlano obj){
+		elementos.remove(plano[obj.x][obj.y]);
+		plano[obj.x][obj.y]=0;
 	}
 	public void  mostrar(){
 		for (int i = 0; i < h; i++) {
@@ -35,6 +35,7 @@ public class Escenario  {
 		}
 		
 	}
+
 	
 	
 	

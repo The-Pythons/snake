@@ -3,8 +3,8 @@ package snake;
 public class Cabeza extends Cuerpo {
 	
 	
-	public Cabeza(int x, int y, String tipo) {
-		super(x, y, tipo);
+	public Cabeza(int x, int y, String tipo,Escenario escenario) {
+		super(x, y, tipo,escenario);
 		// TODO Auto-generated constructor stub
 	}
 	Cuerpo cuerpo;
