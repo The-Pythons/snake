@@ -4,16 +4,19 @@ public abstract class ObjetoEnElPlano {
 
 	protected int x,y;
 	protected String tipo;
-	protected   Escenario escenario;
-	public ObjetoEnElPlano(int x, int y, String tipo, Escenario escenario) {
+	protected  static Escenario escenario;
+	public ObjetoEnElPlano(int x, int y, String tipo) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.tipo = tipo;
-		this.escenario=escenario;
 	}
 	public  String getTipo(){// indica el tipo de objeto
 		return tipo;
+	}
+	public ObjetoEnElPlano getElemento(int x1,int y1) {
+		return escenario.getPorPosicion(x1, y1) ;
+		
 	}
 	public  void agregar(){ //Agrega al escenario 
 		escenario.agregarElemento(this);

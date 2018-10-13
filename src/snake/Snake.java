@@ -1,14 +1,22 @@
 package snake;
 
+
 public class Snake extends ObjetoEnElPlano {
 	
-	public Snake(int x, int y,Escenario escenario) {
-		super(x, y,"Serpiente",escenario);
+	boolean muerta;
+	Cabeza cabeza;
+	int dirx ,diry;
+	public Snake(int x, int y) {
+		super(x, y,"Serpiente");
+		this.cabeza=new Cabeza(x,y,0,1);
+		cabeza.cuerpo.add(new Cuerpo(x,y-1,0,1));
+		cabeza.cuerpo.add(new Cuerpo(x,y-2,0,1));
 		// TODO Auto-generated constructor stub
 	}
-	Cabeza cabeza;
-	Cuerpo cola;
-	
+	public void  avanzar() {
+		
+		getTipo();
+	}
 	
 	
 
