@@ -44,7 +44,4 @@ public class Snake extends ObjetoEnElPlano {
 		cabeza.quitar();
 		muerta=true;
 	}
-	
-	
-
 }

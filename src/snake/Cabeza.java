@@ -9,6 +9,7 @@ public class Cabeza extends Cuerpo {
 	public Cabeza(int x, int y,int dirx,int diry) {
 		super(x,y,dirx,diry);
 		super.tipo="cabeza";
+		cuerpo=new LinkedList<Cuerpo>();
 		// TODO Auto-generated constructor stub
 	}
 	
