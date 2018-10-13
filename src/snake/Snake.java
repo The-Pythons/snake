@@ -15,6 +15,21 @@ public class Snake extends ObjetoEnElPlano {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public boolean chocar(){
+		ObjetoEnElPlano aux = Snake.escenario.getPorPosicion(cabeza.x,cabeza.y);
+		if(aux==null)
+			return false;
+		if(aux.getTipo().equals("fruta")){
+			cabeza.comer();
+			return false;
+		}
+		if(aux.getTipo().equals("obstaculo")){
+			this.morir();
+			return true;
+		};
+		return false;
+	}
+	
 	public void  avanzar() {
 		Cuerpo aux=cabeza.cuerpo.removeLast();
 		aux.quitar();

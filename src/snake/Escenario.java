@@ -20,6 +20,8 @@ public class Escenario  {
 		plano[x][y]=aux;
 	}
 	public ObjetoEnElPlano getPorPosicion(int x, int y){
+		if(plano[x][y]==0)
+			return null;
 		return elementos.get(plano[x][y]-1);
 	}
 	public void  quitar(ObjetoEnElPlano obj){
