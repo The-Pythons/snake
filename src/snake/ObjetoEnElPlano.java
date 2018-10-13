@@ -10,6 +10,10 @@ public abstract class ObjetoEnElPlano {
 		this.x = x;
 		this.y = y;
 		this.tipo = tipo;
+		this.agregar();
+	}
+	public static void setEscenario(Escenario e){
+		escenario=e;
 	}
 	public  String getTipo(){// indica el tipo de objeto
 		return tipo;
@@ -21,7 +25,9 @@ public abstract class ObjetoEnElPlano {
 	public  void agregar(){ //Agrega al escenario 
 		escenario.agregarElemento(this);
 	}
-	public  void mover(int x1,int y1){ //mueve el elemento 
+	public  void mover(int x1,int y1){ //mueve el elemento
+		this.x=x1;
+		this.y=y1;
 		escenario.moverElemento(this, x1, y1);;
 	}
 	public  void quitar(){ //lo quita del escenario 

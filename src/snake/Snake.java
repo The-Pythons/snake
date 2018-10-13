@@ -14,8 +14,10 @@ public class Snake extends ObjetoEnElPlano {
 		// TODO Auto-generated constructor stub
 	}
 	public void  avanzar() {
-		
-		getTipo();
+		Cuerpo aux=cabeza.cuerpo.removeLast();
+		aux.quitar();
+		cabeza.mover(x+dirx, y+diry);
+		cabeza.cuerpo.addFirst(new Cuerpo(cabeza.x-dirx,cabeza.y-diry,cabeza.dirx,cabeza.dirx) );
 	}
 	
 	
