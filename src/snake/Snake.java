@@ -33,10 +33,12 @@ public class Snake extends ObjetoEnElPlano {
 	}
 	
 	public void  avanzar() {
+		int x1=cabeza.x,y1=cabeza.y;
 		Cuerpo aux=cabeza.cuerpo.removeLast();
-		aux.quitar();
-		cabeza.mover(x+dirx, y+diry);
-		cabeza.cuerpo.addFirst(new Cuerpo(cabeza.x-dirx,cabeza.y-diry,cabeza.dirx,cabeza.dirx) );
+		
+		cabeza.mover(x1+dirx, y1+diry);
+		aux.mover(x1,y1);
+		//cabeza.cuerpo.addFirst(new Cuerpo(cabeza.x-dirx,cabeza.y-diry,cabeza.dirx,cabeza.dirx) );
 	}
 	
 	public void morir(){
