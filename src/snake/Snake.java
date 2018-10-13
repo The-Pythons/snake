@@ -18,7 +18,7 @@ public class Snake extends ObjetoEnElPlano {
 	}
 	
 	public boolean chocar(){
-		ObjetoEnElPlano aux = Snake.escenario.getPorPosicion(cabeza.x,cabeza.y);
+		ObjetoEnElPlano aux = Snake.escenario.getPorPosicion(cabeza.x+dirx,cabeza.y+diry);
 		if(aux==null)
 			return false;
 		if(aux.getTipo().equals("fruta")){
@@ -33,6 +33,8 @@ public class Snake extends ObjetoEnElPlano {
 	}
 	
 	public void  avanzar() {
+		if(chocar())
+			return;
 		int x1=cabeza.x,y1=cabeza.y;
 		Cuerpo aux=cabeza.cuerpo.removeLast();
 		
