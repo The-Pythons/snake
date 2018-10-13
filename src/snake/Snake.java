@@ -27,8 +27,10 @@ public class Snake extends ObjetoEnElPlano {
 		}
 		if(aux.getTipo().equals("obstaculo")){
 			this.morir();
+			System.out.println("Choca");
 			return true;
 		};
+		System.out.println("..");
 		return false;
 	}
 	
@@ -37,7 +39,6 @@ public class Snake extends ObjetoEnElPlano {
 			return;
 		int x1=cabeza.x,y1=cabeza.y;
 		Cuerpo aux=cabeza.cuerpo.removeLast();
-		
 		cabeza.mover(x1+dirx, y1+diry);
 		aux.mover(x1,y1);
 		//cabeza.cuerpo.addFirst(new Cuerpo(cabeza.x-dirx,cabeza.y-diry,cabeza.dirx,cabeza.dirx) );
