@@ -8,6 +8,8 @@ public class Snake extends ObjetoEnElPlano {
 	int dirx ,diry;
 	public Snake(int x, int y) {
 		super(x, y,"Serpiente");
+		this.dirx=0;
+		this.diry=1;
 		this.cabeza=new Cabeza(x,y,0,1);
 		this.muerta=false;
 		cabeza.cuerpo.add(new Cuerpo(x,y-1,0,1));

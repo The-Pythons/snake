@@ -6,10 +6,14 @@ public class Escenariotest {
 		Escenario e=new Escenario(1,4,9);
 		ObjetoEnElPlano.setEscenario(e);
 		Snake s=new Snake(0,2);
-		Fruta f=new Fruta(1,3);
-		
+		//Fruta f=new Fruta(1,3);
 		e.mostrar();
-
+		System.out.println("-------------------");
+		s.avanzar();
+		e.mostrar();
+		System.out.println("-------------------");
+		s.avanzar();
+		e.mostrar();
 	}
 
 }

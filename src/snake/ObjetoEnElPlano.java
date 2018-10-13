@@ -26,9 +26,9 @@ public abstract class ObjetoEnElPlano {
 		escenario.agregarElemento(this);
 	}
 	public  void mover(int x1,int y1){ //mueve el elemento
+		escenario.moverElemento(this, x1, y1);
 		this.x=x1;
 		this.y=y1;
-		escenario.moverElemento(this, x1, y1);;
 	}
 	public  void quitar(){ //lo quita del escenario 
 		escenario.quitar(this);;
