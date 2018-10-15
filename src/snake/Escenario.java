@@ -55,9 +55,9 @@ public class Escenario  {
 		for (int i = 0; i < h; i++) {
 			for (int j = 0; j < l; j++) {
 				if(plano[i][j]!=null)
-					System.out.print(plano[i][j].tipo);
+					System.out.print(plano[i][j].tipo.substring(0, 2));
 				else 
-					System.out.print("0");
+					System.out.print("0 ");
 			}
 			System.out.println("\n");
 		}
