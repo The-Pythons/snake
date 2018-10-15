@@ -42,6 +42,7 @@ public class Escenario  {
 		//elementos.remove(plano[obj.x][obj.y]-1);
 		plano[obj.x][obj.y]=null;
 	}
+	
 	private  void iniciarPlano(){
 		for (int i = 0; i < h; i++) {
 			for (int j = 0; j < l; j++) {
