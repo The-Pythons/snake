@@ -3459,7 +3459,7 @@
 							"top": 600,
 							"width": 169,
 							"height": 51,
-							"text": "Version Actual: v1.2"
+							"text": "Version Actual: v1.3"
 						},
 						{
 							"_type": "UMLAssociationView",
@@ -10798,7 +10798,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFmT5vgERHijs8="
 									},
-									"name": "idObjeto"
+									"name": "idObjeto",
+									"type": ""
 								}
 							]
 						}
