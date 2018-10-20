@@ -5,8 +5,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Escenario {
 	ArrayList<Serpiente> serpientes;
+	ArrayList<Fruta> frutas;
+	ArrayList<Obstaculo> obstaculos;
 	Object [][] area;
 	int dim_x,dim_y;
+	
+	
+	
 	
 	public Escenario(int dim_x, int dim_y) {
 		this.dim_x = dim_x;
@@ -14,6 +19,43 @@ public class Escenario {
 		area = new Object [dim_x][dim_y];
 		serpientes = new ArrayList<Serpiente>();
 	}
+	public Serpiente getSerpiente(int id ) {
+		return serpientes.get(id);
+	}
+	
+	
+	void colisionadorSerpientes(){
+		for (Serpiente s1 : serpientes ) {
+		for (Serpiente s2 : serpientes) 
+			if(s2.cuerpo.contains(s1.cabeza)|| s1.equals(s2)){
+				s1.muere(); 
+				s2.muere();
+				s2=s1=null;
+			}
+				
+		}	
+	}
+	void colisionadorConObstaculos(){
+		Class c = new Obstaculo(-1,-1).getClass();
+		for (Serpiente s1 : serpientes ) {
+			if(area[s1.cabeza.x][s1.cabeza.y].getClass().equals(c)){
+				s1.muere();
+				s1 =null; 
+			}
+				
+		}
+	}
+	void colisionadorCon_Comida(){
+		Class c = new Fruta(-1,-1).getClass();
+		for (Serpiente s1 : serpientes ) {
+			if(area[s1.cabeza.x][s1.cabeza.y].getClass().equals(c)){
+				s1.comer((Fruta)(area[s1.cabeza.x][s1.cabeza.y]));
+				s1 =null; 
+			}
+				
+		}
+	}
+	
 	
 	void crear_serpiente(int x, int y, int orientacion) {
 		

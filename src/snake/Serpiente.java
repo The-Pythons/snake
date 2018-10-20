@@ -77,6 +77,18 @@ public class Serpiente implements Direcciones{
 			sig=actual;
 		}
 	}
+
+	public void muere() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void comer(Fruta object) {
+		this.crecer();
+		
+	}
+
+	
 }
 
 
