@@ -1,17 +1,17 @@
 package snake;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Serpiente implements Direcciones{
 	
 	Punto2D cabeza;
-	LinkedList<Punto2D> cuerpo;
+	ArrayList<Punto2D> cuerpo;
 	int orientacion;//direccion en la que avanza la serpiente, enviar inputs para mover a la izq o der la modificaria.
 					// norte/sur/este/oeste estan definidas como constantes en la interfaz direcciones.
 	public Serpiente(int x, int y,int orientacion) {
 		this.cabeza= new Punto2D(x,y);
 		this.orientacion = orientacion;
-		this.cuerpo = new LinkedList<Punto2D>();
+		this.cuerpo = new ArrayList<Punto2D>();
 		switch(orientacion) {//agrego el primer segmento del cuerpo detras de la cabeza, dependiendo de donde "mira"
 		case N:
 			cuerpo.add(new Punto2D(x,y-1));

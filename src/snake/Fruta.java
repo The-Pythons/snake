@@ -1,9 +1,10 @@
 package snake;
 
-public class Fruta extends ObjetoEnElPlano {
+public class Fruta {
+	Punto2D pos;
 	
 	public Fruta(int x, int y){
-		super(x,y,"fruta");
+		this.pos = new Punto2D(x,y);
 		
 	}
 

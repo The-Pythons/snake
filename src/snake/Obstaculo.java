@@ -1,9 +1,11 @@
 package snake;
 
-public class Obstaculo extends ObjetoEnElPlano {
-
-	public Obstaculo(int x, int y) {
-		super(x, y, "obstaculo");
+public class Obstaculo{
+Punto2D pos;
+	
+	public Obstaculo(int x, int y){
+		this.pos = new Punto2D(x,y);
+		
 	}
 
 }

@@ -1,89 +1,52 @@
 package snake;
 
-//import java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class Escenario  {
+public class Escenario {
+	ArrayList<Serpiente> serpientes;
+	Object [][] area;
+	int dim_x,dim_y;
 	
-	int id;
-	int h,l;
-	//ArrayList<ObjetoEnElPlano> elementos;
-	ObjetoEnElPlano [][] plano;
-	
-	
-	public Escenario(int id, int h, int l) {
-		super();
-		this.id = id;
-		this.h = h;
-		this.l = l;
-		plano =new ObjetoEnElPlano[h][l];
-		//elementos=new ArrayList<ObjetoEnElPlano>();
-		iniciarPlano();
+	public Escenario(int dim_x, int dim_y) {
+		this.dim_x = dim_x;
+		this.dim_y = dim_y;
+		area = new Object [dim_x][dim_y];
+		serpientes = new ArrayList<Serpiente>();
 	}
-
-	public void  agregarElemento(ObjetoEnElPlano obj){
-		//elementos.add(obj);
-		//plano[obj.x][obj.y]=elementos.size();
-		plano[obj.x][obj.y]=obj;
+	
+	void crear_serpiente(int x, int y, int orientacion) {
+		
+		serpientes.add(new Serpiente(x, y, orientacion));
 		
 	}
-
-	public void  moverElemento(ObjetoEnElPlano obj, int x,int y){
-		//int aux = plano[obj.x][obj.y];
-		plano[obj.x][obj.y]=null;
-		plano[x][y]=obj;
-	}
-	public ObjetoEnElPlano getPorPosicion(int x, int y){
-		//if(plano[x][y]==0)
-			//return null;
-		//return elementos.get(plano[x][y]-1);
-		return plano[x][y];
-	}
-	public void  quitar(ObjetoEnElPlano obj){
-		//elementos.remove(plano[obj.x][obj.y]-1);
-		plano[obj.x][obj.y]=null;
+	void crear_paredes() {//rodea todos los bordes del escenario con obstaculos
+		for(int i=0;i<dim_x;i++)//piso
+			area[i][0]=new Obstaculo(i, 0);
+		for(int i=1;i<dim_y;i++)//pared izq
+			area[0][i]=new Obstaculo(0, i);
+		for(int i=1;i<dim_y;i++)//pared der
+			area[dim_x-1][i]=new Obstaculo(dim_x-1, i);
+		for(int i=1;i<dim_x;i++)//techo
+			area[i][dim_y-1]=new Obstaculo(i, dim_y-1);
 	}
 	
-	private  void iniciarPlano(){
-		for (int i = 0; i < h; i++) {
-			for (int j = 0; j < l; j++) {
-				plano[i][j]=null;
-			}
+	void crear_fruta(int cantidad) {
+		int x,y,i;
+		for(i=0;i<cantidad;i++)
+		{
+				do{
+				//https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html
+				x=ThreadLocalRandom.current().nextInt(0,dim_x);
+				y=ThreadLocalRandom.current().nextInt(0,dim_y);
+				}
+				while(area[x][y]!=null);//genero enteros al azar para x e y hasta que encuentro una ubicacion vacia
+					area[x][y]= new Fruta(x,y);//creo una fruta en ese lugar
+			
 		}
+	}
+	void desplazar_serpientes() {
 		
 	}
 	
-	public void  mostrar(){
-		for (int i = 0; i < h; i++) {
-			for (int j = 0; j < l; j++) {
-				if(plano[i][j]!=null)
-					System.out.print(plano[i][j].tipo.substring(0, 2));
-				else 
-					System.out.print("0 ");
-			}
-			System.out.println("\n");
-		}
-	}
-	
-	/*public void  mostrar(){
-		for (int i = 0; i < h; i++) {
-			for (int j = 0; j < l; j++) {
-				if(plano[i][j]!=0)
-					System.out.print(elementos.get(plano[i][j]-1).tipo.charAt(1));
-				else 
-					System.out.print("0");
-			}
-			System.out.println("\n");
-		}
-		
-	}*/
-	
-	
-
-	
-	
-	
-	
-	
-	
-
 }
