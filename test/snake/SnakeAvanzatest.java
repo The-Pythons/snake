@@ -11,8 +11,10 @@ public class SnakeAvanzatest {
 		System.out.println("-------------------");
 		s.avanzar();
 		s.avanzar();
-		System.out.println("-------------------");
+		System.out.println("--------Deberia estar en el branch Probando algo-----------");
 		e.mostrar();
 	}
-
+/***https://www.youtube.com/watch?v=pGTjdeX_Y48*
+	*****https://www.youtube.com/watch?v=rQNixJQQ25g
+	******///
 }
