@@ -4,49 +4,53 @@ import java.util.ArrayList;
 
 public class Serpiente implements Direcciones {
 
-	private Punto2D cabeza;
-	private ArrayList<Punto2D> cuerpo;
-	private int orientacion;// direccion en la que avanza la serpiente, enviar inputs para mover a la izq o
-							// der la modificaria.
-							// norte/sur/este/oeste estan definidas como constantes en la interfaz
-							// direcciones.
- 
+	private Cabeza cabeza;
+	private ArrayList<Cuerpo> cuerpo;
+//	private int orientacion;// direccion en la que avanza la serpiente, enviar inputs para mover a la izq o
+	// der la modificaria.
+	// norte/sur/este/oeste estan definidas como constantes en la interfaz
+	// direcciones.
+
 	public Serpiente(int x, int y, int orientacion) {
-		this.cabeza = new Punto2D(x, y);
-		this.orientacion = orientacion;
-		this.cuerpo = new ArrayList<Punto2D>();
+		this.cabeza = new Cabeza(x, y, orientacion);
+		this.cuerpo = new ArrayList<Cuerpo>();
 		switch (orientacion) {// agrego el primer segmento del cuerpo detras de la cabeza, dependiendo de
 								// donde "mira"
 		case N:
-			cuerpo.add(new Punto2D(x, y + 1));
+			this.cuerpo.add(new Cuerpo(x, y + 1, orientacion));
 			break;
 		case S:
-			cuerpo.add(new Punto2D(x, y - 1));
+			this.cuerpo.add(new Cuerpo(x, y - 1, orientacion));
 			break;
 		case O:
-			cuerpo.add(new Punto2D(x + 1, y));
+			this.cuerpo.add(new Cuerpo(x + 1, y, orientacion));
 			break;
 		default:
-			cuerpo.add(new Punto2D(x - 1, y));
+			this.cuerpo.add(new Cuerpo(x - 1, y, orientacion));
 		}
 	}
 
 	public void crecer() {
-		Punto2D seg = this.cabeza;
+		/*
+		 * Agrega un segmento de cuerpo al final de la lista en funcion del ultimo
+		 * segmento
+		 */
+		int orientacion = this.cuerpo.get(this.cuerpo.size() - 1).getOrientacion();
+		Punto2D posicion = this.cuerpo.get(this.cuerpo.size() - 1).getPosicion();
 		switch (orientacion) {
 		case N:
-			cabeza.y++;
+			posicion.y++;
 			break;
 		case S:
-			cabeza.y--;
+			posicion.y--;
 			break;
 		case O:
-			cabeza.x--;
+			posicion.x++;
 			break;
 		default:
-			cabeza.x++;
+			posicion.x--;
 		}
-		this.cuerpo.add(seg);
+		this.cuerpo.add(new Cuerpo(posicion.x, posicion.y, orientacion));
 	}
 
 	/*
@@ -57,29 +61,29 @@ public class Serpiente implements Direcciones {
 	 * segmento antes de la cabeza
 	 */
 	public void avanzar() {
-		Punto2D sig = this.cabeza;
-		Punto2D actual;
-		switch (orientacion) {// avanzo una unidad la cabeza
+		int orientacion = this.cabeza.getOrientacion();
+		Punto2D posicion = this.cabeza.getPosicion();
+		Cuerpo aux = new Cuerpo(posicion.x,posicion.y,orientacion);
+		switch (orientacion) {
 		case N:
-			cabeza.y++;
+			posicion.y--;
 			break;
 		case S:
-			cabeza.y--;
+			posicion.y++;
 			break;
 		case O:
-			cabeza.x--;
+			posicion.x++;
 			break;
 		default:
-			cabeza.x++;
+			posicion.x--;
 		}
-		// desde el ultimo elemento de la lista de segmentos del cuerpo hasta el
-		// primero,
-		// reemplazo a cada uno con el elemento que esta adelante.
-		for (int i = cuerpo.size(); i > 0; i--) {
-			actual = cuerpo.get(i - 1);
-			cuerpo.set(i - 1, sig);
-			sig = actual;
+		this.cabeza.setPosicion(posicion.x, posicion.y);
+		
+		
+		for (int i = this.cuerpo.size()-1; i > 0; i--) {
+			this.cuerpo.set(i, this.cuerpo.get(i-1));
 		}
+		this.cuerpo.set(0,aux);
 	}
 
 	public void muere() {
@@ -89,7 +93,6 @@ public class Serpiente implements Direcciones {
 
 	public void comer(Fruta object) {
 		this.crecer();
-
 	}
 
 }
