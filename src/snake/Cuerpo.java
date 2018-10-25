@@ -8,10 +8,10 @@ public class Cuerpo implements Direcciones {
 		this.posicion = new Punto2D(x, y);
 		this.orientacion = orientacion;
 	}
-
-	public Cuerpo() {
-		this.posicion = new Punto2D(1, 0);
-		this.orientacion = E;
+	
+	public Cuerpo(Punto2D posicion, int orientacion) {
+		this.posicion = posicion;
+		this.orientacion = orientacion;
 	}
 
 	public Punto2D getPosicion() {

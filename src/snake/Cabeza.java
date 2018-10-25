@@ -9,9 +9,9 @@ public class Cabeza implements Direcciones{
 		this.orientacion = orientacion;
 	}
 
-	public Cabeza() {
-		this.posicion = new Punto2D(1,0);
-		this.orientacion = E;
+	public Cabeza(Punto2D posicion, int orientacion) {
+		this.posicion = posicion;
+		this.orientacion = orientacion;
 	}
 	
 	public Punto2D getPosicion() {

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Serpiente implements Direcciones {
 
-	private Cabeza cabeza;
-	private ArrayList<Cuerpo> cuerpo;
+	Cabeza cabeza;
+	ArrayList<Cuerpo> cuerpo;
 //	private int orientacion;// direccion en la que avanza la serpiente, enviar inputs para mover a la izq o
 	// der la modificaria.
 	// norte/sur/este/oeste estan definidas como constantes en la interfaz
@@ -50,21 +50,20 @@ public class Serpiente implements Direcciones {
 		default:
 			posicion.x--;
 		}
-		this.cuerpo.add(new Cuerpo(posicion.x, posicion.y, orientacion));
+		this.cuerpo.add(new Cuerpo(posicion, orientacion));
 	}
 
-	/*
-	 * muevo la cabeza una unidad y "relleno" con un segmento donde esta estaba. (no
-	 * se debe agregar un segmento antes de moverse) si manejo el crecimiento de
-	 * esta forma, la lista con los N segmentos de la serpiente estaria ordenada de
-	 * la sig manera: primer elemento: cola de la serpiente ultimo elemento:
-	 * segmento antes de la cabeza
-	 */
 	public void avanzar() {
 		int orientacion = this.cabeza.getOrientacion();
 		Punto2D posicion = this.cabeza.getPosicion();
-		Cuerpo aux = new Cuerpo(posicion.x,posicion.y,orientacion);
-		switch (orientacion) {
+		Cuerpo aux = new Cuerpo(posicion, orientacion); // Guardo la posicion de la cabeza
+		
+		for (int i = this.cuerpo.size() - 1; i > 0; i--) { // Desde el ultimo segmento de cuerpo reemplazo con el anterior
+			this.cuerpo.set(i, this.cuerpo.get(i - 1));
+		}
+		this.cuerpo.set(0, aux); // El primer segmento queda en la posicion que tenia la cebeza
+		
+		switch (orientacion) { // Muevo la cabeza
 		case N:
 			posicion.y--;
 			break;
@@ -78,12 +77,8 @@ public class Serpiente implements Direcciones {
 			posicion.x--;
 		}
 		this.cabeza.setPosicion(posicion.x, posicion.y);
+
 		
-		
-		for (int i = this.cuerpo.size()-1; i > 0; i--) {
-			this.cuerpo.set(i, this.cuerpo.get(i-1));
-		}
-		this.cuerpo.set(0,aux);
 	}
 
 	public void muere() {
