@@ -71,10 +71,10 @@ public class Serpiente implements Direcciones {
 			posicion.y++;
 			break;
 		case O:
-			posicion.x++;
+			posicion.x--;
 			break;
 		default:
-			posicion.x--;
+			posicion.x++;
 		}
 		this.cabeza.setPosicion(posicion.x, posicion.y);
 

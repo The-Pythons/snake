@@ -13,6 +13,11 @@ public class Punto2D {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public Punto2D(Punto2D p) {
+		this.x = p.x;
+		this.y = p.y;
+	}
 
 	@Override
 	public int hashCode() {

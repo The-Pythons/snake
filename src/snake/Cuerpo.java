@@ -10,7 +10,7 @@ public class Cuerpo implements Direcciones {
 	}
 	
 	public Cuerpo(Punto2D posicion, int orientacion) {
-		this.posicion = posicion;
+		this.posicion = new Punto2D(posicion);
 		this.orientacion = orientacion;
 	}
 
