@@ -26,4 +26,34 @@ public class Cabeza implements Direcciones{
 	public int getOrientacion() {
 		return orientacion;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + orientacion;
+		result = prime * result + ((posicion == null) ? 0 : posicion.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cabeza other = (Cabeza) obj;
+//		if (orientacion != other.orientacion)
+//			return false;
+		if (posicion == null) {
+			if (other.posicion != null)
+				return false;
+		} else if (!posicion.equals(other.posicion))
+			return false;
+		return true;
+	}
+
+	
 }
