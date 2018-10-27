@@ -1,4 +1,4 @@
-package io;
+package snake;
 
 import java.awt.Color;
 import java.util.Timer;
