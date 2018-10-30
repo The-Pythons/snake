@@ -10,43 +10,52 @@ class Colisionador implements Direcciones {
 		Escenario e1 = new Escenario(3, 3);
 		e1.crearSerpiente(1, 1, E);
 		e1.crearSerpiente(1, 1, O);
-		Assert.assertEquals(true, e1.colisionadorSerpientes((Serpiente)e1.elementos.get(0)));
+		Assert.assertEquals(true, e1.colisionadorSerpientes(e1.getSerpiente(0)));
 	}
-
+	@Test
 	void testSerpientesContraElCuerpo() {
-		Escenario e1 = new Escenario(3, 3);
+		Escenario e1 = new Escenario(4, 4);
 		e1.crearSerpiente(1, 1, E);
-		e1.crearSerpiente(1, 0, N);
-		Assert.assertEquals(true, e1.colisionadorSerpientes((Serpiente)e1.elementos.get(0)));
+		e1.crearSerpiente(1, 2, O);
+		e1.limpiarSerpiente(e1.getSerpiente(0));
+		e1.getSerpiente(0).avanzar(); 
+		e1.colocarSerpiente(e1.getSerpiente(0));
+		Assert.assertEquals(true, e1.colisionadorSerpientes(e1.getSerpiente(0)));
 	}
-
+	@Test
 	void testSerpientesSinColisionar() {
 		Escenario e1 = new Escenario(3, 3);
 		e1.crearSerpiente(1, 1, E);
-		e1.crearSerpiente(1, 0, O);
-		Assert.assertEquals(false, e1.colisionadorSerpientes((Serpiente)e1.elementos.get(0)));
+		e1.crearSerpiente(1, 0, N);
+		Assert.assertEquals(false, e1.colisionadorSerpientes(e1.getSerpiente(0)));
 	}
-
+	@Test
 	void testSerpientesMismaPosicion() {
 		Escenario e1 = new Escenario(3, 3);
 		e1.crearSerpiente(1, 1, E);
 		e1.crearSerpiente(1, 1, E);
-		Assert.assertEquals(true, e1.colisionadorSerpientes((Serpiente)e1.elementos.get(0)));
+		e1.limpiarSerpiente(e1.getSerpiente(0));
+		e1.getSerpiente(0).avanzar(); 
+		e1.colocarSerpiente(e1.getSerpiente(0));
+		Assert.assertEquals(true, e1.colisionadorSerpientes(e1.getSerpiente(0)));
 	}
-
+	@Test
 	void testFruta() {
 		Escenario e1 = new Escenario(3, 3);
 		e1.crearSerpiente(1, 1, E);
 		e1.crearFruta(new Punto2D(1,1));
-		Assert.assertEquals(true, e1.colisionadorSerpientes((Serpiente)e1.elementos.get(0)));
+		e1.limpiarSerpiente(e1.getSerpiente(0));
+		e1.getSerpiente(0).avanzar(); 
+		e1.colocarSerpiente(e1.getSerpiente(0));
+		Assert.assertEquals(true, e1.colisionadorSerpientes(e1.getSerpiente(0)));
 	}
-
+	@Test
 	void testFrutaSinColisionar() {
 		Escenario e1 = new Escenario(3, 3);
 		e1.crearSerpiente(1, 0, E);
 		e1.crearFrutaAzar(1);
 	}
-
+	@Test
 	void testObjeto() {
 		Escenario e1 = new Escenario(3, 3);
 		e1.crearSerpiente(2, 1, E);
