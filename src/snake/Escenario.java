@@ -16,9 +16,10 @@ public class Escenario {
 		this.dim_x = dim_x;
 		this.dim_y = dim_y;
 		area = new int[dim_x][dim_y];
+		vaciarArea();
 		serpientes = new ArrayList<Serpiente>();
+		elementos = new ArrayList<Object>();
 	}
-	
 	
 	//devueve el elemento de la determinada posicion de la matriz haciendo facilmente 
 	//compatible codigos anteriores
@@ -27,8 +28,11 @@ public class Escenario {
 			return elementos.get(area[pos.x][pos.y]);
 			}
 	private boolean posicionVacia(Punto2D pos) {
-		return area[pos.x][pos.y]==0;
-	}				
+		return area[pos.x][pos.y]==-1;
+	}
+	private void vaciarPosicion(Punto2D pos) {
+			area[pos.x][pos.y]=-1;
+	}
 	void crearObtaculo(Punto2D pos){
 
 		area[pos.x][pos.y]=elementos.size();
@@ -193,15 +197,24 @@ public class Escenario {
 		colocarSerpientes();
 		for (int i = 0; i < dim_y; i++) {
 			for (int j = 0; j < dim_x; j++) {
-				if (area[j][i] != 0)
+				if (area[j][i] != -1)
 					System.out.print(area[j][i]);
 				else
-					System.out.print("0");
+					System.out.print("-1");
 			}
 			System.out.println("\n");
 		}
 	}
-
 	
+	public void vaciarArea() {
+		
+		for (int i = 0; i < dim_y; i++) {
+			for (int j = 0; j < dim_x; j++) {
+				area[j][i] = -1;
+			}
+			System.out.println("\n");
+		}
+
+	}
 
 }
