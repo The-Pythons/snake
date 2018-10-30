@@ -9,6 +9,11 @@ public class Fruta {
 		
 	}
 	
+	public Fruta(Punto2D pos2) {
+		this.pos=pos2;
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public String toString() {
 		return tipo;

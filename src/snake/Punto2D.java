@@ -18,6 +18,11 @@ public class Punto2D {
 		this.x = p.x;
 		this.y = p.y;
 	}
+	public boolean puntoCorrecto(int dim_x,int dim_y){
+		if(this.x>=dim_x || this.y>=dim_y)
+			return false;
+		return true;
+	}
 
 	@Override
 	public int hashCode() {

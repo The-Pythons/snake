@@ -6,39 +6,68 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Escenario {
 	ArrayList<Serpiente> serpientes;
-	ArrayList<Fruta> frutas;
-	ArrayList<Obstaculo> obstaculos;
-	Object[][] area;
+	//ArrayList<Fruta> frutas;
+	//ArrayList<Obstaculo> obstaculos;
+	ArrayList<Object> elementos;
+	int [][] area;
 	int dim_x, dim_y;
 
 	public Escenario(int dim_x, int dim_y) {
 		this.dim_x = dim_x;
 		this.dim_y = dim_y;
-		area = new Object[dim_x][dim_y];
+		area = new int[dim_x][dim_y];
 		serpientes = new ArrayList<Serpiente>();
 	}
+	
+	
+	//devueve el elemento de la determinada posicion de la matriz haciendo facilmente 
+	//compatible codigos anteriores
+	
+	private Object getElemofarea(Punto2D pos) {
+			return elementos.get(area[pos.x][pos.y]);
+			}
+	private boolean posicionVacia(Punto2D pos) {
+		return area[pos.x][pos.y]==0;
+	}				
+	void crearObtaculo(Punto2D pos){
 
+		area[pos.x][pos.y]=elementos.size();
+		elementos.add(new Obstaculo(pos));
+	}
+	
+	void crearObtaculo(int x,int y){
+
+		area[x][y]=elementos.size();
+		elementos.add(new Obstaculo(x,y));
+	}
+	void crearFruta(Punto2D pos){
+		if(!pos.puntoCorrecto(dim_x, dim_y))
+			return;
+		area[pos.x][pos.y]=elementos.size();
+		elementos.add(new Fruta(pos));
+	}
+	
 	void crearParedes() {// rodea todos los bordes del escenario con obstaculos
 		for (int i = 0; i < dim_x; i++)// piso
-			area[i][0] = new Obstaculo(i, 0);
+			crearObtaculo(i, 0);
 		for (int i = 1; i < dim_y; i++)// pared izq
-			area[0][i] = new Obstaculo(0, i);
+			crearObtaculo(0, i);
 		for (int i = 1; i < dim_y; i++)// pared der
-			area[dim_x - 1][i] = new Obstaculo(dim_x - 1, i);
+			crearObtaculo(dim_x - 1, i);
 		for (int i = 1; i < dim_x; i++)// techo
-			area[i][dim_y - 1] = new Obstaculo(i, dim_y - 1);
+			crearObtaculo(i, dim_y - 1);
 	}
 
-	void crearFruta(int cantidad) {
+	void crearFrutaAzar(int cantidad) {
 		int x, y, i;
 		for (i = 0; i < cantidad; i++) {
 			do {
 				// https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html
 				x = ThreadLocalRandom.current().nextInt(0, dim_x);
 				y = ThreadLocalRandom.current().nextInt(0, dim_y);
-			} while (area[x][y] != null);// genero enteros al azar para x e y hasta que encuentro una ubicacion vacia
-//			area[x][y] = new Fruta(x, y);// creo una fruta en ese lugar
-			area[1][1] = new Fruta(1, 1); // Con el fin de probar el colisionador se crea una fruta en un lugar conocido
+			} while (area[x][y] != 0);// genero enteros al azar para x e y hasta que encuentro una ubicacion vacia
+			//area[x][y] = new Fruta(x, y);// creo una fruta en ese lugar
+			crearFruta(new Punto2D(x,y)); 
 		}
 	}
 
@@ -49,9 +78,11 @@ public class Escenario {
 	public Serpiente getSerpiente(int id) {
 		return serpientes.get(id);
 	}
+	
+	
+	
 
-	boolean colisionadorSerpientes() { // Con el fin de probar el colisionador la funcion retorna un boolean
-		for (Serpiente s1 : serpientes) {
+	boolean colisionadorSerpientes(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un boolean
 			for (Serpiente s2 : serpientes) {
 				if (!s1.equals(s2)) { // s1 y s2 serpientes diferentes
 					if (s1.cabeza.equals(s2.cabeza)) { // Choque de frente
@@ -71,67 +102,98 @@ public class Escenario {
 
 			}
 
-		}
+	
 		return false;
 	}
+	
+	
+	   void Colicionador(Serpiente s1) {
+		   if(colisionadorConObstaculos(s1))
+			   return;
+		   if(colisionadorConComida(s1))
+			   return;
+		   if(colisionadorConComida(s1))
+			   return;
+	   }
 
-	boolean colisionadorConObstaculos() { // Con el fin de probar el colisionador la funcion retorna un boolean
-		Class c = new Obstaculo(-1, -1).getClass();
-		for (Serpiente s1 : serpientes) {
-			Punto2D posicion = s1.cabeza.getPosicion();
-			if (area[posicion.x][posicion.y].getClass().equals(c)) { // Si en la posicion de la cabeza de s1 hay un
-																		// obstaculo
+	boolean colisionadorConObstaculos(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un boolean
+		Class<? extends Obstaculo> c = new Obstaculo(-1, -1).getClass();
+		Punto2D posicion = s1.cabeza.getPosicion();
+			if (getElemofarea(posicion).getClass().equals(c)) { 
+				// Si en la posicion de la cabeza de s1 hay un	// obstaculo
 				s1.muere();
 				s1 = null;
 				return true;
-			}
+			
 		}
 		return false;
 	}
 
-	boolean colisionadorConComida() { // Con el fin de probar el colisionador la funcion retorna un boolean
-		Class c = new Fruta(-1, -1).getClass();
-		for (Serpiente s1 : serpientes) {
+	boolean colisionadorConComida(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un boolean
+			Class<? extends Fruta> c = new Fruta(-1, -1).getClass();
 			Punto2D posicion = s1.cabeza.getPosicion();
-			if (area[posicion.x][posicion.y].getClass().equals(c)) { // Si en la posicion de la cabeza de s1 hay fruta
-				s1.comer((Fruta) (area[posicion.x][posicion.y]));
+			if (getElemofarea(posicion).getClass().equals(c)) { // Si en la posicion de la cabeza de s1 hay fruta
+				s1.comer((Fruta)getElemofarea(posicion));
 				return true;
-			}
-
 		}
 		return false;
 	}
-
-	void colocarSerpiente() {
+	
+	
+	
+	void colocarSerpientes() {
 		Iterator<Serpiente> iterador = serpientes.iterator();
 		while (iterador.hasNext()) {
-			Serpiente s = iterador.next();
+			colocarSerpiente(iterador.next());
+		
+		}
+	}
+	
+	void colocarSerpiente(Serpiente s) {
+			int index=elementos.size();
+			elementos.add(s);
 			Punto2D posicion = s.cabeza.getPosicion();
-			area[posicion.x][posicion.y] = "H"; // Head
+			area[posicion.x][posicion.y] = index; // Head
 			Iterator<Cuerpo> itcuerpo = s.cuerpo.iterator();
 			while (itcuerpo.hasNext()) {
 				Cuerpo cuerpo = itcuerpo.next();
 				posicion = cuerpo.getPosicion();
-				area[posicion.x][posicion.y] = "B"; // Body
+				area[posicion.x][posicion.y] = index; // Body
 			}
 		}
-	}
+	
 
-	void limpiarSerpiente() {
-		for (int i = 0; i < dim_y; i++) {
-			for (int j = 0; j < dim_x; j++) {
-				if (area[j][i] == "H" || area[j][i] == "B")
-					area[j][i] = null;
-			}
+
+	void limpiarSerpiente(Serpiente s) {
+
+		Punto2D posicion = s.cabeza.getPosicion();
+		area[posicion.x][posicion.y] = -1; // Head
+		
+		Cuerpo cuerpo;
+		Iterator<Cuerpo> itcuerpo = s.getCuerpo().iterator();
+		while (itcuerpo.hasNext()) {
+			cuerpo = itcuerpo.next();
+			posicion = cuerpo.getPosicion();
+			area[posicion.x][posicion.y] = -1; // Body
+		}
+		
+	}
+	void limpiarSerpientes() {
+		Iterator<Serpiente> iterador = serpientes.iterator();
+		while (iterador.hasNext()) {
+			Serpiente s =iterador.next();
+			limpiarSerpiente(s);
+			s=null;
+			
 		}
 	}
 
 	public void mostrar() {
-		limpiarSerpiente();
-		colocarSerpiente();
+		limpiarSerpientes();
+		colocarSerpientes();
 		for (int i = 0; i < dim_y; i++) {
 			for (int j = 0; j < dim_x; j++) {
-				if (area[j][i] != null)
+				if (area[j][i] != 0)
 					System.out.print(area[j][i]);
 				else
 					System.out.print("0");

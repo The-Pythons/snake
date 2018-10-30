@@ -90,4 +90,13 @@ public class Serpiente implements Direcciones {
 		this.crecer();
 	}
 
+	public Cabeza getCabeza() {
+		return cabeza;
+	}
+
+	public ArrayList<Cuerpo> getCuerpo() {
+		return cuerpo;
+	}
+	
+
 }

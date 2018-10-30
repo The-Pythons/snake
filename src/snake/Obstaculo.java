@@ -8,7 +8,11 @@ public class Obstaculo {
 		this.pos = new Punto2D(x, y);
 
 	}
+	
+	public Obstaculo(Punto2D pos) {
+		this.pos = new Punto2D(pos.x, pos.y);
 
+	}
 	@Override
 	public String toString() {
 		return tipo;
