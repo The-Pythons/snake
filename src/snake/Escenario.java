@@ -122,26 +122,6 @@ public class Escenario {
 	
 	
 	}
-	/*
-	 * 	if (!s1.equals(s2)) { // s1 y s2 serpientes diferentes
-					if (s1.cabeza.equals(s2.cabeza)) { // Choque de frente
-						s1.muere();
-						s2.muere();
-						s2 = s1 = null;
-						return true;
-					} else {
-						Cuerpo cabezaS1 = new Cuerpo(s1.cabeza.getPosicion(), s1.cabeza.getOrientacion());
-						if (s2.cuerpo.contains(cabezaS1)) { // S1 chocha con el cuerpo de s2
-							s1.muere();
-							s1 = null;
-							return true;
-						}
-					}
-				}
-
-			}
-	 * 
-	 * */
 	
 	   void Colicionador(Serpiente s1) {
 		   if(colisionadorConObstaculos(s1))
@@ -220,12 +200,13 @@ public class Escenario {
 			
 		}
 	}
+	void avansanserpeintes() {
+	
+	}
 
 	
 	
 	public void mostrar() {
-		//limpiarSerpientes();
-		//colocarSerpientes();
 		for (int i = 0; i < dim_y; i++) {
 			for (int j = 0; j < dim_x; j++) {
 				if (!posicionVacia(new Punto2D(i,j)))
