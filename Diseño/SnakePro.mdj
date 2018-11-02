@@ -5103,8 +5103,6 @@
 										"$ref": "AAAAAAFmTxqHgFwRxo4="
 									},
 									"visible": false,
-									"lineColor": "#a4a4a4",
-									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 176,
 									"top": 240,
@@ -5121,8 +5119,6 @@
 										"$ref": "AAAAAAFmTxqHgFwSVW8="
 									},
 									"visible": false,
-									"lineColor": "#a4a4a4",
-									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 176,
 									"top": 240,
@@ -5130,8 +5126,6 @@
 									"height": 10
 								}
 							],
-							"lineColor": "#a4a4a4",
-							"fontColor": "#a4a4a4",
 							"font": "Arial;13;0",
 							"head": {
 								"$ref": "AAAAAAFmTxeb6VH62qY="
@@ -7743,8 +7737,6 @@
 										"$ref": "AAAAAAFmjmK4dKJYc7Y="
 									},
 									"visible": false,
-									"lineColor": "#a4a4a4",
-									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"width": 10,
 									"height": 10
@@ -7759,15 +7751,11 @@
 										"$ref": "AAAAAAFmjmK4dKJZ+Pg="
 									},
 									"visible": false,
-									"lineColor": "#a4a4a4",
-									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"width": 10,
 									"height": 10
 								}
 							],
-							"lineColor": "#a4a4a4",
-							"fontColor": "#a4a4a4",
 							"font": "Arial;13;0",
 							"head": {
 								"$ref": "AAAAAAFmjmI9iZ3PjGw="
@@ -9387,7 +9375,8 @@
 								"$ref": "AAAAAAFmAnTaPUDiack="
 							},
 							"name": "idJugador",
-							"visibility": "private"
+							"visibility": "private",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -9396,7 +9385,8 @@
 								"$ref": "AAAAAAFmAnTaPUDiack="
 							},
 							"name": "apodo",
-							"visibility": "private"
+							"visibility": "private",
+							"type": ""
 						}
 					]
 				},
