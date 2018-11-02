@@ -1,6 +1,8 @@
 package snake;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.Graphics;
@@ -8,6 +10,8 @@ import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
 
 public class GameFirstClass extends JFrame {
 
@@ -22,11 +26,18 @@ public class GameFirstClass extends JFrame {
 	static final int O = -2;
 	static final int E = 2;
 	
-	private Image dbImage;
-	private Graphics dbg;
+	//private Image dbImage;
+	//private Graphics dbg;
+	private AL controles;
+	Escenario escenario; 
+	ArrayList<Dibujable> elementos;
+	private JPanelGrafico contentPane;
 
 	// Window Basics
 	public GameFirstClass() {
+		
+		
+		
 		addKeyListener(new AL());
 		setTitle("Prueba de teclas");
 		setSize(800, 800);
@@ -34,55 +45,52 @@ public class GameFirstClass extends JFrame {
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		x = 400;
-		y = 400;	
+		this.x = 400;
+		this.y = 400;
+		
+	
+		elementos = new ArrayList<Dibujable>() ; 
+		
+	
+		JPanelGrafico contentPane = new JPanelGrafico(elementos);
+		setContentPane(contentPane);
+		//escenario = new Escenario(40, 40);
+		//escenario.start();
+	
+		repaint();
+		elementos.add(new Obstaculo(500,500));
+		elementos.add(new Serpiente(100,100,S));
+		
+		
 	}
 	// main
-
 	public static void main(String[] args) {
 		new GameFirstClass();
 	}
-
-	// Controls
-	public class AL extends KeyAdapter {
-
-		@Override
-		public void keyPressed(KeyEvent event) {
-			int keyCode = event.getKeyCode();
-			if (keyCode == event.VK_LEFT) {
-				dir = O;
-			}
-			if (keyCode == event.VK_RIGHT) {
-				dir = E;
-			}
-			if (keyCode == event.VK_UP) {
-				dir = N;
-			}
-			if (keyCode == event.VK_DOWN) {
-				dir = S;
-			}
-		}
-
-		@Override
-		public void keyReleased(KeyEvent event) {
-		}
-	}
+	
 	// Double Buffer
-
-	@Override
+	/*@Override
 	public void paint(Graphics g) {
-		dbImage = createImage(getWidth(), getHeight());
-		dbg = dbImage.getGraphics();
+		//dbImage = createImage(getWidth(), getHeight());
+		//dbg = dbImage.getGraphics();
 		paintComponent(dbg);
-		g.drawImage(dbImage, 0, 0, this);
-	}
-
+		//g.drawImage(dbImage, 0, 0, this);
+		
+		
+		
+	}*/
+	
+	
+	
+	
+		
+/*
 	public void paintComponent(Graphics g) {
-		g.fillOval(x, y, 15, 15);
+		g.fillOval(x, y, 10, 10);
 		tarea = new TimerTask() {
 			@Override
 			public void run() {
-				switch (dir) {
+				switch (controles.getDir()) {
 				case N:
 					y-=10;
 					break;
@@ -103,4 +111,7 @@ public class GameFirstClass extends JFrame {
 		//tiempo.scheduleAtFixedRate(tarea, 0, 2000);
 		tiempo.schedule(tarea, 200);
 	}
+*/
+
+	
 }

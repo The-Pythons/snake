@@ -1,6 +1,9 @@
 package snake;
 
-public class Fruta {
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class Fruta implements Dibujable {
 	Punto2D pos;
 	String tipo = "F";
 	
@@ -18,6 +21,15 @@ public class Fruta {
 	public String toString() {
 		return tipo;
 	}
+
+	@Override
+	public void getDibujable(Graphics g) {
+		g.setColor(Color.BLUE);
+		g.fillOval(pos.x, pos.y, 50, 50);
+		
+	}
+
+
 	
 
 }

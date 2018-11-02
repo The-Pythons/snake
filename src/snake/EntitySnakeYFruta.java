@@ -5,12 +5,12 @@ import java.awt.Rectangle;
 
 public class EntitySnakeYFruta {
 	private int x, y, TamanodelCuerpo;
-	///Posicione y,x
+	/// Posicione y,x
 	/// tama�o size (Seria el ancho y alto)
 
 	public EntitySnakeYFruta(int size) {
 		this.TamanodelCuerpo = size;
-	
+
 	}
 
 	public int getX() {
@@ -45,12 +45,13 @@ public class EntitySnakeYFruta {
 
 	public boolean isCollsion(EntitySnakeYFruta o) {
 		if (o == this)
-		return false;///si pongo en true entra en un bucle
+			return false;/// si pongo en true entra en un bucle
 		return getBound().intersects(o.getBound());
 	}
-	////Por defecto
+
+	//// Por defecto
 	public void render(Graphics2D g2d2) {
 		// TODO Auto-generated method stub
-		g2d2.fillRect(x+1, y+1,TamanodelCuerpo-1,TamanodelCuerpo-1);///Le da el efecto de espacio
+		g2d2.fillRect(x + 1, y + 1, TamanodelCuerpo - 1, TamanodelCuerpo - 1);/// Le da el efecto de espacio
 	}
 }

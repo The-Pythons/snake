@@ -17,9 +17,10 @@ public class Cuerpo implements Direcciones {
 	public Punto2D getPosicion() {
 		return posicion;
 	}
+
 	
 	public int getOrientacion() {
-		return orientacion;
+		return this.orientacion;
 	}
 
 }

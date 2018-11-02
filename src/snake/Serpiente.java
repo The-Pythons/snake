@@ -1,8 +1,12 @@
 package snake;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Serpiente implements Direcciones {
+
+
+public class Serpiente implements Direcciones,Dibujable {
 
 	Cabeza cabeza;
 	ArrayList<Cuerpo> cuerpo;
@@ -97,6 +101,24 @@ public class Serpiente implements Direcciones {
 	public ArrayList<Cuerpo> getCuerpo() {
 		return cuerpo;
 	}
+
+	public void girar(int dir) {
+		cabeza.setOrientacion(dir);
+		
+	}
+
+	@Override
+	public void getDibujable(Graphics g) {
 	
+		g.drawRect(cabeza.getPosicion().x-1, cabeza.getPosicion().y+1, 20, 20);
+		Iterator<Cuerpo> c= cuerpo.iterator();
+		while(c.hasNext()) {
+			Cuerpo c1 = c.next();
+			g.drawRect(c1.getPosicion().x, c1.getPosicion().y, 10, 10);
+		}
+		
+	}
+
+
 
 }

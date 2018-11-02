@@ -1,6 +1,8 @@
 package snake;
 
-public class Obstaculo {
+import java.awt.Graphics;
+
+public class Obstaculo implements Dibujable {
 	Punto2D pos;
 	String tipo = "X";
 
@@ -16,6 +18,12 @@ public class Obstaculo {
 	@Override
 	public String toString() {
 		return tipo;
+	}
+
+	@Override
+	public void getDibujable(Graphics g) {
+		 g.drawRect (pos.x, pos.y, 10, 20);
+		
 	}
 
 }
