@@ -19,7 +19,7 @@ public class serpienteDibujable extends Dibujable {
 		Iterator<Cuerpo> it = s.cuerpo.iterator();		
 		while (it.hasNext()) {
 			Cuerpo c = it.next();
-			g.setColor(Color.GREEN);
+			//g.setColor(Color.GREEN);
 			g.fillRect(c.getPosicion().x + 1, c.getPosicion().x + 1, 8, 8);
 		}
 	}

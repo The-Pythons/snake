@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 import javax.swing.JPanel;
 
-public class JPanelGrafico extends JPanel {
+public class JPanelGrafico extends JPanel implements Direcciones{
 
 	/**
 	 * Create the panel.
@@ -19,10 +19,12 @@ public class JPanelGrafico extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g) {
-		Fruta fru = new Fruta(100,100);
-		
+		Fruta fru = new Fruta(300,300);
+		Serpiente s = new Serpiente(100,200,S);
 		frutaDibujable fruta = new frutaDibujable(fru);
+		serpienteDibujable serp = new serpienteDibujable(s);
 		fruta.dibujar(g);
+		serp.dibujar(g);
 	}
 	
 /*	public void paintComponent(Graphics g) {
