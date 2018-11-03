@@ -120,47 +120,11 @@
 									"model": {
 										"$ref": "AAAAAAFmAnTaPUDiack="
 									},
-									"subViews": [
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFmthFaO+0wmHA=",
-											"_parent": {
-												"$ref": "AAAAAAFmAnTaSkDqHPQ="
-											},
-											"model": {
-												"$ref": "AAAAAAFmthFZwO0t1JU="
-											},
-											"font": "Arial;13;0",
-											"left": 349,
-											"top": 486,
-											"width": 63.2353515625,
-											"height": 13,
-											"text": "-idJugador",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFmthGCAu5X1z8=",
-											"_parent": {
-												"$ref": "AAAAAAFmAnTaSkDqHPQ="
-											},
-											"model": {
-												"$ref": "AAAAAAFmthGBvu5UNrw="
-											},
-											"font": "Arial;13;0",
-											"left": 349,
-											"top": 501,
-											"width": 63.2353515625,
-											"height": 13,
-											"text": "-apodo",
-											"horizontalAlignment": 0
-										}
-									],
 									"font": "Arial;13;0",
 									"left": 344,
 									"top": 481,
 									"width": 73.2353515625,
-									"height": 38
+									"height": 10
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -173,7 +137,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 344,
-									"top": 519,
+									"top": 491,
 									"width": 73.2353515625,
 									"height": 10
 								},
@@ -2922,7 +2886,7 @@
 							"top": 600,
 							"width": 169,
 							"height": 51,
-							"text": "Version Actual: v1.3"
+							"text": "Version Actual: v1.4"
 						},
 						{
 							"_type": "UMLAssociationView",
@@ -9365,28 +9329,6 @@
 									"$ref": "AAAAAAFmTxeb6FH4sCU="
 								}
 							}
-						}
-					],
-					"attributes": [
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFmthFZwO0t1JU=",
-							"_parent": {
-								"$ref": "AAAAAAFmAnTaPUDiack="
-							},
-							"name": "idJugador",
-							"visibility": "private",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFmthGBvu5UNrw=",
-							"_parent": {
-								"$ref": "AAAAAAFmAnTaPUDiack="
-							},
-							"name": "apodo",
-							"visibility": "private",
-							"type": ""
 						}
 					]
 				},
