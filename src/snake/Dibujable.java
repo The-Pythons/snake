@@ -2,10 +2,9 @@ package snake;
 
 import java.awt.Graphics;
 
-public interface Dibujable {
+public abstract class Dibujable {
 	
-	public void getDibujable(Graphics g);
+	public abstract void dibujar (Graphics g);
 	
 	
-
 }

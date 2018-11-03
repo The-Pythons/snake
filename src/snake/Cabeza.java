@@ -55,5 +55,10 @@ public class Cabeza implements Direcciones{
 		return true;
 	}
 
+	public void setOrientacion(int dir) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

@@ -2,7 +2,7 @@ package snake;
 
 import java.awt.Graphics;
 
-public class Obstaculo implements Dibujable {
+public class Obstaculo  {
 	Punto2D pos;
 	String tipo = "X";
 
@@ -20,10 +20,10 @@ public class Obstaculo implements Dibujable {
 		return tipo;
 	}
 
-	@Override
+/*	@Override
 	public void getDibujable(Graphics g) {
 		 g.drawRect (pos.x, pos.y, 10, 20);
 		
 	}
-
+*/
 }

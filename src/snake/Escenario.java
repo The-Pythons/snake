@@ -39,6 +39,7 @@ public class Escenario extends Thread {
 		tiempo.schedule(tarea, 1000);
 	}
 	
+	
 	public void girarSerpiente(int id, int dir){
 		getSerpiente(0).girar(dir);
 	}

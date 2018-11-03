@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 
 
-public class Serpiente implements Direcciones,Dibujable {
+public class Serpiente implements Direcciones{
 
 	Cabeza cabeza;
 	ArrayList<Cuerpo> cuerpo;
@@ -107,17 +107,6 @@ public class Serpiente implements Direcciones,Dibujable {
 		
 	}
 
-	@Override
-	public void getDibujable(Graphics g) {
-	
-		g.drawRect(cabeza.getPosicion().x-1, cabeza.getPosicion().y+1, 20, 20);
-		Iterator<Cuerpo> c= cuerpo.iterator();
-		while(c.hasNext()) {
-			Cuerpo c1 = c.next();
-			g.drawRect(c1.getPosicion().x, c1.getPosicion().y, 10, 10);
-		}
-		
-	}
 
 
 

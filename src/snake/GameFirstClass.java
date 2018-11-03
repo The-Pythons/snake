@@ -40,26 +40,22 @@ public class GameFirstClass extends JFrame {
 		
 		addKeyListener(new AL());
 		setTitle("Prueba de teclas");
-		setSize(800, 800);
+		setSize(400, 400);
 		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.x = 400;
 		this.y = 400;
+		//escenario = new Escenario(40,40);
+		//escenario.start();
 		
-	
-		elementos = new ArrayList<Dibujable>() ; 
-		
-	
+	//	elementos = escenario.elementos; 
 		JPanelGrafico contentPane = new JPanelGrafico(elementos);
 		setContentPane(contentPane);
 		//escenario = new Escenario(40, 40);
 		//escenario.start();
-	
 		repaint();
-		elementos.add(new Obstaculo(500,500));
-		elementos.add(new Serpiente(100,100,S));
 		
 		
 	}
@@ -67,6 +63,9 @@ public class GameFirstClass extends JFrame {
 	public static void main(String[] args) {
 		new GameFirstClass();
 	}
+	
+	
+	
 	
 	// Double Buffer
 	/*@Override
@@ -84,26 +83,12 @@ public class GameFirstClass extends JFrame {
 	
 	
 		
-/*
+
 	public void paintComponent(Graphics g) {
 		g.fillOval(x, y, 10, 10);
 		tarea = new TimerTask() {
 			@Override
 			public void run() {
-				switch (controles.getDir()) {
-				case N:
-					y-=10;
-					break;
-				case S:
-					y+=10;
-					break;
-				case O:
-					x-=10;
-					break;
-				default:
-					x+=10;
-					break;
-				}
 				repaint();
 			}
 		};
@@ -111,7 +96,7 @@ public class GameFirstClass extends JFrame {
 		//tiempo.scheduleAtFixedRate(tarea, 0, 2000);
 		tiempo.schedule(tarea, 200);
 	}
-*/
+
 
 	
 }
