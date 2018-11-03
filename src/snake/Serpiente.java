@@ -103,7 +103,7 @@ public class Serpiente implements Direcciones,Dibujable {
 	}
 
 	public void girar(int dir) {
-		cabeza.setOrientacion(dir);
+		//cabeza.setOrientacion(dir);
 		
 	}
 
