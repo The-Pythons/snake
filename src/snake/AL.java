@@ -4,25 +4,25 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
-	public class AL extends KeyAdapter  implements Direcciones{
-		int dir ;
+	public class AL extends KeyAdapter {
+		Orientacion dir ;
 		@Override
 		public void keyPressed(KeyEvent event) {
 			int keyCode = event.getKeyCode();
 			if (keyCode == event.VK_LEFT) {
-				dir = O;
+				dir = Orientacion.O;
 			}
 			if (keyCode == event.VK_RIGHT) {
-				dir = E;
+				dir = Orientacion.E;
 			}
 			if (keyCode == event.VK_UP) {
-				dir = N;
+				dir = Orientacion.N;
 			}
 			if (keyCode == event.VK_DOWN) {
-				dir = S;
+				dir = Orientacion.S;
 			}
 		}
-		public int getDir() {
+		public Orientacion getDir() {
 			return dir;
 		}
 

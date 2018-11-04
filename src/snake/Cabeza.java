@@ -1,15 +1,15 @@
 package snake;
 
-public class Cabeza implements Direcciones{
+public class Cabeza {
 	private Punto2D posicion;
-	private int orientacion;
+	private Orientacion orientacion;
 
-	public Cabeza(int x, int y, int orientacion) {
+	public Cabeza(int x, int y,Orientacion orientacion) {
 		this.posicion = new Punto2D(x,y);
 		this.orientacion = orientacion;
 	}
 
-	public Cabeza(Punto2D posicion, int orientacion) {
+	public Cabeza(Punto2D posicion, Orientacion orientacion) {
 		this.posicion = new Punto2D(posicion);
 		this.orientacion = orientacion;
 	}
@@ -23,18 +23,11 @@ public class Cabeza implements Direcciones{
 		this.posicion.y = y;
 	}
 	
-	public int getOrientacion() {
+	public Orientacion getOrientacion() {
 		return orientacion;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + orientacion;
-		result = prime * result + ((posicion == null) ? 0 : posicion.hashCode());
-		return result;
-	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -55,7 +48,7 @@ public class Cabeza implements Direcciones{
 		return true;
 	}
 
-	public void setOrientacion(int dir) {
+	public void setOrientacion(Orientacion dir) {
 		// TODO Auto-generated method stub
 		
 	}

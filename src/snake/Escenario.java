@@ -40,7 +40,7 @@ public class Escenario extends Thread {
 	}
 	
 	
-	public void girarSerpiente(int id, int dir){
+	public void girarSerpiente(int id, Orientacion dir){
 		getSerpiente(0).girar(dir);
 	}
 	// devueve el elemento de la determinada posicion de la matriz haciendo
@@ -103,9 +103,9 @@ public class Escenario extends Thread {
 		}
 	}
 
-	void crearSerpiente(int x, int y, int orientacion) {
+	void crearSerpiente(int x, int y, Orientacion orientacion) {
 
-		Serpiente s = new Serpiente(x, y, orientacion);
+		Serpiente s = new Serpiente(x, y,orientacion);
 		serpientes.add(s);
 		elementos.add(s);
 		colocarSerpiente(s);
@@ -116,7 +116,7 @@ public class Escenario extends Thread {
 	}
 
 	boolean colisionadorSerpientes(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un boolean
-		Class<? extends Serpiente> c = new Serpiente(-1, -1, 1).getClass();
+		Class<? extends Serpiente> c = new Serpiente(-1, -1, Orientacion.N).getClass();
 		Punto2D posicion = s1.cabeza.getPosicion();
 		Serpiente s2;
 		if (getElemofarea(posicion).getClass().equals(c)) {

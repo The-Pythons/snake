@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 
 
-public class Serpiente implements Direcciones{
+public class Serpiente {
 
 	Cabeza cabeza;
 	ArrayList<Cuerpo> cuerpo;
@@ -15,7 +15,7 @@ public class Serpiente implements Direcciones{
 	// norte/sur/este/oeste estan definidas como constantes en la interfaz
 	// direcciones.
 
-	public Serpiente(int x, int y, int orientacion) {
+	public Serpiente(int x, int y, Orientacion orientacion) {
 		this.cabeza = new Cabeza(x, y, orientacion);
 		this.cuerpo = new ArrayList<Cuerpo>();
 		switch (orientacion) {// agrego el primer segmento del cuerpo detras de la cabeza, dependiendo de
@@ -39,7 +39,7 @@ public class Serpiente implements Direcciones{
 		 * Agrega un segmento de cuerpo al final de la lista en funcion del ultimo
 		 * segmento
 		 */
-		int orientacion = this.cuerpo.get(this.cuerpo.size() - 1).getOrientacion();
+		Orientacion orientacion = this.cuerpo.get(this.cuerpo.size() - 1).getOrientacion();
 		Punto2D posicion = this.cuerpo.get(this.cuerpo.size() - 1).getPosicion();
 		switch (orientacion) {
 		case N:
@@ -58,7 +58,7 @@ public class Serpiente implements Direcciones{
 	}
 
 	public void avanzar() {
-		int orientacion = this.cabeza.getOrientacion();
+		Orientacion orientacion = this.cabeza.getOrientacion();
 		Punto2D posicion = this.cabeza.getPosicion();
 		Cuerpo aux = new Cuerpo(posicion, orientacion); // Guardo la posicion de la cabeza
 		
@@ -102,7 +102,7 @@ public class Serpiente implements Direcciones{
 		return cuerpo;
 	}
 
-	public void girar(int dir) {
+	public void girar(Orientacion dir) {
 		cabeza.setOrientacion(dir);
 		
 	}
