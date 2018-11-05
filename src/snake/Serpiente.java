@@ -18,7 +18,10 @@ public class Serpiente {
 	public Serpiente(int x, int y, Orientacion orientacion) {
 		this.cabeza = new Cabeza(x, y, orientacion);
 		this.cuerpo = new ArrayList<Cuerpo>();
-		this.cuerpo.add(new Cuerpo(x, y, orientacion));
+		Cuerpo c = new Cuerpo( new Punto2D(x,y), orientacion);
+		c.mover();
+		this.cuerpo.add(c);
+		
 	}
 
 	public void crecer() {
@@ -28,7 +31,11 @@ public class Serpiente {
 		 */
 		Orientacion orientacion = this.cuerpo.get(this.cuerpo.size() - 1).getOrientacion();
 		Punto2D posicion = this.cuerpo.get(this.cuerpo.size() - 1).getPosicion();
-		this.cuerpo.add(new Cuerpo( new Punto2D(posicion), orientacion));
+		Cuerpo c = new Cuerpo( new Punto2D(posicion), orientacion);
+		c.mover();
+		this.cuerpo.add(c);
+	
+	
 	}
 
 	public void avanzar() {

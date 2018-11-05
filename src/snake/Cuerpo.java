@@ -5,26 +5,26 @@ public class Cuerpo {
 	private Orientacion orientacion;
 
 	public Cuerpo(int x, int y, Orientacion orientacion) {
-		
-		switch (orientacion) { // Muevo la cabeza
-		case N:
-			y--;
-			break;
-		case S:
-			y++;
-			break;
-		case O:
-			x--;
-			break;
-		default:
-			x++;
 		this.posicion = new Punto2D(x, y);
 		this.orientacion = orientacion;
-		}
+		
 	}
 	
+	
 	public Cuerpo(Punto2D posicion, Orientacion orientacion) {
-		switch (orientacion) { // Muevo la cabeza
+		
+	
+		this.posicion = new Punto2D(posicion);
+		this.orientacion = orientacion;
+	}
+
+	public Punto2D getPosicion() {
+		
+		return posicion;
+	}
+
+	public void  mover() {
+		switch (orientacion) { // Muevo el cuerpo
 		case N:
 			posicion.y--;
 			break;
@@ -35,16 +35,9 @@ public class Cuerpo {
 			posicion.x--;
 			break;
 		default:
-			posicion.x++;}
-	
-		this.posicion = new Punto2D(posicion);
-		this.orientacion = orientacion;
+			posicion.x++;
+			}
 	}
-
-	public Punto2D getPosicion() {
-		return posicion;
-	}
-
 	
 	public Orientacion getOrientacion() {
 		return this.orientacion;
