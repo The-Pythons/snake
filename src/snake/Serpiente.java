@@ -34,13 +34,12 @@ public class Serpiente {
 	public void avanzar() {
 		Orientacion orientacion = this.cabeza.getOrientacion();
 		Punto2D posicion = this.cabeza.getPosicion();
-		Cuerpo aux = new Cuerpo(posicion, orientacion); // Guardo la posicion de la cabeza
+		Cuerpo aux = new Cuerpo(new Punto2D(posicion.x,posicion.y), orientacion); // Guardo la posicion de la cabeza
 		
 		for (int i = this.cuerpo.size() - 1; i > 0; i--) { // Desde el ultimo segmento de cuerpo reemplazo con el anterior
-			this.cuerpo.set(i, this.cuerpo.get(i - 1));
+			this.cuerpo.set(i, this.cuerpo.get(i-1));
 		}
 		this.cuerpo.set(0, aux); // El primer segmento queda en la posicion que tenia la cebeza
-		
 		switch (orientacion) { // Muevo la cabeza
 		case N:
 			posicion.y--;
@@ -49,12 +48,12 @@ public class Serpiente {
 			posicion.y++;
 			break;
 		case O:
-			posicion.x--;
+			posicion.x++;
 			break;
 		default:
-			posicion.x++;
+			posicion.x--;
 		}
-		this.cabeza.setPosicion(posicion.x, posicion.y);
+		//this.cabeza.setPosicion(posicion.x, posicion.y);
 
 		
 	}
