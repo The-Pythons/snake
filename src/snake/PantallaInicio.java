@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
@@ -23,7 +24,7 @@ public class PantallaInicio {
 	private JTextField txtUsuario;
 	private JPasswordField txtClave;
 	private JTextField textField;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -57,16 +58,19 @@ public class PantallaInicio {
 		frame.getContentPane().setForeground(Color.BLACK);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Fondo contentPane = new Fondo();
+		contentPane.setBackground("snake-306109_960_720.png");
+		frame.setContentPane(contentPane);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblUsuario_1 = new JLabel("Usuario");
-		lblUsuario_1.setForeground(new Color(255, 255, 0));
+		lblUsuario_1.setForeground(Color.GRAY);
 		lblUsuario_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblUsuario_1.setBounds(103, 108, 67, 14);
 		frame.getContentPane().add(lblUsuario_1);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
-		lblContrasea.setForeground(new Color(255, 255, 0));
+		lblContrasea.setForeground(Color.GRAY);
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblContrasea.setBounds(103, 133, 83, 14);
 		frame.getContentPane().add(lblContrasea);
@@ -88,7 +92,7 @@ public class PantallaInicio {
 				char []clave = txtClave.getPassword();
 				String claveFinal = new String(clave);
 				if(txtUsuario.getText().equals("") || claveFinal.equals("")) {
-					JOptionPane.showMessageDialog(null, "Ingresa un usuario y contraseña", "ATENCION!", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Ingresa un usuario y contraseï¿½a", "ATENCION!", JOptionPane.INFORMATION_MESSAGE);
 				}else {
 				if(txtUsuario.getText().equals("juan") && claveFinal.equals("123")) {
 				frame.setVisible(false);
@@ -96,7 +100,7 @@ public class PantallaInicio {
 				s.frame.setVisible(true);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecto", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Usuario o contraseï¿½a incorrecto", "ERROR", JOptionPane.INFORMATION_MESSAGE);
 					txtUsuario.setText("");
 					txtClave.setText("");
 					txtUsuario.requestFocus();
@@ -127,7 +131,7 @@ public class PantallaInicio {
 		
 		JLabel lblSnake = new JLabel("SNAKE");
 		lblSnake.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSnake.setForeground(new Color(255, 0, 0));
+		lblSnake.setForeground(Color.BLACK);
 		lblSnake.setFont(new Font("Viner Hand ITC", Font.PLAIN, 40));
 		lblSnake.setBounds(140, 22, 165, 54);
 		frame.getContentPane().add(lblSnake);
@@ -141,7 +145,7 @@ public class PantallaInicio {
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNombre.setForeground(new Color(255, 255, 0));
+		lblNombre.setForeground(Color.GRAY);
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNombre.setBounds(271, 211, 57, 14);
 		frame.getContentPane().add(lblNombre);

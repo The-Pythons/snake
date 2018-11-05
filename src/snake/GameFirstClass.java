@@ -12,6 +12,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class GameFirstClass extends JFrame {
 
@@ -32,6 +34,7 @@ public class GameFirstClass extends JFrame {
 	Escenario escenario; 
 	ArrayList<Dibujable> elementos;
 	private JPanelGrafico contentPane;
+	private final JButton btnNewButton = new JButton("New button");
 
 	// Window Basics
 	public GameFirstClass() {
@@ -49,9 +52,14 @@ public class GameFirstClass extends JFrame {
 		
 	//	elementos = escenario.elementos; 
 		JPanelGrafico contentPane = new JPanelGrafico(elementos);
+		
 		setContentPane(contentPane);
 		//escenario = new Escenario(40, 40);
 		//escenario.start();
+		contentPane.setLayout(null);
+	
+
+
 		repaint();
 		
 		
@@ -93,7 +101,4 @@ public class GameFirstClass extends JFrame {
 		//tiempo.scheduleAtFixedRate(tarea, 0, 2000);
 		tiempo.schedule(tarea, 200);
 	}
-
-
-	
 }
