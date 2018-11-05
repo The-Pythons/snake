@@ -1,10 +1,17 @@
-package snake;
+package logica;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
+
+import frutas.Fruta;
+import obstaculo.Obstaculo;
+import snake.Cuerpo;
+import snake.Orientacion;
+import snake.Punto2D;
+import snake.Serpiente;
 
 public class Escenario extends Thread {
 	ArrayList<Serpiente> serpientes;
@@ -103,7 +110,7 @@ public class Escenario extends Thread {
 		}
 	}
 
-	void crearSerpiente(int x, int y, Orientacion orientacion) {
+	public void crearSerpiente(int x, int y, Orientacion orientacion) {
 
 		Serpiente s = new Serpiente(x, y,orientacion);
 		serpientes.add(s);
@@ -115,7 +122,7 @@ public class Escenario extends Thread {
 		return serpientes.get(id);
 	}
 
-	boolean colisionadorSerpientes(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un boolean
+	public boolean colisionadorSerpientes(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un boolean
 		Class<? extends Serpiente> c = new Serpiente(-1, -1, Orientacion.N).getClass();
 		Punto2D posicion = s1.cabeza.getPosicion();
 		Serpiente s2;
@@ -184,7 +191,7 @@ public class Escenario extends Thread {
 		}
 	}
 
-	void colocarSerpiente(Serpiente s) {
+	public void colocarSerpiente(Serpiente s) {
 		Punto2D posicion = s.cabeza.getPosicion();
 		area[posicion.x][posicion.y] = s; // Head
 		Iterator<Cuerpo> itcuerpo = s.cuerpo.iterator();
@@ -195,7 +202,7 @@ public class Escenario extends Thread {
 		}
 	}
 
-	void limpiarSerpiente(Serpiente s) {
+	public void limpiarSerpiente(Serpiente s) {
 
 		Punto2D posicion = s.cabeza.getPosicion();
 		vaciarPosicion(posicion); // Head

@@ -1,7 +1,9 @@
-package snake;
+package frutas;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import snake.Punto2D;
 
 public class Fruta {
 	Punto2D pos;

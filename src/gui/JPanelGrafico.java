@@ -1,4 +1,4 @@
-package snake;
+package gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,6 +6,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JPanel;
+
+import frutas.Fruta;
+import frutas.frutaDibujable;
+import snake.Dibujable;
+import snake.Orientacion;
+import snake.Serpiente;
+import snake.serpienteDibujable;
 
 public class JPanelGrafico extends JPanel {
 
@@ -24,6 +31,12 @@ public class JPanelGrafico extends JPanel {
 		frutaDibujable fruta = new frutaDibujable(fru);
 		serpienteDibujable serp = new serpienteDibujable(s);
 		s.crecer();
+		s.avanzar();
+		s.avanzar();
+		s.avanzar();
+		s.avanzar();
+		s.avanzar();
+		s.avanzar();
 		fruta.dibujar(g);
 		serp.dibujar(g);
 		

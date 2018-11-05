@@ -1,4 +1,4 @@
-package snake;
+package gui;
 
 import java.awt.EventQueue;
 
@@ -13,8 +13,7 @@ import java.awt.Image;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
-import snake.PantallaRegistro;
-import snake.PantallaSala;
+import snake.Fondo;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

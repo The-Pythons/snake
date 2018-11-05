@@ -1,8 +1,8 @@
 package snake;
 
 public class Punto2D {
-	int x;
-	int y;
+	public int x;
+	public int y;
 	
 	public Punto2D() {
 		this.x=0;

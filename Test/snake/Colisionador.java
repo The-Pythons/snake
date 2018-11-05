@@ -3,6 +3,8 @@ package snake;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import logica.Escenario;
+
 class Colisionador{
 
 	@Test

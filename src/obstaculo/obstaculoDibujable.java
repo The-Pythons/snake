@@ -1,7 +1,9 @@
-package snake;
+package obstaculo;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import snake.Dibujable;
 
 public class obstaculoDibujable extends Dibujable {
 

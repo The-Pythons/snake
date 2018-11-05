@@ -4,11 +4,13 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import frutas.Fruta;
+
 
 
 public class Serpiente {
 
-	Cabeza cabeza;
+	public Cabeza cabeza;
 	ArrayList<Cuerpo> cuerpo;
 //	private int orientacion;// direccion en la que avanza la serpiente, enviar inputs para mover a la izq o
 	// der la modificaria.
