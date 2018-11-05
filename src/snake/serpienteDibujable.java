@@ -15,16 +15,19 @@ public class serpienteDibujable extends Dibujable {
 	@Override
 	public void dibujar(Graphics g) {
 		int k=8;
-		int dx;
-		int dy;
-		g.setColor(Color.GREEN);
-		g.fillRect(s.cabeza.getPosicion().x , s.cabeza.getPosicion().y + 1, 8, 8);
+		int cx=s.cabeza.getPosicion().x;
+		int cy=s.cabeza.getPosicion().y;
+		int dx,dy;
+		Punto2D pos; 
+		g.setColor(Color.RED);
+		g.fillRect(cx , cy, k, k);
 		Iterator<Cuerpo> it = s.cuerpo.iterator();		
 		while (it.hasNext()) {
 			Cuerpo c = it.next();
-			//g.setColor(Color.GREEN);
-			dx = s.cabeza.getPosicion().x -(s.cabeza.getPosicion().x-c.getPosicion().x)*8;
-			dy = s.cabeza.getPosicion().y -(s.cabeza.getPosicion().y-c.getPosicion().y)*8;
+			pos = c.getPosicion();
+			dx= cx+ ((cx - pos.x)*(k+1));
+			dy= cy + ((cy - pos.y)*(k+1));
+			g.setColor(Color.GREEN);
 			g.fillRect(dx,dy, 8, 8);
 		}
 	}

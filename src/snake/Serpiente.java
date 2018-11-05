@@ -18,20 +18,7 @@ public class Serpiente {
 	public Serpiente(int x, int y, Orientacion orientacion) {
 		this.cabeza = new Cabeza(x, y, orientacion);
 		this.cuerpo = new ArrayList<Cuerpo>();
-		switch (orientacion) {// agrego el primer segmento del cuerpo detras de la cabeza, dependiendo de
-								// donde "mira"
-		case N:
-			this.cuerpo.add(new Cuerpo(x, y + 1, orientacion));
-			break;
-		case S:
-			this.cuerpo.add(new Cuerpo(x, y - 1, orientacion));
-			break;
-		case O:
-			this.cuerpo.add(new Cuerpo(x + 1, y, orientacion));
-			break;
-		default:
-			this.cuerpo.add(new Cuerpo(x - 1, y, orientacion));
-		}
+		this.cuerpo.add(new Cuerpo(x, y, orientacion));
 	}
 
 	public void crecer() {
@@ -41,20 +28,7 @@ public class Serpiente {
 		 */
 		Orientacion orientacion = this.cuerpo.get(this.cuerpo.size() - 1).getOrientacion();
 		Punto2D posicion = this.cuerpo.get(this.cuerpo.size() - 1).getPosicion();
-		switch (orientacion) {
-		case N:
-			posicion.y++;
-			break;
-		case S:
-			posicion.y--;
-			break;
-		case O:
-			posicion.x++;
-			break;
-		default:
-			posicion.x--;
-		}
-		this.cuerpo.add(new Cuerpo(posicion, orientacion));
+		this.cuerpo.add(new Cuerpo( new Punto2D(posicion), orientacion));
 	}
 
 	public void avanzar() {
@@ -84,9 +58,7 @@ public class Serpiente {
 
 		
 	}
-
 	public void muere() {
-		// TODO Auto-generated method stub
 
 	}
 
