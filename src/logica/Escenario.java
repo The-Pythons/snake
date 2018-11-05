@@ -79,14 +79,14 @@ public class Escenario extends Thread {
 		elementos.add(o);
 	}
 
-	void crearFruta(Punto2D pos) {
+	public void crearFruta(Punto2D pos) {
 		if (!pos.puntoCorrecto(dim_x, dim_y))
 			return;
 		area[pos.x][pos.y] = elementos.size();
 		elementos.add(new Fruta(pos));
 	}
 
-	void crearParedes() {// rodea todos los bordes del escenario con obstaculos
+	public void crearParedes() {// rodea todos los bordes del escenario con obstaculos
 		for (int i = 0; i < dim_x; i++)// piso
 			crearObtaculo(i, 0);
 		for (int i = 1; i < dim_y; i++)// pared izq
@@ -97,7 +97,7 @@ public class Escenario extends Thread {
 			crearObtaculo(i, dim_y - 1);
 	}
 
-	void crearFrutaAzar(int cantidad) {
+	public void crearFrutaAzar(int cantidad) {
 		int x, y, i;
 		for (i = 0; i < cantidad; i++) {
 			do {
@@ -138,7 +138,7 @@ public class Escenario extends Thread {
 				return true;
 			} else {
 				Cuerpo cabezaS1 = new Cuerpo(s1.cabeza.getPosicion(), s1.cabeza.getOrientacion());
-				if (s2.cuerpo.contains(cabezaS1)) { // S1 chocha con el cuerpo de s2
+				if (s2.getCuerpo().contains(cabezaS1)) { // S1 chocha con el cuerpo de s2
 					s1.muere();
 					elementos.remove(s1);
 					vaciarPosicion(posicion);
@@ -194,7 +194,7 @@ public class Escenario extends Thread {
 	public void colocarSerpiente(Serpiente s) {
 		Punto2D posicion = s.cabeza.getPosicion();
 		area[posicion.x][posicion.y] = s; // Head
-		Iterator<Cuerpo> itcuerpo = s.cuerpo.iterator();
+		Iterator<Cuerpo> itcuerpo = s.getCuerpo().iterator();
 		while (itcuerpo.hasNext()) {
 			Cuerpo cuerpo = itcuerpo.next();
 			posicion = cuerpo.getPosicion();

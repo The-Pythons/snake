@@ -25,6 +25,7 @@ public class Serpiente {
 		this.cuerpo.add(c);
 		
 	}
+	
 
 	public void crecer() {
 		/*
