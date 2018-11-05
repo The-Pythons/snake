@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import logica.Escenario;
+import logica.Punto2D;
 
 class Colisionador{
 

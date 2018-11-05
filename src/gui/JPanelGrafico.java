@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 import frutas.Fruta;
 import frutas.frutaDibujable;
-import snake.Dibujable;
+import logica.Dibujable;
 import snake.Orientacion;
 import snake.Serpiente;
 import snake.serpienteDibujable;

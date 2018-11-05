@@ -2,7 +2,7 @@ package obstaculo;
 
 import java.awt.Graphics;
 
-import snake.Punto2D;
+import logica.Punto2D;
 
 public class Obstaculo  {
 	Punto2D pos;

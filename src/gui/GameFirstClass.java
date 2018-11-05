@@ -12,9 +12,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import logica.Dibujable;
 import logica.Escenario;
-import snake.AL;
-import snake.Dibujable;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;

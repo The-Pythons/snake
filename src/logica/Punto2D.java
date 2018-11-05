@@ -1,4 +1,4 @@
-package snake;
+package logica;
 
 public class Punto2D {
 	public int x;

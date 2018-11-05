@@ -3,7 +3,7 @@ package frutas;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import snake.Dibujable;
+import logica.Dibujable;
 
 public class frutaDibujable extends Dibujable {
 

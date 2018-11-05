@@ -1,6 +1,8 @@
-package snake;
+package logica;
 
 import java.util.ArrayList;
+
+import snake.Serpiente;
 
 public interface Choques {
 	public void chocar(Serpiente s1);

@@ -13,8 +13,6 @@ import java.awt.Image;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
-import snake.Fondo;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class PantallaInicio {

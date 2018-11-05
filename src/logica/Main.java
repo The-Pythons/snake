@@ -1,8 +1,10 @@
-package snake;
+package logica;
 
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+
+import gui.GamePanel;
 
 public class Main {
 

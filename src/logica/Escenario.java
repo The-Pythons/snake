@@ -10,7 +10,6 @@ import frutas.Fruta;
 import obstaculo.Obstaculo;
 import snake.Cuerpo;
 import snake.Orientacion;
-import snake.Punto2D;
 import snake.Serpiente;
 
 public class Escenario extends Thread {
