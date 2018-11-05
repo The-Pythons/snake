@@ -44,7 +44,7 @@ public class Serpiente {
 
 	public void avanzar() {
 		Orientacion orientacion = this.cabeza.getOrientacion();
-		Orientacion auxo;
+		//Orientacion auxo;
 		Punto2D posicion = this.cabeza.getPosicion();
 		Cuerpo aux = new Cuerpo(new Punto2D(posicion.x,posicion.y), orientacion); // Guardo la posicion de la cabeza
 		for (int i = this.cuerpo.size() - 1; i > 0; i--) { // Desde el ultimo segmento de cuerpo reemplazo con el anterior

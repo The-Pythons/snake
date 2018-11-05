@@ -36,8 +36,6 @@ public class JPanelGrafico extends JPanel {
 		s.crecer();
 		s.crecer();
 		s.crecer();
-	
-		
 		s.avanzar();
 		s.avanzar();
 		s.avanzar();
