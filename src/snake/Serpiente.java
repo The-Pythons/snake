@@ -46,11 +46,11 @@ public class Serpiente {
 		Orientacion orientacion = this.cabeza.getOrientacion();
 		Orientacion auxo;
 		Punto2D posicion = this.cabeza.getPosicion();
-		//Cuerpo aux = new Cuerpo(new Punto2D(posicion.x,posicion.y), orientacion); // Guardo la posicion de la cabeza
-		
-		/*for (int i = 0 ; i < cuerpo.size()-1; i++) { // Desde el ultimo segmento de cuerpo reemplazo con el anterior
-			this.cuerpo.set(i+1, this.cuerpo.get(i));
-		}*/
+		Cuerpo aux = new Cuerpo(new Punto2D(posicion.x,posicion.y), orientacion); // Guardo la posicion de la cabeza
+		for (int i = this.cuerpo.size() - 1; i > 0; i--) { // Desde el ultimo segmento de cuerpo reemplazo con el anterior
+			this.cuerpo.set(i, this.cuerpo.get(i - 1));
+		}
+		this.cuerpo.set(0, aux); // El primer segmento queda en la posicion que tenia la cebeza
 		switch (orientacion) { // Muevo la cabeza
 		case N:
 			posicion.y--;
@@ -59,20 +59,20 @@ public class Serpiente {
 			posicion.y++;
 			break;
 		case O:
-			posicion.x++;
+			posicion.x--;
 			break;
 		default:
-			posicion.x--;
+			posicion.x++;
 		}
-		for (Iterator iterator = cuerpo.iterator(); iterator.hasNext();) {
+		/*for (Iterator iterator = cuerpo.iterator(); iterator.hasNext();) {
 			Cuerpo cu = (Cuerpo) iterator.next();
 			auxo = cu.getOrientacion();
 			cu.setOrientacion(orientacion);
 			cu.mover();
 			auxo=orientacion;
-		}
+		}*/
 		
-		//this.cuerpo.set(0, aux); // El primer segmento queda en la posicion que tenia la cebeza
+		
 		
 		//this.cabeza.setPosicion(posicion.x, posicion.y);
 

@@ -28,8 +28,8 @@ public class serpienteDibujable extends Dibujable {
 		while (it.hasNext()) {
 			Cuerpo c = it.next();
 			pos = c.getPosicion();
-			dx= cx- (cx - pos.x*10);
-			dy= cy - (cy - pos.y*10);
+			dx= cx - (cx - (pos.x*10));
+			dy= cy - (cy - (pos.y*10));
 			g.setColor(Color.GREEN);
 			g.fillRect(dx,dy, 8, 8);
 		}

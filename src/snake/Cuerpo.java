@@ -31,10 +31,10 @@ public class Cuerpo {
 			posicion.y++;
 			break;
 		case O:
-			posicion.x++;
+			posicion.x--;
 			break;
 		default:
-			posicion.x--;
+			posicion.x++;
 			}
 	}
 	public void  moverI() {
@@ -46,10 +46,10 @@ public class Cuerpo {
 			this.posicion.y--;
 			break;
 		case O:
-			this.posicion.x--;
+			this.posicion.x++;
 			break;
 		default:
-			this.posicion.x++;
+			this.posicion.x--;
 			}
 		
 	}
