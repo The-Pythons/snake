@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Iterator;
 
+import logica.Dibujable;
+import logica.Punto2D;
+
 public class serpienteDibujable extends Dibujable {
 	
 	Serpiente s;

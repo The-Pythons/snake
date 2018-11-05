@@ -1,5 +1,7 @@
 package snake;
 
+import logica.Punto2D;
+
 public class Cabeza {
 	private Punto2D posicion;
 	private Orientacion orientacion;

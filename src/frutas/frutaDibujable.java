@@ -1,7 +1,9 @@
-package snake;
+package frutas;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import logica.Dibujable;
 
 public class frutaDibujable extends Dibujable {
 

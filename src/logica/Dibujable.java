@@ -1,4 +1,4 @@
-package snake;
+package logica;
 
 import java.awt.Graphics;
 

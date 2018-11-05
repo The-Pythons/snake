@@ -1,4 +1,4 @@
-package snake;
+package gui;
 
 import java.awt.EventQueue;
 

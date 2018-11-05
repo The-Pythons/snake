@@ -1,6 +1,8 @@
-package snake;
+package obstaculo;
 
 import java.awt.Graphics;
+
+import logica.Punto2D;
 
 public class Obstaculo  {
 	Punto2D pos;

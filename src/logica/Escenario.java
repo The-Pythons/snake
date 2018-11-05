@@ -1,10 +1,16 @@
-package snake;
+package logica;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
+
+import frutas.Fruta;
+import obstaculo.Obstaculo;
+import snake.Cuerpo;
+import snake.Orientacion;
+import snake.Serpiente;
 
 public class Escenario extends Thread {
 	ArrayList<Serpiente> serpientes;
@@ -72,14 +78,14 @@ public class Escenario extends Thread {
 		elementos.add(o);
 	}
 
-	void crearFruta(Punto2D pos) {
+	public void crearFruta(Punto2D pos) {
 		if (!pos.puntoCorrecto(dim_x, dim_y))
 			return;
 		area[pos.x][pos.y] = elementos.size();
 		elementos.add(new Fruta(pos));
 	}
 
-	void crearParedes() {// rodea todos los bordes del escenario con obstaculos
+	public void crearParedes() {// rodea todos los bordes del escenario con obstaculos
 		for (int i = 0; i < dim_x; i++)// piso
 			crearObtaculo(i, 0);
 		for (int i = 1; i < dim_y; i++)// pared izq
@@ -90,7 +96,7 @@ public class Escenario extends Thread {
 			crearObtaculo(i, dim_y - 1);
 	}
 
-	void crearFrutaAzar(int cantidad) {
+	public void crearFrutaAzar(int cantidad) {
 		int x, y, i;
 		for (i = 0; i < cantidad; i++) {
 			do {
@@ -103,7 +109,7 @@ public class Escenario extends Thread {
 		}
 	}
 
-	void crearSerpiente(int x, int y, Orientacion orientacion) {
+	public void crearSerpiente(int x, int y, Orientacion orientacion) {
 
 		Serpiente s = new Serpiente(x, y,orientacion);
 		serpientes.add(s);
@@ -115,7 +121,7 @@ public class Escenario extends Thread {
 		return serpientes.get(id);
 	}
 
-	boolean colisionadorSerpientes(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un boolean
+	public boolean colisionadorSerpientes(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un boolean
 		Class<? extends Serpiente> c = new Serpiente(-1, -1, Orientacion.N).getClass();
 		Punto2D posicion = s1.cabeza.getPosicion();
 		Serpiente s2;
@@ -131,7 +137,7 @@ public class Escenario extends Thread {
 				return true;
 			} else {
 				Cuerpo cabezaS1 = new Cuerpo(s1.cabeza.getPosicion(), s1.cabeza.getOrientacion());
-				if (s2.cuerpo.contains(cabezaS1)) { // S1 chocha con el cuerpo de s2
+				if (s2.getCuerpo().contains(cabezaS1)) { // S1 chocha con el cuerpo de s2
 					s1.muere();
 					elementos.remove(s1);
 					vaciarPosicion(posicion);
@@ -184,10 +190,10 @@ public class Escenario extends Thread {
 		}
 	}
 
-	void colocarSerpiente(Serpiente s) {
+	public void colocarSerpiente(Serpiente s) {
 		Punto2D posicion = s.cabeza.getPosicion();
 		area[posicion.x][posicion.y] = s; // Head
-		Iterator<Cuerpo> itcuerpo = s.cuerpo.iterator();
+		Iterator<Cuerpo> itcuerpo = s.getCuerpo().iterator();
 		while (itcuerpo.hasNext()) {
 			Cuerpo cuerpo = itcuerpo.next();
 			posicion = cuerpo.getPosicion();
@@ -195,7 +201,7 @@ public class Escenario extends Thread {
 		}
 	}
 
-	void limpiarSerpiente(Serpiente s) {
+	public void limpiarSerpiente(Serpiente s) {
 
 		Punto2D posicion = s.cabeza.getPosicion();
 		vaciarPosicion(posicion); // Head

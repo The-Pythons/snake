@@ -1,5 +1,7 @@
 package snake;
 
+import logica.Escenario;
+
 //import org.junit.Test;
 
 public class Avanzar {
