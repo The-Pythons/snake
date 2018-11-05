@@ -24,6 +24,9 @@ public class JPanelGrafico extends JPanel {
 		frutaDibujable fruta = new frutaDibujable(fru);
 		serpienteDibujable serp = new serpienteDibujable(s);
 		s.crecer();
+		s.crecer();
+		s.crecer();
+		s.crecer();
 		fruta.dibujar(g);
 		serp.dibujar(g);
 		
