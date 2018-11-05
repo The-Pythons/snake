@@ -14,7 +14,7 @@ public class frutaDibujable extends Dibujable {
 	@Override
 	public void dibujar(Graphics g) {
 		g.setColor(Color.BLUE);
-		g.fillOval(f.pos.x, f.pos.y, 10, 10);
+		g.fillOval(f.pos.x*10, f.pos.y*10, 10, 10);
 	}
 	
 	
