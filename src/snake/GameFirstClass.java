@@ -35,14 +35,11 @@ public class GameFirstClass extends JFrame {
 
 	// Window Basics
 	public GameFirstClass() {
-		
-		
-		
+	
 		addKeyListener(new AL());
 		setTitle("Prueba de teclas");
-		setSize(400, 400);
+		setBounds(100, 100, 450, 400);
 		setResizable(false);
-		setVisible(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.x = 400;
@@ -61,7 +58,7 @@ public class GameFirstClass extends JFrame {
 	}
 	// main
 	public static void main(String[] args) {
-		new GameFirstClass();
+		new GameFirstClass().setVisible(true);;
 	}
 	
 	
