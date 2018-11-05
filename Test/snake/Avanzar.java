@@ -7,9 +7,9 @@ import logica.Escenario;
 public class Avanzar {
 
 	public static void main(String arg[]) {
-		Escenario e = new Escenario(5, 5);
-		e.crearSerpiente(2, 2, Orientacion.E);
-		e.crearSerpiente(4, 4, Orientacion.E);
+		Escenario e = new Escenario(6, 6);
+		e.crearSerpiente(1, 2, Orientacion.N);
+		e.crearSerpiente(4, 4, Orientacion.N);
 		e.mostrar();
 		System.out.println("-------------------");
 		e.limpiarSerpiente(e.getSerpiente(0));

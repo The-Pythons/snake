@@ -27,10 +27,21 @@ public class JPanelGrafico extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		Fruta fru = new Fruta(30,30);
-		Serpiente s = new Serpiente(15,20,Orientacion.E);
+		Serpiente s = new Serpiente(15,20,Orientacion.S);
 		frutaDibujable fruta = new frutaDibujable(fru);
 		serpienteDibujable serp = new serpienteDibujable(s);
 		s.crecer();
+		s.crecer();
+		s.crecer();
+		s.crecer();
+		s.crecer();
+		s.crecer();
+	
+		//s.girar(Orientacion.E);
+		s.avanzar();
+		s.avanzar();
+		s.avanzar();
+		s.avanzar();
 		s.avanzar();
 		s.avanzar();
 		s.avanzar();

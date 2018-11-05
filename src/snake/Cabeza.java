@@ -51,7 +51,7 @@ public class Cabeza {
 	}
 
 	public void setOrientacion(Orientacion dir) {
-		// TODO Auto-generated method stub
+		this.orientacion=dir;
 		
 	}
 

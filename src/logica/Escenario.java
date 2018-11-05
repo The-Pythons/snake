@@ -230,10 +230,11 @@ public class Escenario extends Thread {
 	}
 
 	public void mostrar() {
-		for (int i = 0; i < dim_y; i++) {
-			for (int j = 0; j < dim_x; j++) {
-				if (!posicionVacia(new Punto2D(i, j)))
-					System.out.print(elementos.indexOf(getElemofarea(new Punto2D(i, j))));
+		int i,j;
+		for (i = 0; i < dim_y; i++) {
+			for (j = 0; j < dim_x; j++) {
+				if (!posicionVacia(new Punto2D(j, i)))
+					System.out.print(elementos.indexOf(getElemofarea(new Punto2D(j, i))));
 				else
 					System.out.print("0");
 			}

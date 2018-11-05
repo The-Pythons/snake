@@ -22,7 +22,7 @@ public class Serpiente {
 		this.cabeza = new Cabeza(x, y, orientacion);
 		this.cuerpo = new ArrayList<Cuerpo>();
 		Cuerpo c = new Cuerpo( new Punto2D(x,y), orientacion);
-		c.mover();
+		c.moverI();
 		this.cuerpo.add(c);
 		
 	}
@@ -35,8 +35,8 @@ public class Serpiente {
 		 */
 		Orientacion orientacion = this.cuerpo.get(this.cuerpo.size() - 1).getOrientacion();
 		Punto2D posicion = this.cuerpo.get(this.cuerpo.size() - 1).getPosicion();
-		Cuerpo c = new Cuerpo( new Punto2D(posicion), orientacion);
-		c.mover();
+		Cuerpo c = new Cuerpo( new Punto2D(posicion.x,posicion.y), orientacion);
+		c.moverI();
 		this.cuerpo.add(c);
 	
 	
@@ -44,13 +44,13 @@ public class Serpiente {
 
 	public void avanzar() {
 		Orientacion orientacion = this.cabeza.getOrientacion();
+		Orientacion auxo;
 		Punto2D posicion = this.cabeza.getPosicion();
-		Cuerpo aux = new Cuerpo(new Punto2D(posicion.x,posicion.y), orientacion); // Guardo la posicion de la cabeza
+		//Cuerpo aux = new Cuerpo(new Punto2D(posicion.x,posicion.y), orientacion); // Guardo la posicion de la cabeza
 		
-		for (int i = this.cuerpo.size() - 1; i > 0; i--) { // Desde el ultimo segmento de cuerpo reemplazo con el anterior
-			this.cuerpo.set(i, this.cuerpo.get(i-1));
-		}
-		this.cuerpo.set(0, aux); // El primer segmento queda en la posicion que tenia la cebeza
+		/*for (int i = 0 ; i < cuerpo.size()-1; i++) { // Desde el ultimo segmento de cuerpo reemplazo con el anterior
+			this.cuerpo.set(i+1, this.cuerpo.get(i));
+		}*/
 		switch (orientacion) { // Muevo la cabeza
 		case N:
 			posicion.y--;
@@ -64,6 +64,16 @@ public class Serpiente {
 		default:
 			posicion.x--;
 		}
+		for (Iterator iterator = cuerpo.iterator(); iterator.hasNext();) {
+			Cuerpo cu = (Cuerpo) iterator.next();
+			auxo = cu.getOrientacion();
+			cu.setOrientacion(orientacion);
+			cu.mover();
+			auxo=orientacion;
+		}
+		
+		//this.cuerpo.set(0, aux); // El primer segmento queda en la posicion que tenia la cebeza
+		
 		//this.cabeza.setPosicion(posicion.x, posicion.y);
 
 		
