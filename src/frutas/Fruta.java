@@ -12,6 +12,7 @@ import snake.Serpiente;
 public class Fruta implements Choques {
 	Punto2D pos;
 	String tipo = "F";
+	boolean estado = false;
 	
 	public Fruta(int x, int y){
 		this.pos = new Punto2D(x,y);
@@ -31,12 +32,12 @@ public class Fruta implements Choques {
 	@Override
 	public void chocar(Serpiente s1) {
 		s1.crecer();
+		estado =true;
 		
 	}
-
 	@Override
 	public boolean getEstado() {
-		return false;
+		return estado;
 	}
 
 	@Override
@@ -49,6 +50,7 @@ public class Fruta implements Choques {
 	@Override
 	public void eliminar(Escenario escenario) {
 		escenario.vaciarPosicion(this.pos);
+		
 		
 	}
 

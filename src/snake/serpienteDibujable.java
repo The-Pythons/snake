@@ -35,6 +35,11 @@ public class serpienteDibujable extends Dibujable {
 		}
 	}
 
+	@Override
+	public boolean getEstado(Graphics g) {
+		return s.getEstado();
+	}
+
 	
 	
 }

@@ -18,6 +18,11 @@ public class frutaDibujable extends Dibujable {
 		g.setColor(Color.BLUE);
 		g.fillOval(f.pos.x*10, f.pos.y*10, 10, 10);
 	}
+
+	@Override
+	public boolean getEstado(Graphics g) {
+		return f.getEstado();
+	}
 	
 	
 }

@@ -8,7 +8,7 @@ import logica.Punto2D;
 
 class Colisionador{
 
-	@Test
+/*	@Test
 	void testSerpientesDeFrente() {
 		Escenario e1 = new Escenario(3, 3);
 		e1.crearSerpiente(1, 1, Orientacion.E);
@@ -71,6 +71,8 @@ class Colisionador{
 		e1.crearSerpiente(1, 1,  Orientacion.E);
 		e1.crearParedes();
 		//Assert.assertEquals(false, e1.colisionadorConObstaculos());
+		 * 
+		 
 	}
-
+*/
 }

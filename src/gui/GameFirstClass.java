@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import logica.Dibujable;
 import logica.Escenario;
 import logica.Punto2D;
+import snake.Orientacion;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -43,7 +44,6 @@ public class GameFirstClass extends JFrame {
 	// Window Basics
 	public GameFirstClass() {
 	
-		addKeyListener(new AL());
 		setTitle("Prueba de teclas");
 		setBounds(100, 100, 450, 400);
 		setResizable(false);
@@ -52,11 +52,8 @@ public class GameFirstClass extends JFrame {
 		this.x = 400;
 		this.y = 400;
 		escenario = new Escenario(40,40);
-		//escenario.start();
-		
-		
-		
-		escenario.crearFruta(new Punto2D(10,10));
+		addKeyListener(new AL(escenario));
+		escenario.start();
 		JPanelGrafico contentPane = new JPanelGrafico(escenario);
 		setContentPane(contentPane);
 		//escenario = new Escenario(40, 40);
@@ -65,16 +62,31 @@ public class GameFirstClass extends JFrame {
 	
 
 
-		repaint();
+		//repaint();
 		
 		
 	}
+	public void repintar() {
+		while(true)
+		{
+			repaint();
+			try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+		}
 	
 	
 	
 	// main
 	public static void main(String[] args) {
-		new GameFirstClass().setVisible(true);;
+		GameFirstClass g =new GameFirstClass();
+		g.setVisible(true);
+		g.repintar();
 	}
 	
 	
@@ -95,7 +107,6 @@ public class GameFirstClass extends JFrame {
 	
 	
 	
-		
 
 	public void paintComponent(Graphics g) {
 		g.fillOval(x, y, 10, 10);

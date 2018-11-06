@@ -69,16 +69,10 @@ public class JPanelGrafico extends JPanel {
 		Iterator<Dibujable> iterador = elementos.iterator();
 		while(iterador.hasNext()){
 			Dibujable d = iterador.next();
-			if(d!=null)
+			if(d!=null && !d.getEstado(g))
 				d.dibujar(g);
 		}
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		repaint();
+		
 		
 	}
 }

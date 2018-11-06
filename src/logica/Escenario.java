@@ -30,26 +30,28 @@ public class Escenario extends Thread {
 		serpientes = new ArrayList<Serpiente>();
 		elementos = new ArrayList<Dibujable>();
 		elementos.add(null);
+		this.crearSerpiente(20, 10, Orientacion.N);
+		this.crearFruta(new Punto2D(20,5));
 	}
 
 	public  void run(){
-		Timer tiempo;
-		TimerTask tarea = new TimerTask() {
-			@Override
-			public void run() {
-				Serpiente s1 = getSerpiente(0);
-				limpiarSerpiente(s1);
-				colicionador(s1);
-				if(!s1.getEstado()){
-					s1.avanzar();
-					colocarSerpiente(s1);
-				}
-					
+		
+		Serpiente s1 = getSerpiente(0);
+		while(!s1.getEstado()) {
+			colicionador(s1);
+			limpiarSerpiente(s1);
+			s1.avanzar();
+			colocarSerpiente(s1);
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		};
-		tiempo = new Timer();
-		//tiempo.scheduleAtFixedRate(tarea, 0, 2000);
-		tiempo.schedule(tarea, 1000);
+					
+		}
+		limpiarSerpiente(s1);
+		System.out.println("has muerto");
 	}
 	
 	
@@ -95,6 +97,7 @@ public class Escenario extends Thread {
 		area[pos.x][pos.y] = f;
 		elementos.add(fs);
 	}
+	
 
 	public void crearParedes() {// rodea todos los bordes del escenario con obstaculos
 		for (int i = 0; i < dim_x; i++)// piso
@@ -126,12 +129,13 @@ public class Escenario extends Thread {
 		Dibujable ss= new serpienteDibujable(s);
 		area[x][y] = s;
 		elementos.add(ss);
+		serpientes.add(s);
 	}
 
 	public Serpiente getSerpiente(int id) {
 		return serpientes.get(id);
 	}
-
+/*
 	public boolean colisionadorSerpientes(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un boolean
 		Class<? extends Serpiente> c = new Serpiente(-1, -1, Orientacion.N).getClass();
 		Punto2D posicion = s1.cabeza.getPosicion();
@@ -160,15 +164,17 @@ public class Escenario extends Thread {
 		return false;
 
 	}
-
+*/
 	void colicionador(Serpiente s1) {
 		Punto2D posicion = s1.getPosicionSig();
 		Choques e = getElemofarea(posicion);
+		if(e==null)
+			return;
 		e.chocar(s1);
 		if(e.getEstado())
 			e.eliminar(this);
 	}
-
+/*
 	boolean colisionadorConObstaculos(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un
 														// boolean
 		Class<? extends Obstaculo> c = new Obstaculo(-1, -1).getClass();
@@ -191,7 +197,7 @@ public class Escenario extends Thread {
 		}
 		return false;
 	}
-
+*/
 	void colocarSerpientes() {
 		Iterator<Serpiente> iterador = serpientes.iterator();
 		while (iterador.hasNext()) {
