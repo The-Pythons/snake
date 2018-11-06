@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -21,9 +22,10 @@ public class JPanelGrafico extends JPanel {
 	 * Create the panel.
 	 */
 	ArrayList<Dibujable> elementos;
-	public JPanelGrafico(Escenario escenario) {
+	Image background;
+	public JPanelGrafico(Escenario escenario, Image background) {
 			this.elementos = escenario.getElementos() ;
-			
+			this.background = background;
 	}
 	
 
@@ -65,12 +67,11 @@ public class JPanelGrafico extends JPanel {
 	}
 	*/
 	public void paintComponent(Graphics g) {
-		//elementos.add(new frutaDibujable(new Fruta(10,10)));
-		/*g.setColor(Color.black);
-		g.fillRect(0, 0, 10, 390);
-		g.fillRect(10, 0, 390, 10);
-		g.fillRect(390, 10, 10, 400);
-		g.fillRect(10, 370, 390, 10);*/
+		//for (int i = 0; i < 60; i+=10) {
+			//for (int j = 0; j < 50; j+=10) {
+		g.drawImage(this.background, 0, 0, 600, 500, null);
+			//}
+		//}
 		Iterator<Dibujable> iterador = elementos.iterator();
 		while(iterador.hasNext()){
 			Dibujable d = iterador.next();

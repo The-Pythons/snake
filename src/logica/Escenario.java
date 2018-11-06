@@ -32,7 +32,8 @@ public class Escenario extends Thread {
 		elementos.add(null);
 		this.crearSerpiente(20, 10, Orientacion.N);
 		this.crearFruta(new Punto2D(20,5));
-		//crearParedes();
+		this.crearObtaculo(10, 10);
+		crearParedes();
 	}
 
 	public  void run(){

@@ -10,7 +10,7 @@ public class obstaculoDibujable extends Dibujable {
 	
 	Obstaculo o;
 	public obstaculoDibujable(Obstaculo o) {
-		o=o;
+		this.o=o;
 	}
 	
 	@Override

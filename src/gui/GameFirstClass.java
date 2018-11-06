@@ -18,6 +18,8 @@ import logica.Punto2D;
 import snake.Orientacion;
 
 import java.awt.BorderLayout;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -53,7 +55,8 @@ public class GameFirstClass extends JFrame {
 		escenario = new Escenario(30,23);
 		addKeyListener(new AL(escenario));
 		escenario.start();
-		JPanelGrafico contentPane = new JPanelGrafico(escenario);
+		
+		JPanelGrafico contentPane = new JPanelGrafico(escenario,new ImageIcon("recurses/clover.jpg").getImage());
 		setContentPane(contentPane);
 		//escenario = new Escenario(40, 40);
 		//escenario.start();
