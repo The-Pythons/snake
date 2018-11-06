@@ -23,7 +23,6 @@ public class frutaDibujable extends Dibujable {
 		//g.setColor(Color.BLUE);
 		//g.fillOval(f.pos.x*10, f.pos.y*10, 10, 10);
 		g.drawImage(this.image, f.pos.x*super.TAMANO, f.pos.y*super.TAMANO, super.TAMANO, super.TAMANO, null);
-		
 	}
 
 	@Override

@@ -50,7 +50,7 @@ public class GameFirstClass extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		escenario = new Escenario(60,57);
+		escenario = new Escenario(30,23);
 		addKeyListener(new AL(escenario));
 		escenario.start();
 		JPanelGrafico contentPane = new JPanelGrafico(escenario);
