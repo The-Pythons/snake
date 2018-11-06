@@ -26,7 +26,6 @@ public class serpienteDibujable extends Dibujable {
 			g.fillRect(pos.x*super.TAMANO,pos.y*super.TAMANO,super.TAMANO, super.TAMANO);
 		}
 	}
-
 	@Override
 	public boolean getEstado(Graphics g) {
 		return s.getEstado();
