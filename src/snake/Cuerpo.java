@@ -21,6 +21,9 @@ public class Cuerpo {
 	public Punto2D getPosicion() {
 		return posicion;
 	}
+	public Punto2D setPosicion(Punto2D pos) {
+		return posicion;
+	}
 
 	public void  mover() {
 		switch (orientacion) { // Muevo el cuerpo
@@ -31,10 +34,10 @@ public class Cuerpo {
 			posicion.y++;
 			break;
 		case O:
-			posicion.x--;
+			posicion.x++;
 			break;
 		default:
-			posicion.x++;
+			posicion.x--;
 			}
 	}
 	public void  moverI() {

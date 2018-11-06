@@ -38,13 +38,18 @@ public class Escenario extends Thread {
 	public  void run(){
 		
 		Serpiente s1 = getSerpiente(0);
+		long ti,tf;
+		
 		while(!s1.getEstado()) {
+			ti = System.currentTimeMillis();
 			colicionador(s1);
 			limpiarSerpiente(s1);
 			s1.avanzar();
 			colocarSerpiente(s1);
+			tf = System.currentTimeMillis();
+			System.out.println();
 			try {
-				Thread.sleep(200);
+				Thread.sleep(30-(tf-ti));
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -44,20 +44,23 @@ public class Serpiente  implements Choques{
 	
 	}
 	public Punto2D getPosicionSig(){
-		Punto2D pos = this.cabeza.getPosicion();
-		
-		
+		Punto2D pc = this.cabeza.getPosicion();
+		Punto2D pos = new Punto2D(pc.x,pc.y);
 		switch (this.cabeza.getOrientacion()) { // Muevo la cabeza
 		case N:
-			return new Punto2D(pos.x,pos.y-1);
+			pos.y--;
+			break;
 		case S:
-			return new Punto2D(pos.x,pos.y+1);
+			pos.y++;
+			break;
 		case O:
-			return new Punto2D(pos.x+1,pos.y);
+			pos.x++;
+			break;
 		default:
-			return new Punto2D(pos.x-1,pos.y);
+			pos.x--;
+			break;
 		}
-	
+		return pos;
 	}
 
 	public void avanzar() {
@@ -65,6 +68,8 @@ public class Serpiente  implements Choques{
 		//Orientacion auxo;
 		Punto2D posicion = this.cabeza.getPosicion();
 		Cuerpo aux = new Cuerpo(new Punto2D(posicion.x,posicion.y), orientacion); // Guardo la posicion de la cabeza
+	
+		
 		for (int i = this.cuerpo.size() - 1; i > 0; i--) { // Desde el ultimo segmento de cuerpo reemplazo con el anterior
 			this.cuerpo.set(i, this.cuerpo.get(i - 1));
 		}

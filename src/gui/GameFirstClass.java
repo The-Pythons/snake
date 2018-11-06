@@ -67,13 +67,16 @@ public class GameFirstClass extends JFrame {
 		
 	}
 	public void repintar() {
+		long tf,ti;
 		while(true)
 		{
+			ti = System.currentTimeMillis();
 			repaint();
 			try {
-			Thread.sleep(100);
+			tf = System.currentTimeMillis();
+			Thread.sleep(17-(tf-ti));
+			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -118,6 +121,6 @@ public class GameFirstClass extends JFrame {
 		};
 		tiempo = new Timer();
 		//tiempo.scheduleAtFixedRate(tarea, 0, 2000);
-		tiempo.schedule(tarea, 200);
+		tiempo.schedule(tarea, 70);
 	}
 }
