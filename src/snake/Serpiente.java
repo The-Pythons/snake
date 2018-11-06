@@ -53,7 +53,7 @@ public class Serpiente  implements Choques{
 		case S:
 			return new Punto2D(pos.x,pos.y+1);
 		case O:
-			return new Punto2D(pos.x-1,pos.y);
+			return new Punto2D(pos.x+1,pos.y);
 		default:
 			return new Punto2D(pos.x-1,pos.y);
 		}

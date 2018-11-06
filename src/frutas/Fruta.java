@@ -50,6 +50,7 @@ public class Fruta implements Choques {
 	@Override
 	public void eliminar(Escenario escenario) {
 		escenario.vaciarPosicion(this.pos);
+		escenario.crearFrutaAzar(1);
 		
 		
 	}
