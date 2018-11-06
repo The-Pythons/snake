@@ -45,13 +45,12 @@ public class GameFirstClass extends JFrame {
 	public GameFirstClass() {
 	
 		setTitle("Prueba de teclas");
-		setBounds(100, 100, 450, 400);
+		setBounds(100, 100, 400, 400);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.x = 400;
-		this.y = 400;
-		escenario = new Escenario(40,40);
+		
+		escenario = new Escenario(40,37);
 		addKeyListener(new AL(escenario));
 		escenario.start();
 		JPanelGrafico contentPane = new JPanelGrafico(escenario);

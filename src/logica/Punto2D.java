@@ -19,7 +19,7 @@ public class Punto2D {
 		this.y = p.y;
 	}
 	public boolean puntoCorrecto(int dim_x,int dim_y){
-		if(this.x>=dim_x || this.y>=dim_y)
+		if(this.x>=dim_x || this.y>=dim_y || this.y<=0 || this.x<=0 )
 			return false;
 		return true;
 	}

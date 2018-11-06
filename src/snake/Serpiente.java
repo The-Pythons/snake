@@ -15,6 +15,7 @@ public class Serpiente  implements Choques{
 
 	public Cabeza cabeza;
 	ArrayList<Cuerpo> cuerpo;
+	int velocidad;
 //	private int orientacion;// direccion en la que avanza la serpiente, enviar inputs para mover a la izq o
 	// der la modificaria.
 	// norte/sur/este/oeste estan definidas como constantes en la interfaz
@@ -23,6 +24,7 @@ public class Serpiente  implements Choques{
 	public Serpiente(int x, int y, Orientacion orientacion) {
 		this.cabeza = new Cabeza(x, y, orientacion);
 		this.cuerpo = new ArrayList<Cuerpo>();
+		this.velocidad=50;
 		Cuerpo c = new Cuerpo( new Punto2D(x,y), orientacion);
 		c.moverI();
 		this.cuerpo.add(c);
@@ -133,6 +135,11 @@ public class Serpiente  implements Choques{
 	public void eliminar(Escenario escenario) {
 		escenario.limpiarSerpiente(this);
 		
+	}
+
+
+	public long getVelocidad() {
+		return this.velocidad;
 	}
 
 

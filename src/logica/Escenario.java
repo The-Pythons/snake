@@ -47,9 +47,9 @@ public class Escenario extends Thread {
 			s1.avanzar();
 			colocarSerpiente(s1);
 			tf = System.currentTimeMillis();
-			System.out.println();
+			System.out.println(tf-ti);
 			try {
-				Thread.sleep(30-(tf-ti));
+				Thread.sleep(s1.getVelocidad()-(tf-ti));
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -121,8 +121,8 @@ public class Escenario extends Thread {
 		for (i = 0; i < cantidad; i++) {
 			do {
 				// https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html
-				x = ThreadLocalRandom.current().nextInt(0, dim_x);
-				y = ThreadLocalRandom.current().nextInt(0, dim_y);
+				x = ThreadLocalRandom.current().nextInt(1, dim_x-1);
+				y = ThreadLocalRandom.current().nextInt(1, dim_y-1);
 			} while (area[x][y] != null);// genero enteros al azar para x e y hasta que encuentro una ubicacion vacia
 			// area[x][y] = new Fruta(x, y);// creo una fruta en ese lugar
 			crearFruta(new Punto2D(x, y));
@@ -172,8 +172,15 @@ public class Escenario extends Thread {
 	}
 */
 	void colicionador(Serpiente s1) {
-		Punto2D posicion = s1.getPosicionSig();
-		Choques e = getElemofarea(posicion);
+		Punto2D pos = s1.getPosicionSig();
+		if(!pos.puntoCorrecto(dim_x, dim_y)){
+			limpiarSerpiente(s1);
+			colocarSerpiente(s1);
+			s1.getCabeza().setPosicion(pos.x,1);
+			}
+		
+		 pos = s1.getPosicionSig();
+		Choques e = getElemofarea(pos);
 		if(e==null)
 			return;
 		e.chocar(s1);
@@ -266,8 +273,8 @@ public class Escenario extends Thread {
 
 	public void vaciarArea() {
 
-		for (int i = 0; i < dim_y; i++) {
-			for (int j = 0; j < dim_x; j++) {
+		for (int i = 0; i < dim_x; i++) {
+			for (int j = 0; j < dim_y; j++) {
 				vaciarPosicion(new Punto2D(i, j));
 			}
 			System.out.println("\n");
