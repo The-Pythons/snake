@@ -7,16 +7,18 @@ import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
 
 import frutas.Fruta;
-import obstaculo.Obstaculo;
+import frutas.frutaDibujable;
+import obstaculo.*;
 import snake.Cuerpo;
 import snake.Orientacion;
 import snake.Serpiente;
+import snake.serpienteDibujable;
 
 public class Escenario extends Thread {
 	ArrayList<Serpiente> serpientes;
 	// ArrayList<Fruta> frutas;
 	// ArrayList<Obstaculo> obstaculos;
-	ArrayList<Object> elementos;
+	ArrayList<Dibujable> elementos;
 	Object[][] area;
 	int dim_x, dim_y;
 
@@ -26,8 +28,8 @@ public class Escenario extends Thread {
 		area = new Object[dim_x][dim_y];
 		vaciarArea();
 		serpientes = new ArrayList<Serpiente>();
-		elementos = new ArrayList<Object>();
-		elementos.add(0);
+		elementos = new ArrayList<Dibujable>();
+		elementos.add(null);
 	}
 
 	public  void run(){
@@ -67,22 +69,23 @@ public class Escenario extends Thread {
 	}
 
 	void crearObtaculo(Punto2D pos) {
-		Obstaculo o = new Obstaculo(pos.x, pos.y);
-		area[pos.x][pos.y] = o;
-		elementos.add(o);
+		crearObtaculo(pos.x,pos.y);
 	}
-
+	
 	void crearObtaculo(int x, int y) {
 		Obstaculo o = new Obstaculo(x, y);
+		Dibujable os= new obstaculoDibujable(o);
 		area[x][y] = o;
-		elementos.add(o);
+		elementos.add(os);
 	}
 
 	public void crearFruta(Punto2D pos) {
 		if (!pos.puntoCorrecto(dim_x, dim_y))
 			return;
-		area[pos.x][pos.y] = elementos.size();
-		elementos.add(new Fruta(pos));
+		Fruta f = new Fruta(pos);
+		Dibujable fs= new frutaDibujable(f);
+		area[pos.x][pos.y] = f;
+		elementos.add(fs);
 	}
 
 	public void crearParedes() {// rodea todos los bordes del escenario con obstaculos
@@ -112,9 +115,9 @@ public class Escenario extends Thread {
 	public void crearSerpiente(int x, int y, Orientacion orientacion) {
 
 		Serpiente s = new Serpiente(x, y,orientacion);
-		serpientes.add(s);
-		elementos.add(s);
-		colocarSerpiente(s);
+		Dibujable ss= new serpienteDibujable(s);
+		area[x][y] = s;
+		elementos.add(ss);
 	}
 
 	public Serpiente getSerpiente(int id) {

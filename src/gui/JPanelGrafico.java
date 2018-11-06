@@ -20,12 +20,13 @@ public class JPanelGrafico extends JPanel {
 	 * Create the panel.
 	 */
 	ArrayList<Dibujable> elementos;
-	public JPanelGrafico(ArrayList<Dibujable> elementos) {
-			this.elementos = elementos;
+	public JPanelGrafico() {
+			this.elementos = new ArrayList<Dibujable>() ;
 			
 	}
 	
-	public void paintComponent(Graphics g) {
+
+	/*public void paintComponent(Graphics g) {
 		Fruta fru = new Fruta(30,30);
 		Serpiente s = new Serpiente(15,20,Orientacion.E);
 		frutaDibujable fruta = new frutaDibujable(fru);
@@ -50,8 +51,9 @@ public class JPanelGrafico extends JPanel {
 		
 		
 	}
+	*/
 	
-/*	public void paintComponent(Graphics g) {
+/*public void paintComponent(Graphics g) {
 		elementos.add(new Fruta(400,400));
 		elementos.add(new Fruta(100,100));
 		elementos.add(new Obstaculo(100,100));
@@ -61,12 +63,11 @@ public class JPanelGrafico extends JPanel {
 			}
 	}
 	*/
-	/*public void paint(Graphics g) {
-		/*Iterator<Dibujable> iterador = elementos.iterator();
+	public void paint(Graphics g) {
+		elementos.add(new frutaDibujable(new Fruta(10,10)));
+		Iterator<Dibujable> iterador = elementos.iterator();
 		while(iterador.hasNext()){
-			iterador.next().getDibujable(g);;
-	
-		}*/
-		
-	
+			iterador.next().dibujar(g);
+		}
+	}
 }

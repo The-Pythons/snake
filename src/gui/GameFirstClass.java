@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import logica.Dibujable;
 import logica.Escenario;
+import logica.Punto2D;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -36,7 +37,6 @@ public class GameFirstClass extends JFrame {
 	//private Graphics dbg;
 	private AL controles;
 	Escenario escenario; 
-	ArrayList<Dibujable> elementos;
 	private JPanelGrafico contentPane;
 	private final JButton btnNewButton = new JButton("New button");
 
@@ -51,12 +51,12 @@ public class GameFirstClass extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.x = 400;
 		this.y = 400;
-		//escenario = new Escenario(40,40);
+		escenario = new Escenario(40,40);
 		//escenario.start();
 		
-	//	elementos = escenario.elementos; 
-		JPanelGrafico contentPane = new JPanelGrafico(elementos);
 		
+		JPanelGrafico contentPane = new JPanelGrafico();
+		//escenario.crearFruta(new Punto2D(10,10));
 		setContentPane(contentPane);
 		//escenario = new Escenario(40, 40);
 		//escenario.start();
