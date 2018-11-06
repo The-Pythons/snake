@@ -55,5 +55,10 @@ public class Cabeza {
 		
 	}
 
+	public void setPosicion(Punto2D posicionSig) {
+		posicion=posicionSig;
+		
+	}
+
 	
 }

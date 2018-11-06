@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import frutas.Fruta;
+import logica.Choques;
+import logica.Escenario;
 import logica.Punto2D;
 
 
 
-public class Serpiente {
+public class Serpiente  implements Choques{
 
 	public Cabeza cabeza;
 	ArrayList<Cuerpo> cuerpo;
@@ -41,6 +43,22 @@ public class Serpiente {
 	
 	
 	}
+	public Punto2D getPosicionSig(){
+		Punto2D pos = this.cabeza.getPosicion();
+		
+		
+		switch (this.cabeza.getOrientacion()) { // Muevo la cabeza
+		case N:
+			return new Punto2D(pos.x,pos.y-1);
+		case S:
+			return new Punto2D(pos.x,pos.y+1);
+		case O:
+			return new Punto2D(pos.x-1,pos.y);
+		default:
+			return new Punto2D(pos.x-1,pos.y);
+		}
+	
+	}
 
 	public void avanzar() {
 		Orientacion orientacion = this.cabeza.getOrientacion();
@@ -51,19 +69,7 @@ public class Serpiente {
 			this.cuerpo.set(i, this.cuerpo.get(i - 1));
 		}
 		this.cuerpo.set(0, aux); // El primer segmento queda en la posicion que tenia la cebeza
-		switch (orientacion) { // Muevo la cabeza
-		case N:
-			posicion.y--;
-			break;
-		case S:
-			posicion.y++;
-			break;
-		case O:
-			posicion.x--;
-			break;
-		default:
-			posicion.x++;
-		}
+		
 		/*for (Iterator iterator = cuerpo.iterator(); iterator.hasNext();) {
 			Cuerpo cu = (Cuerpo) iterator.next();
 			auxo = cu.getOrientacion();
@@ -71,10 +77,7 @@ public class Serpiente {
 			cu.mover();
 			auxo=orientacion;
 		}*/
-		
-		
-		
-		//this.cabeza.setPosicion(posicion.x, posicion.y);
+		this.cabeza.setPosicion(getPosicionSig());
 
 		
 	}
@@ -96,6 +99,34 @@ public class Serpiente {
 
 	public void girar(Orientacion dir) {
 		cabeza.setOrientacion(dir);
+		
+	}
+
+
+	@Override
+	public void chocar(Serpiente s1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public boolean getEstado() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public ArrayList<Punto2D> eliminar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void eliminar(Escenario escenario) {
+		escenario.limpiarSerpiente(this);
 		
 	}
 

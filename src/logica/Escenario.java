@@ -19,13 +19,13 @@ public class Escenario extends Thread {
 	// ArrayList<Fruta> frutas;
 	// ArrayList<Obstaculo> obstaculos;
 	ArrayList<Dibujable> elementos;
-	Object[][] area;
+	Choques[][] area;
 	int dim_x, dim_y;
 
 	public Escenario(int dim_x, int dim_y) {
 		this.dim_x = dim_x;
 		this.dim_y = dim_y;
-		area = new Object[dim_x][dim_y];
+		area = new Choques[dim_x][dim_y];
 		vaciarArea();
 		serpientes = new ArrayList<Serpiente>();
 		elementos = new ArrayList<Dibujable>();
@@ -37,9 +37,14 @@ public class Escenario extends Thread {
 		TimerTask tarea = new TimerTask() {
 			@Override
 			public void run() {
-				limpiarSerpiente(getSerpiente(0));
-				getSerpiente(0).avanzar();
-				colocarSerpiente(getSerpiente(0));
+				Serpiente s1 = getSerpiente(0);
+				limpiarSerpiente(s1);
+				colicionador(s1);
+				if(!s1.getEstado()){
+					s1.avanzar();
+					colocarSerpiente(s1);
+				}
+					
 			}
 		};
 		tiempo = new Timer();
@@ -55,7 +60,7 @@ public class Escenario extends Thread {
 	// facilmente
 	// compatible codigos anteriores
 
-	private Object getElemofarea(Punto2D pos) {
+	private Choques getElemofarea(Punto2D pos) {
 		return area[pos.x][pos.y];
 	}
 	
@@ -64,7 +69,7 @@ public class Escenario extends Thread {
 		return area[pos.x][pos.y] == null;
 	}
 
-	private void vaciarPosicion(Punto2D pos) {
+	public void vaciarPosicion(Punto2D pos) {
 		area[pos.x][pos.y] = null;
 	}
 
@@ -153,13 +158,12 @@ public class Escenario extends Thread {
 
 	}
 
-	void Colicionador(Serpiente s1) {
-		if (colisionadorConObstaculos(s1))
-			return;
-		if (colisionadorConComida(s1))
-			return;
-		if (colisionadorConComida(s1))
-			return;
+	void colicionador(Serpiente s1) {
+		Punto2D posicion = s1.getPosicionSig();
+		Choques e = getElemofarea(posicion);
+		e.chocar(s1);
+		if(e.getEstado())
+			e.eliminar(this);
 	}
 
 	boolean colisionadorConObstaculos(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un
