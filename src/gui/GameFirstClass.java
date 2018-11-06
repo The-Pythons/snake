@@ -55,8 +55,9 @@ public class GameFirstClass extends JFrame {
 		//escenario.start();
 		
 		
-		JPanelGrafico contentPane = new JPanelGrafico();
-		//escenario.crearFruta(new Punto2D(10,10));
+		
+		escenario.crearFruta(new Punto2D(10,10));
+		JPanelGrafico contentPane = new JPanelGrafico(escenario);
 		setContentPane(contentPane);
 		//escenario = new Escenario(40, 40);
 		//escenario.start();
@@ -68,6 +69,9 @@ public class GameFirstClass extends JFrame {
 		
 		
 	}
+	
+	
+	
 	// main
 	public static void main(String[] args) {
 		new GameFirstClass().setVisible(true);;

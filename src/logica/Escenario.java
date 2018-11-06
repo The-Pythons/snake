@@ -53,6 +53,7 @@ public class Escenario extends Thread {
 	}
 	
 	
+
 	public void girarSerpiente(int id, Orientacion dir){
 		getSerpiente(0).girar(dir);
 	}
@@ -63,7 +64,9 @@ public class Escenario extends Thread {
 	private Choques getElemofarea(Punto2D pos) {
 		return area[pos.x][pos.y];
 	}
-	
+	public ArrayList<Dibujable> getElementos(){
+		return this.elementos;
+	}
 
 	private boolean posicionVacia(Punto2D pos) {
 		return area[pos.x][pos.y] == null;

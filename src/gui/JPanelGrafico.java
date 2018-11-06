@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import frutas.Fruta;
 import frutas.frutaDibujable;
 import logica.Dibujable;
+import logica.Escenario;
 import snake.Orientacion;
 import snake.Serpiente;
 import snake.serpienteDibujable;
@@ -20,8 +21,8 @@ public class JPanelGrafico extends JPanel {
 	 * Create the panel.
 	 */
 	ArrayList<Dibujable> elementos;
-	public JPanelGrafico() {
-			this.elementos = new ArrayList<Dibujable>() ;
+	public JPanelGrafico(Escenario escenario) {
+			this.elementos = escenario.getElementos() ;
 			
 	}
 	
@@ -63,11 +64,21 @@ public class JPanelGrafico extends JPanel {
 			}
 	}
 	*/
-	public void paint(Graphics g) {
-		elementos.add(new frutaDibujable(new Fruta(10,10)));
+	public void paintComponent(Graphics g) {
+		//elementos.add(new frutaDibujable(new Fruta(10,10)));
 		Iterator<Dibujable> iterador = elementos.iterator();
 		while(iterador.hasNext()){
-			iterador.next().dibujar(g);
+			Dibujable d = iterador.next();
+			if(d!=null)
+				d.dibujar(g);
 		}
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		repaint();
+		
 	}
 }
