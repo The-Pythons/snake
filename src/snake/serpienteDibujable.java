@@ -17,21 +17,13 @@ public class serpienteDibujable extends Dibujable {
 	
 	@Override
 	public void dibujar(Graphics g) {
-		int k=8;
-		int cx=(s.cabeza.getPosicion().x*10);
-		int cy=(s.cabeza.getPosicion().y*10);
-		int dx,dy;
-		Punto2D pos; 
+		Punto2D pos=s.cabeza.getPosicion();
 		g.setColor(Color.RED);
-		g.fillRect(cx , cy, k, k);
-		Iterator<Cuerpo> it = s.cuerpo.iterator();		
-		while (it.hasNext()) {
-			Cuerpo c = it.next();
-			pos = c.getPosicion();
-			dx= cx - (cx - (pos.x*10));
-			dy= cy - (cy - (pos.y*10));
+		g.fillRect(pos.x * super.TAMANO,pos.y*super.TAMANO, super.TAMANO, super.TAMANO);		
+		for (Iterator<Cuerpo> it = s.cuerpo.iterator(); it.hasNext();) {
+			pos = it.next().getPosicion();
 			g.setColor(Color.GREEN);
-			g.fillRect(dx,dy, 8, 8);
+			g.fillRect(pos.x*super.TAMANO,pos.y*super.TAMANO,super.TAMANO, super.TAMANO);
 		}
 	}
 

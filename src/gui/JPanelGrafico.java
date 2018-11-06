@@ -66,11 +66,11 @@ public class JPanelGrafico extends JPanel {
 	*/
 	public void paintComponent(Graphics g) {
 		//elementos.add(new frutaDibujable(new Fruta(10,10)));
-		g.setColor(Color.black);
+		/*g.setColor(Color.black);
 		g.fillRect(0, 0, 10, 390);
 		g.fillRect(10, 0, 390, 10);
 		g.fillRect(390, 10, 10, 400);
-		g.fillRect(10, 370, 390, 10);
+		g.fillRect(10, 370, 390, 10);*/
 		Iterator<Dibujable> iterador = elementos.iterator();
 		while(iterador.hasNext()){
 			Dibujable d = iterador.next();

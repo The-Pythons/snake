@@ -122,8 +122,9 @@ public class PantallaInicio {
 		frame.getContentPane().add(btnRegistrarse);
 		
 		JLabel lblNoTienesUna = new JLabel("No tienes una cuenta? Registrate!");
-		lblNoTienesUna.setForeground(new Color(255, 255, 255));
-		lblNoTienesUna.setBounds(0, 224, 256, 14);
+		lblNoTienesUna.setBackground(new Color(255, 255, 0));
+		lblNoTienesUna.setForeground(new Color(0, 0, 0));
+		lblNoTienesUna.setBounds(0, 221, 256, 14);
 		frame.getContentPane().add(lblNoTienesUna);
 		
 		JLabel lblSnake = new JLabel("SNAKE");
