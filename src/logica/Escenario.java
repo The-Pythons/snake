@@ -26,43 +26,17 @@ public class Escenario extends Thread {
 		elementos = new ArrayList<Dibujable>();
 		elementos.add(null);
 		this.crearSerpiente(20, 10, Orientacion.N);
+		Session s1 = new Session(this,this.getSerpiente(0),null);
 		
-		 this.crearSerpiente(10, 10, Orientacion.S); 
-		 this.getSerpiente(1).crecer();
-		 this.getSerpiente(1).crecer(); 
-		 this.getSerpiente(1).crecer();
-		 this.getSerpiente(1).crecer();
-		 colocarSerpiente(this.getSerpiente(1));
-		 
+		this.crearSerpiente(10, 10, Orientacion.S);
+		colocarSerpiente(this.getSerpiente(1));
 		this.crearFruta(new Punto2D(20, 5));
 		this.crearObtaculo(10, 20);
 		this.crearParedes();
+		s1.start();
 	}
 
-	public void run() {
 
-		Serpiente s1 = getSerpiente(0);
-		long ti, tf;
-
-		while (!s1.getEstado()) {
-			ti = System.currentTimeMillis();
-			colicionador(s1);
-			limpiarSerpiente(s1);
-			if (!s1.getEstado()) {
-				s1.avanzar();
-				colocarSerpiente(s1);
-			}
-			tf = System.currentTimeMillis();
-			try {
-				Thread.sleep(s1.getVelocidad() - (tf - ti));
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-		}
-		limpiarSerpiente(s1);
-		System.out.println("has muerto");
-	}
 
 	public void girarSerpiente(int id, Orientacion dir) {
 		getSerpiente(0).girar(dir);
@@ -86,11 +60,12 @@ public class Escenario extends Thread {
 	public void vaciarPosicion(Punto2D pos) {
 		area[pos.x][pos.y] = null;
 	}
+	
 
 	void crearObtaculo(Punto2D pos) {
 		crearObtaculo(pos.x, pos.y);
 	}
-
+	
 	void crearObtaculo(int x, int y) {
 		Obstaculo o = new Obstaculo(x, y);
 		Dibujable os = new obstaculoDibujable(o);
@@ -181,7 +156,7 @@ public class Escenario extends Thread {
 		while (itcuerpo.hasNext()) {
 			cuerpo = itcuerpo.next();
 			posicion = cuerpo.getPosicion();
-			area[posicion.x][posicion.y] = s; // Body
+			area[posicion.x][posicion.y/10] = s; // Body
 		}
 	}
 
