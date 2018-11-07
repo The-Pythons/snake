@@ -218,22 +218,21 @@ public class HibernateApp {
 		obj.cierreSessFac();
 	}*/
 	
-	//Test update datos usuario.
+	/*//Test update datos usuario, funciona.
 	public static void main(String[] args) throws Exception {
 		HibernateApp obj = new HibernateApp();
 		
 		//Muestro tabla usuario
 		for(Usuario usuario : obj.listarTablaUsuario())
 			System.out.println(usuario);
-		System.out.println("DDDDDDDDDDDDDDDDDDDDD");
+
 		//Recupero datos de 1 usuario a updatear
 		Usuario user = obj.existeUsuario("fernando");
 		
 		//Modifico datos
 		user.setEstado(1);
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXX");
 		user.setPassword(Seguridad.cifra("1252a"));
-		System.out.println("WWWWWWWWWWWWWWWWWWWWWWW");
+
 		//Update
 		obj.updateUsuario(user);
 		
@@ -241,5 +240,5 @@ public class HibernateApp {
 		for(Usuario usuario : obj.listarTablaUsuario())
 			System.out.println(usuario);
 		obj.cierreSessFac();		
-	}
+	}*/
 }
