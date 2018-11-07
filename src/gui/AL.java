@@ -14,20 +14,29 @@ import snake.Orientacion;
 		public void keyPressed(KeyEvent event) {
 			int keyCode = event.getKeyCode();
 			if (keyCode == event.VK_LEFT) {
-				dir = Orientacion.E;
-				e.girarSerpiente(0, dir);
+				if(dir!=Orientacion.O){
+					dir = Orientacion.E;
+					e.girarSerpiente(0, dir);
+				}
 			}
 			if (keyCode == event.VK_RIGHT) {
-				dir = Orientacion.O;
-				e.girarSerpiente(0, dir);
+				if(dir!=Orientacion.E){
+					dir = Orientacion.O;
+					e.girarSerpiente(0, dir);
+				}
+				
 			}
 			if (keyCode == event.VK_UP) {
-				dir = Orientacion.N;
-				e.girarSerpiente(0, dir);
+				if(dir!=Orientacion.S){
+					dir = Orientacion.N;
+					e.girarSerpiente(0, dir);
+				}
 			}
 			if (keyCode == event.VK_DOWN) {
-				dir = Orientacion.S;
-				e.girarSerpiente(0, dir);
+				if(dir!=Orientacion.N){
+					dir = Orientacion.S;
+					e.girarSerpiente(0, dir);
+				}
 			}
 		}
 		public Orientacion getDir() {

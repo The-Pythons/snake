@@ -31,6 +31,11 @@ public class Escenario extends Thread {
 		elementos = new ArrayList<Dibujable>();
 		elementos.add(null);
 		this.crearSerpiente(20, 10, Orientacion.N);
+		/*this.crearSerpiente(10, 10, Orientacion.S);
+		this.getSerpiente(1).crecer();
+		this.getSerpiente(1).crecer();
+		this.getSerpiente(1).crecer();
+		this.getSerpiente(1).crecer();*/
 		this.crearFruta(new Punto2D(20,5));
 		this.crearObtaculo(10, 20);
 		this.crearParedes();
@@ -45,16 +50,18 @@ public class Escenario extends Thread {
 			ti = System.currentTimeMillis();
 			colicionador(s1);
 			limpiarSerpiente(s1);
-			s1.avanzar();
-			colocarSerpiente(s1);
+			if(!s1.getEstado()) {
+				s1.avanzar();
+				colocarSerpiente(s1);
+			}
 			tf = System.currentTimeMillis();
-			System.out.println(tf-ti);
 			try {
 				Thread.sleep(s1.getVelocidad()-(tf-ti));
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 					
 		}
 		limpiarSerpiente(s1);
@@ -174,7 +181,15 @@ public class Escenario extends Thread {
 */
 	void colicionador(Serpiente s1) {
 		Punto2D pos = s1.getPosicionSig();
-		if(!pos.puntoCorrecto(dim_x, dim_y)){
+		 pos = s1.getPosicionSig();
+		Choques e = getElemofarea(pos);
+		if(e==null)
+			return;
+		e.chocar(s1);
+		if(e.getEstado()) {
+			e.eliminar(this);
+			}
+		/*if(!pos.puntoCorrecto(dim_x, dim_y)){
 			limpiarSerpiente(s1);
 			colocarSerpiente(s1);
 			if(pos.y>=dim_y)
@@ -185,15 +200,7 @@ public class Escenario extends Thread {
 				s1.getCabeza().setPosicion(pos.x,dim_y-1);
 			if(pos.x<=0)
 				s1.getCabeza().setPosicion(dim_x-1,pos.y);
-			}
-		
-		 pos = s1.getPosicionSig();
-		Choques e = getElemofarea(pos);
-		if(e==null)
-			return;
-		e.chocar(s1);
-		if(e.getEstado())
-			e.eliminar(this);
+			}*/
 	}
 /*
 	boolean colisionadorConObstaculos(Serpiente s1) { // Con el fin de probar el colisionador la funcion retorna un
@@ -271,7 +278,7 @@ public class Escenario extends Thread {
 		for (i = 0; i < dim_y; i++) {
 			for (j = 0; j < dim_x; j++) {
 				if (!posicionVacia(new Punto2D(j, i)))
-					System.out.print(elementos.indexOf(getElemofarea(new Punto2D(j, i))));
+					System.out.print(1);
 				else
 					System.out.print("0");
 			}
@@ -285,7 +292,6 @@ public class Escenario extends Thread {
 			for (int j = 0; j < dim_y; j++) {
 				vaciarPosicion(new Punto2D(i, j));
 			}
-			System.out.println("\n");
 		}
 
 	}

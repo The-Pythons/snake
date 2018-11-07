@@ -22,7 +22,7 @@ public class serpienteDibujable extends Dibujable {
 		g.fillRect(pos.x * super.TAMANO,pos.y*super.TAMANO, super.TAMANO, super.TAMANO);		
 		for (Iterator<Cuerpo> it = s.cuerpo.iterator(); it.hasNext();) {
 			pos = it.next().getPosicion();
-			g.setColor(Color.GREEN);
+			g.setColor(Color.yellow);
 			g.fillRect(pos.x*super.TAMANO,pos.y*super.TAMANO,super.TAMANO, super.TAMANO);
 		}
 	}

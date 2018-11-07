@@ -113,8 +113,9 @@ public class Serpiente  implements Choques{
 
 	@Override
 	public void chocar(Serpiente s1) {
-		// TODO Auto-generated method stub
-		
+		if(s1.getCabeza().getPosicion().equals(this.cabeza.getPosicion()))
+			this.muere();
+		s1.muere();
 	}
 
 
