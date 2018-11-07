@@ -76,7 +76,7 @@ public class PantallaSala {
 		frame.getContentPane().add(passwordField_1);
 		
 		JButton btnAadirSala = new JButton("A\u00F1adir Sala");
-		btnAadirSala.setBounds(44, 123, 89, 23);
+		btnAadirSala.setBounds(36, 132, 105, 23);
 		frame.getContentPane().add(btnAadirSala);
 		
 		JLabel lblSalasActuales = new JLabel("Salas Actuales");
@@ -93,11 +93,11 @@ public class PantallaSala {
 		frame.getContentPane().add(lblMultijugador);
 		
 		JList list = new JList();
-		list.setBounds(284, 47, 140, 178);
+		list.setBounds(284, 69, 140, 156);
 		frame.getContentPane().add(list);
 		
 		JButton btnActualizar = new JButton("Actualizar");
-		btnActualizar.setBounds(314, 228, 89, 23);
+		btnActualizar.setBounds(314, 228, 91, 23);
 		frame.getContentPane().add(btnActualizar);
 	}
 }
