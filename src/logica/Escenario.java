@@ -27,10 +27,12 @@ public class Escenario extends Thread {
 		elementos.add(null);
 		this.crearSerpiente(20, 10, Orientacion.N);
 		Session s1 = new Session(this,this.getSerpiente(0),null);// Cada jugador va tener una session 
-																// que sera un thread las intancia de la serpiente
-		
+											// que sera un thread las intancia de la serpiente
 		this.crearSerpiente(10, 10, Orientacion.S);
 		colocarSerpiente(this.getSerpiente(1));
+		this.getSerpiente(1).crecer();
+		this.getSerpiente(1).crecer();
+		this.getSerpiente(1).crecer();
 		this.crearFruta(new Punto2D(20, 5));
 		this.crearObtaculo(10, 20);
 		this.crearParedes();
@@ -223,7 +225,7 @@ public class Escenario extends Thread {
 		while (itcuerpo.hasNext()) {
 			cuerpo = itcuerpo.next();
 			posicion = cuerpo.getPosicion();
-			area[posicion.x][posicion.y/10] = s; // Body
+			area[posicion.x][posicion.y] = s; // Body
 		}
 	}
 

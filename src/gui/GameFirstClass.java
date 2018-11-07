@@ -34,7 +34,7 @@ public class GameFirstClass extends JFrame {
 		this.escenario = new Escenario(30, 24);
 		this.controles = new AL(escenario);
 		addKeyListener(this.controles);
-		escenario.start();
+		//escenario.start();
 		this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/clover.jpg").getImage());
 		setContentPane(this.contentPane);
 		contentPane.setLayout(null);
