@@ -1,9 +1,6 @@
 package snake;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import frutas.Fruta;
 import logica.Choques;
 import logica.Escenario;

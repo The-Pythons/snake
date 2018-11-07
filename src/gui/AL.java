@@ -13,26 +13,26 @@ import snake.Orientacion;
 		@Override
 		public void keyPressed(KeyEvent event) {
 			int keyCode = event.getKeyCode();
-			if (keyCode == event.VK_LEFT) {
+			if (keyCode == KeyEvent.VK_LEFT) {
 				if(dir!=Orientacion.O){
 					dir = Orientacion.E;
 					e.girarSerpiente(0, dir);
 				}
 			}
-			if (keyCode == event.VK_RIGHT) {
+			if (keyCode == KeyEvent.VK_RIGHT) {
 				if(dir!=Orientacion.E){
 					dir = Orientacion.O;
 					e.girarSerpiente(0, dir);
 				}
 				
 			}
-			if (keyCode == event.VK_UP) {
+			if (keyCode == KeyEvent.VK_UP) {
 				if(dir!=Orientacion.S){
 					dir = Orientacion.N;
 					e.girarSerpiente(0, dir);
 				}
 			}
-			if (keyCode == event.VK_DOWN) {
+			if (keyCode == KeyEvent.VK_DOWN) {
 				if(dir!=Orientacion.N){
 					dir = Orientacion.S;
 					e.girarSerpiente(0, dir);
