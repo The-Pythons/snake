@@ -13,8 +13,6 @@ import snake.serpienteDibujable;
 
 public class Escenario extends Thread {
 	ArrayList<Serpiente> serpientes;
-	// ArrayList<Fruta> frutas;
-	// ArrayList<Obstaculo> obstaculos;
 	ArrayList<Dibujable> elementos;
 	Choques[][] area;
 	int dim_x, dim_y;
@@ -144,25 +142,7 @@ public class Escenario extends Thread {
 		return serpientes.get(id);
 	}
 
-	/*
-	 * public boolean colisionadorSerpientes(Serpiente s1) { // Con el fin de probar
-	 * el colisionador la funcion retorna un boolean Class<? extends Serpiente> c =
-	 * new Serpiente(-1, -1, Orientacion.N).getClass(); Punto2D posicion =
-	 * s1.cabeza.getPosicion(); Serpiente s2; if
-	 * (getElemofarea(posicion).getClass().equals(c)) { // Si en la posicion de la
-	 * cabeza de s1 hay una // serpiente s2 = (Serpiente) getElemofarea(posicion);
-	 * if (s1.cabeza.equals(s2.cabeza)) { // Choque de frente s1.muere();
-	 * s2.muere(); elementos.remove(s1); elementos.remove(s2);
-	 * vaciarPosicion(posicion); return true; } else { Cuerpo cabezaS1 = new
-	 * Cuerpo(s1.cabeza.getPosicion(), s1.cabeza.getOrientacion()); if
-	 * (s2.getCuerpo().contains(cabezaS1)) { // S1 chocha con el cuerpo de s2
-	 * s1.muere(); elementos.remove(s1); vaciarPosicion(posicion); return true; } }
-	 * }
-	 * 
-	 * return false;
-	 * 
-	 * }
-	 */
+	
 	void colicionador(Serpiente s1) {
 		Punto2D pos = s1.getPosicionSig();
 		pos = s1.getPosicionSig();
@@ -182,21 +162,7 @@ public class Escenario extends Thread {
 		 */
 	}
 
-	/*
-	 * boolean colisionadorConObstaculos(Serpiente s1) { // Con el fin de probar el
-	 * colisionador la funcion retorna un // boolean Class<? extends Obstaculo> c =
-	 * new Obstaculo(-1, -1).getClass(); Punto2D posicion = s1.cabeza.getPosicion();
-	 * if (getElemofarea(posicion).getClass().equals(c)) { // Si en la posicion de
-	 * la cabeza de s1 hay un // obstaculo s1.muere(); s1 = null; return true; }
-	 * return false; }
-	 * 
-	 * boolean colisionadorConComida(Serpiente s1) { // Con el fin de probar el
-	 * colisionador la funcion retorna un boolean Class<? extends Fruta> c = new
-	 * Fruta(-1, -1).getClass(); Punto2D posicion = s1.cabeza.getPosicion(); if
-	 * (getElemofarea(posicion).getClass().equals(c)) { // Si en la posicion de la
-	 * cabeza de s1 hay fruta s1.comer((Fruta) getElemofarea(posicion)); return
-	 * true; } return false; }
-	 */
+	
 	void colocarSerpientes() {
 		Iterator<Serpiente> iterador = serpientes.iterator();
 		while (iterador.hasNext()) {
@@ -268,3 +234,4 @@ public class Escenario extends Thread {
 	}
 
 }
+
