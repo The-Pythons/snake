@@ -68,20 +68,10 @@ public class Serpiente  implements Choques{
 		//Orientacion auxo;
 		Punto2D posicion = this.cabeza.getPosicion();
 		Cuerpo aux = new Cuerpo(new Punto2D(posicion.x,posicion.y), orientacion); // Guardo la posicion de la cabeza
-	
-		
 		for (int i = this.cuerpo.size() - 1; i > 0; i--) { // Desde el ultimo segmento de cuerpo reemplazo con el anterior
 			this.cuerpo.set(i, this.cuerpo.get(i - 1));
 		}
 		this.cuerpo.set(0, aux); // El primer segmento queda en la posicion que tenia la cebeza
-		
-		/*for (Iterator iterator = cuerpo.iterator(); iterator.hasNext();) {
-			Cuerpo cu = (Cuerpo) iterator.next();
-			auxo = cu.getOrientacion();
-			cu.setOrientacion(orientacion);
-			cu.mover();
-			auxo=orientacion;
-		}*/
 		this.cabeza.setPosicion(getPosicionSig());
 
 		

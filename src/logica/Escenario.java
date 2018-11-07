@@ -26,7 +26,8 @@ public class Escenario extends Thread {
 		elementos = new ArrayList<Dibujable>();
 		elementos.add(null);
 		this.crearSerpiente(20, 10, Orientacion.N);
-		Session s1 = new Session(this,this.getSerpiente(0),null);
+		Session s1 = new Session(this,this.getSerpiente(0),null);// Cada jugador va tener una session 
+																// que sera un thread las intancia de la serpiente
 		
 		this.crearSerpiente(10, 10, Orientacion.S);
 		colocarSerpiente(this.getSerpiente(1));
@@ -49,19 +50,68 @@ public class Escenario extends Thread {
 		return area[pos.x][pos.y];
 	}
 
+	
+	/*
+	 * Devuelve  el elemento dibujable proximamente esto no deberia estar y trbajaria con esto 
+	 * solo el cliente mientras que servidor la logica.
+	 */
 	public ArrayList<Dibujable> getElementos() {
 		return this.elementos;
 	}
 
+	
+	/*
+	 * Metodos que trabajan con la matriz 
+	 */
+	
+	/*
+	 * Vacia la posicion en la matriz
+	 *  
+	 */
 	private boolean posicionVacia(Punto2D pos) {
 		return area[pos.x][pos.y] == null;
 	}
-
+	
+	/*
+	 * Indica si la posicion de la matriz esta vacia
+	 *  
+	 */
 	public void vaciarPosicion(Punto2D pos) {
 		area[pos.x][pos.y] = null;
 	}
 	
+	public void mostrar() {
+		int i, j;
+		for (i = 0; i < dim_y; i++) {
+			for (j = 0; j < dim_x; j++) {
+				if (!posicionVacia(new Punto2D(j, i)))
+					System.out.print(1);
+				else
+					System.out.print("0");
+			}
+			System.out.println("\n");
+		}
+	}
 
+	public void vaciarArea() {
+
+		for (int i = 0; i < dim_x; i++) {
+			for (int j = 0; j < dim_y; j++) {
+				vaciarPosicion(new Punto2D(i, j));
+			}
+		}
+
+	}
+
+	/*
+	 * 
+	 * Son los metodos para crear correctamente los objetos 
+	 * dentro del Escenario . Sin causar problemas . Donde se crea el objeto 
+	 * colicionable en la matriz y su elemento dibujable en la 
+	 * lista 
+	 * PD: si quieren reducirlos mejor
+	 *  
+	 * */
 	void crearObtaculo(Punto2D pos) {
 		crearObtaculo(pos.x, pos.y);
 	}
@@ -105,6 +155,7 @@ public class Escenario extends Thread {
 			crearFruta(new Punto2D(x, y));
 		}
 	}
+	
 
 	public void crearSerpiente(int x, int y, Orientacion orientacion) {
 		Serpiente s = new Serpiente(x, y, orientacion);
@@ -119,7 +170,11 @@ public class Escenario extends Thread {
 		return serpientes.get(id);
 	}
 
-	
+	/* Funciona gracias a la interfas choques. Todos los elementos "fisicos" con los que choca
+	 * la serpiente incluyendose a si misma . Deberan tener implementada la interfas y de esta manera 
+	 * el objeto sabe como reacionar y como  modificar a la serpiente dependiendo su efecto.
+	 * Por ejemplo frutas dan punto y la hace crecer mientras que los obtaculos la matan.	
+	*/
 	void colicionador(Serpiente s1) {
 		Punto2D pos = s1.getPosicionSig();
 		pos = s1.getPosicionSig();
@@ -139,6 +194,18 @@ public class Escenario extends Thread {
 		 */
 	}
 
+	
+	
+	/*
+	 * 
+	 * Son los metodos por los cuales se actualiza el estado de la serpiente 
+	 * en la matriz de coliciones :
+	 * Colocar en la matriz ya sea de forma individual o todas las serpientes 
+	 * en la matriz y de la misma manera eliminarlos de la misma  
+	 *  
+	 * */
+	
+	
 	
 	void colocarSerpientes() {
 		Iterator<Serpiente> iterador = serpientes.iterator();
@@ -184,32 +251,6 @@ public class Escenario extends Thread {
 		}
 	}
 
-	void avansanserpeintes() {
-
-	}
-
-	public void mostrar() {
-		int i, j;
-		for (i = 0; i < dim_y; i++) {
-			for (j = 0; j < dim_x; j++) {
-				if (!posicionVacia(new Punto2D(j, i)))
-					System.out.print(1);
-				else
-					System.out.print("0");
-			}
-			System.out.println("\n");
-		}
-	}
-
-	public void vaciarArea() {
-
-		for (int i = 0; i < dim_x; i++) {
-			for (int j = 0; j < dim_y; j++) {
-				vaciarPosicion(new Punto2D(i, j));
-			}
-		}
-
-	}
 
 }
 
