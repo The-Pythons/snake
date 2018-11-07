@@ -16,7 +16,7 @@ public class obstaculoDibujable extends Dibujable {
 	@Override
 	public void dibujar(Graphics g) {
 		g.setColor(Color.GRAY);
-		g.fillRect(o.pos.x + 1, o.pos.y + 1, super.TAMANO, super.TAMANO);
+		g.fillRect(o.pos.x *super.TAMANO, o.pos.y *super.TAMANO, super.TAMANO, super.TAMANO);
 	}
 
 	@Override

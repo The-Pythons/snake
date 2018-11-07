@@ -16,6 +16,7 @@ public class Serpiente  implements Choques{
 	public Cabeza cabeza;
 	ArrayList<Cuerpo> cuerpo;
 	int velocidad;
+	boolean estado;
 //	private int orientacion;// direccion en la que avanza la serpiente, enviar inputs para mover a la izq o
 	// der la modificaria.
 	// norte/sur/este/oeste estan definidas como constantes en la interfaz
@@ -89,7 +90,7 @@ public class Serpiente  implements Choques{
 		
 	}
 	public void muere() {
-
+		estado=true;
 	}
 
 	public void comer(Fruta object) {
@@ -119,8 +120,7 @@ public class Serpiente  implements Choques{
 
 	@Override
 	public boolean getEstado() {
-		// TODO Auto-generated method stub
-		return false;
+		return estado;
 	}
 
 

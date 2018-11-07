@@ -32,8 +32,8 @@ public class Escenario extends Thread {
 		elementos.add(null);
 		this.crearSerpiente(20, 10, Orientacion.N);
 		this.crearFruta(new Punto2D(20,5));
-		this.crearObtaculo(10, 10);
-		crearParedes();
+		this.crearObtaculo(10, 20);
+		//crearParedes();
 	}
 
 	public  void run(){
@@ -177,7 +177,14 @@ public class Escenario extends Thread {
 		if(!pos.puntoCorrecto(dim_x, dim_y)){
 			limpiarSerpiente(s1);
 			colocarSerpiente(s1);
-			s1.getCabeza().setPosicion(pos.x,1);
+			if(pos.y>=dim_y)
+				s1.getCabeza().setPosicion(pos.x,1);
+			if(pos.x>=dim_x)
+				s1.getCabeza().setPosicion(1,pos.y);
+			if(pos.y<=0)
+				s1.getCabeza().setPosicion(pos.x,dim_y-1);
+			if(pos.x<=0)
+				s1.getCabeza().setPosicion(dim_x-1,pos.y);
 			}
 		
 		 pos = s1.getPosicionSig();
