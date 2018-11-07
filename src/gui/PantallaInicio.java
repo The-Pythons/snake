@@ -56,7 +56,7 @@ public class PantallaInicio {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Fondo contentPane = new Fondo();
-		contentPane.setBackground("snake-306109_960_720.png");
+		contentPane.setBackground("recursos/snake-306109_960_720.png");
 		frame.setContentPane(contentPane);
 		frame.getContentPane().setLayout(null);
 		

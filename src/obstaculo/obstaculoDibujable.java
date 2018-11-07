@@ -15,7 +15,7 @@ public class obstaculoDibujable extends Dibujable {
 	private Image image;
 	public obstaculoDibujable(Obstaculo o) {
 		this.o=o;
-		this.image = new ImageIcon("recurses/IMGP5539_almost_seamless.jpg").getImage();
+		this.image = new ImageIcon("recursos/IMGP5539_almost_seamless.jpg").getImage();
 	}
 	
 	@Override
@@ -28,7 +28,6 @@ public class obstaculoDibujable extends Dibujable {
 	@Override
 	public boolean getEstado(Graphics g) {
 		return o.getEstado();
-		
 	}
 
 }
