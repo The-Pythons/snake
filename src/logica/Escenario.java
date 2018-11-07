@@ -26,11 +26,14 @@ public class Escenario extends Thread {
 		elementos = new ArrayList<Dibujable>();
 		elementos.add(null);
 		this.crearSerpiente(20, 10, Orientacion.N);
-		/*
-		 * this.crearSerpiente(10, 10, Orientacion.S); this.getSerpiente(1).crecer();
-		 * this.getSerpiente(1).crecer(); this.getSerpiente(1).crecer();
-		 * this.getSerpiente(1).crecer();
-		 */
+		
+		 this.crearSerpiente(10, 10, Orientacion.S); 
+		 this.getSerpiente(1).crecer();
+		 this.getSerpiente(1).crecer(); 
+		 this.getSerpiente(1).crecer();
+		 this.getSerpiente(1).crecer();
+		 colocarSerpiente(this.getSerpiente(1));
+		 
 		this.crearFruta(new Punto2D(20, 5));
 		this.crearObtaculo(10, 20);
 		this.crearParedes();
@@ -53,7 +56,6 @@ public class Escenario extends Thread {
 			try {
 				Thread.sleep(s1.getVelocidad() - (tf - ti));
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -130,10 +132,10 @@ public class Escenario extends Thread {
 	}
 
 	public void crearSerpiente(int x, int y, Orientacion orientacion) {
-
 		Serpiente s = new Serpiente(x, y, orientacion);
 		Dibujable ss = new serpienteDibujable(s);
-		area[x][y] = s;
+		//area[x][y] = s;
+		colocarSerpiente(s);
 		elementos.add(ss);
 		serpientes.add(s);
 	}
@@ -175,8 +177,9 @@ public class Escenario extends Thread {
 		Punto2D posicion = s.cabeza.getPosicion();
 		area[posicion.x][posicion.y] = s; // Head
 		Iterator<Cuerpo> itcuerpo = s.getCuerpo().iterator();
+		Cuerpo cuerpo;
 		while (itcuerpo.hasNext()) {
-			Cuerpo cuerpo = itcuerpo.next();
+			cuerpo = itcuerpo.next();
 			posicion = cuerpo.getPosicion();
 			area[posicion.x][posicion.y] = s; // Body
 		}
