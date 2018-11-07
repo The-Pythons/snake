@@ -15,7 +15,7 @@ public class frutaDibujable extends Dibujable {
 	
 	public frutaDibujable (Fruta f) {
 		this.f = f;
-		image = new ImageIcon("manzana.png").getImage();
+		image = new ImageIcon("recurses/manzana.png").getImage();
 	}
 	
 	@Override
