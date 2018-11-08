@@ -25,19 +25,22 @@ public class Escenario extends Thread {
 		serpientes = new ArrayList<Serpiente>();
 		elementos = new ArrayList<Dibujable>();
 		elementos.add(null);
+		//mover de aqui a una sala de testeo
 		this.crearSerpiente(20, 10, Orientacion.N);
 		Session s1 = new Session(this,this.getSerpiente(0),null);// Cada jugador va tener una session 
 											// que sera un thread las intancia de la serpiente
-		//mover de aqui a una sala de testeo
+		
 		this.crearSerpiente(10, 10, Orientacion.S);
 		this.getSerpiente(1).crecer();
 		this.getSerpiente(1).crecer();
 		this.getSerpiente(1).crecer();
-		this.colocarSerpiente(this.getSerpiente(1));
+	//	this.colocarSerpiente(this.getSerpiente(1));
 		this.crearFruta(new Punto2D(20, 5));
 		this.crearObtaculo(10, 20);
 		this.crearParedes();
 		s1.start();
+		SessionBot sbot= new SessionBot(this,this.getSerpiente(1),null);
+		sbot.start();
 		
 	}
 

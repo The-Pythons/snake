@@ -1,0 +1,75 @@
+package logica;
+
+import snake.Orientacion;
+import snake.Serpiente;
+
+public class SessionBot extends Thread {
+
+	Escenario escenario;
+	Usuario usuario;
+	Serpiente serpiente;
+
+	public SessionBot(Escenario escenario, Serpiente serpiente, Usuario usuario) {
+		super();
+		this.escenario = escenario;
+		this.usuario = usuario;
+		this.serpiente = serpiente;
+	}
+
+	public void run() {
+
+		while (true) {
+			serpiente();
+			escenario.limpiarSerpiente(serpiente);
+			System.out.println("has muerto");
+
+			// serpiente.getCabeza().setPosicion(15, 15);
+			// serpiente.revivir();
+		}
+	}
+
+	private void serpiente() {
+		long ti, tf;
+		int c = 0, d = 0;
+		while (!this.serpiente.getEstado()) {
+
+			ti = System.currentTimeMillis();
+			escenario.colicionador(this.serpiente);
+			escenario.limpiarSerpiente(this.serpiente);
+
+			if (c == 3) {
+				switch (d) {
+				case 0:
+					serpiente.girar(Orientacion.O);
+					break;
+				case 1:
+					serpiente.girar(Orientacion.N);
+					break;
+				case 2:
+					serpiente.girar(Orientacion.E);
+					break;
+				case 3:
+					serpiente.girar(Orientacion.S);
+					break;
+				}
+				c = 0;
+				d++;
+				if (d == 4)
+					d = 0;
+			}
+			if (!serpiente.getEstado()) {
+				serpiente.avanzar();
+				c++;
+				escenario.colocarSerpiente(this.serpiente);
+			}
+			tf = System.currentTimeMillis();
+			try {
+				Thread.sleep(serpiente.getVelocidad() - (tf - ti));
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+}
