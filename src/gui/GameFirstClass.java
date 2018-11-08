@@ -35,7 +35,8 @@ public class GameFirstClass extends JFrame {
 		this.controles = new AL(escenario);
 		addKeyListener(this.controles);
 		//escenario.start();
-		this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/clover.jpg").getImage());
+		//this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/clover.jpg").getImage());
+		this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/arena.jpg").getImage());
 		setContentPane(this.contentPane);
 		contentPane.setLayout(null);
 

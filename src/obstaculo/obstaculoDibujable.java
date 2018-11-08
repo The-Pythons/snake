@@ -15,7 +15,8 @@ public class obstaculoDibujable extends Dibujable {
 	private Image image;
 	public obstaculoDibujable(Obstaculo o) {
 		this.o=o;
-		this.image = new ImageIcon("recursos/IMGP5539_almost_seamless.jpg").getImage();
+		//this.image = new ImageIcon("recursos/IMGP5539_almost_seamless.jpg").getImage();
+		this.image = new ImageIcon("recursos/brick 1.jpg").getImage();
 	}
 	
 	@Override
