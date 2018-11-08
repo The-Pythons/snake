@@ -22,7 +22,7 @@ public class Serpiente  implements Choques{
 	public Serpiente(int x, int y, Orientacion orientacion) {
 		this.cabeza = new Cabeza(x, y, orientacion);
 		this.cuerpo = new ArrayList<Cuerpo>();
-		this.velocidad=50;
+		this.velocidad=100;
 		Cuerpo c = new Cuerpo( new Punto2D(x,y), orientacion);
 		c.moverI();
 		this.cuerpo.add(c);
@@ -79,6 +79,16 @@ public class Serpiente  implements Choques{
 	public void muere() {
 		estado=true;
 	}
+	public void revivirInmortal() {
+		estado=false;
+	}
+	public void revivir() {
+		estado=false;
+		this.cuerpo.clear();
+		Cuerpo c = new Cuerpo( new Punto2D(20,20), Orientacion.N);
+		c.moverI();
+		this.cuerpo.add(c);
+	}
 
 	public void comer(Fruta object) {
 		this.crecer();
@@ -100,11 +110,11 @@ public class Serpiente  implements Choques{
 
 	@Override
 	public void chocar(Serpiente s1) {
-		if(s1.getCabeza().getPosicion().equals(this.cabeza.getPosicion()))
+		
+		if(this.cabeza.getPosicion().equals(s1.getPosicionSig()))
 			this.muere();
 		s1.muere();
 	}
-
 
 	@Override
 	public boolean getEstado() {

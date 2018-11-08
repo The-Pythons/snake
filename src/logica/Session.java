@@ -1,5 +1,6 @@
 package logica;
 
+import snake.Orientacion;
 import snake.Serpiente;
 
 public class Session extends Thread {
@@ -17,6 +18,16 @@ public class Session extends Thread {
 
 	public void run() {
 
+		while(true) {
+		serpiente();
+		escenario.limpiarSerpiente(serpiente);
+		System.out.println("has muerto");
+		
+		serpiente.getCabeza().setPosicion(15, 15);
+		serpiente.revivir();
+	}}
+
+	private void serpiente() {
 		long ti, tf;
 
 		while (!this.serpiente.getEstado()) {
@@ -25,7 +36,7 @@ public class Session extends Thread {
 			escenario.limpiarSerpiente(this.serpiente);
 			if (!serpiente.getEstado()) {
 				serpiente.avanzar();
-				escenario.colocarSerpiente(serpiente);
+				escenario.colocarSerpiente(this.serpiente);
 			}
 			tf = System.currentTimeMillis();
 			try {
@@ -35,8 +46,6 @@ public class Session extends Thread {
 			}
 
 		}
-		escenario.limpiarSerpiente(serpiente);
-		System.out.println("has muerto");
 	}
 
 }
