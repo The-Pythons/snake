@@ -152,7 +152,7 @@ public class PantallaInicio extends JFrame {
 	}
 
 	private void sala() {
-		new PantallaSala(this);
+		new PantallaSelecionSala(this);
 	}
 
 	private void jugar() {
