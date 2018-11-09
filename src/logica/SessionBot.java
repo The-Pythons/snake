@@ -24,7 +24,14 @@ public class SessionBot extends Thread {
 			serpiente();
 			escenario.limpiarSerpiente(serpiente);
 			System.out.println("has muerto");
-
+			
+			
+			int x = (int) (Math.random() );
+			int y = (int) (Math.random() );
+			y = y + (y % 10)+15;
+			x = x + (x % 20)+15;
+			serpiente.getCabeza().setPosicion(x,y);
+			serpiente.revivir();
 			// serpiente.getCabeza().setPosicion(15, 15);
 			// serpiente.revivir();
 		
