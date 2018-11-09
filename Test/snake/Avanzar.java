@@ -8,7 +8,7 @@ public class Avanzar {
 
 	public static void main(String arg[]) {
 		Escenario e = new Escenario(4, 4);
-		e.crearSerpiente(2,2, Orientacion.N, 1);
+		e.crearSerpiente(2,2, Orientacion.N, Skin.VERDE);
 		//e.crearSerpiente(10, 15, Orientacion.N);
 		e.mostrar();
 		System.out.println("-------------------");
