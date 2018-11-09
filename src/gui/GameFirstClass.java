@@ -32,7 +32,8 @@ public class GameFirstClass extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.escenario = new Escenario(30, 24);
-		this.controles = new AL(escenario);
+		
+		this.controles = new AL(this.escenario.getUsuario());
 		addKeyListener(this.controles);
 		//escenario.start();
 		//this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/clover.jpg").getImage());
