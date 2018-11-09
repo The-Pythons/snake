@@ -14,10 +14,14 @@ public class Session extends Thread {
 		this.escenario = escenario;
 		this.usuario = usuario;
 		this.serpiente=serpiente;
+		this.usuario = usuario;
 	}
 
 	public void run() {
 
+		
+		//usuario.setDir(Orientacion.N);
+		
 		while(true) {
 		serpiente();
 		escenario.limpiarSerpiente(serpiente);
@@ -31,10 +35,12 @@ public class Session extends Thread {
 		long ti, tf;
 
 		while (!this.serpiente.getEstado()) {
+			
 			ti = System.currentTimeMillis();
 			escenario.colicionador(this.serpiente);
 			escenario.limpiarSerpiente(this.serpiente);
 			if (!serpiente.getEstado()) {
+				serpiente.girar(usuario.getDir());
 				serpiente.avanzar();
 				escenario.colocarSerpiente(this.serpiente);
 			}

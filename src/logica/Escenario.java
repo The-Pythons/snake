@@ -17,6 +17,7 @@ public class Escenario extends Thread {
 	ArrayList<Dibujable> elementos;
 	Choques[][] area;
 	int dim_x, dim_y;
+	Usuario usuario;
 
 	public Escenario(int dim_x, int dim_y) {
 		this.dim_x = dim_x;
@@ -27,9 +28,12 @@ public class Escenario extends Thread {
 		elementos = new ArrayList<Dibujable>();
 		elementos.add(null);
 		//mover de aqui a una sala de testeo
-		this.crearSerpiente(20, 10, Orientacion.N, Skin.ROSA);  // El 4to parametro indica el color de la serpiente
-		Session s1 = new Session(this,this.getSerpiente(0),null);// Cada jugador va tener una session 
+		this.crearSerpiente(20, 10, Orientacion.N, Skin.ROSA); 
+		// El 4to parametro indica el color de la serpiente
+		usuario = new Usuario();
+		Session s1 = new Session(this,this.getSerpiente(0),usuario);// Cada jugador va tener una session 
 											// que sera un thread las intancia de la serpiente
+		
 		
 		this.crearSerpiente(10, 10, Orientacion.S, Skin.VERDE);  // El 4to parametro indica el color de la serpiente
 		this.getSerpiente(1).crecer();
@@ -40,6 +44,7 @@ public class Escenario extends Thread {
 		this.crearObtaculo(10, 20);
 		this.crearParedes();
 		s1.start();
+		
 		SessionBot sbot= new SessionBot(this,this.getSerpiente(1),null);
 		sbot.start();
 		
@@ -261,6 +266,12 @@ public class Escenario extends Thread {
 			s = null;
 
 		}
+	}
+
+
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
 
