@@ -15,12 +15,12 @@ public class serpienteDibujable extends Dibujable {
 	Serpiente s;
 	Image imagenCabeza;
 	Image imagenCuerpo;
-	static final int ROSA = 1;
+/*	static final int ROSA = 1;
 	static final int VERDE = 2;
 	static final int AMARILLO = 3;
 	static final int AZUL = 4;
-		
-	public serpienteDibujable(Serpiente s, int color) {
+*/		
+	public serpienteDibujable(Serpiente s, Skin color) {
 		this.s = s;
 		String cabezaString = null, cuerpoString = null;
 		switch (color) {
