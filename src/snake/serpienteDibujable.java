@@ -15,11 +15,34 @@ public class serpienteDibujable extends Dibujable {
 	Serpiente s;
 	Image imagenCabeza;
 	Image imagenCuerpo;
-	
-	public serpienteDibujable(Serpiente s) {
+	static final int ROSA = 1;
+	static final int VERDE = 2;
+	static final int AMARILLO = 3;
+	static final int AZUL = 4;
+		
+	public serpienteDibujable(Serpiente s, int color) {
 		this.s = s;
-		this.imagenCabeza = new ImageIcon("recursos/Cabeza snake rosa.png").getImage();
-		this.imagenCuerpo = new ImageIcon("recursos/Cuerpo snake rosa.png").getImage();
+		String cabezaString = null, cuerpoString = null;
+		switch (color) {
+		case ROSA:
+			cabezaString = "recursos/Cabeza snake rosa.png";
+			cuerpoString = "recursos/Cuerpo snake rosa.png";
+			break;
+		case VERDE:
+			cabezaString = "recursos/Cabeza snake verde.png";
+			cuerpoString = "recursos/Cuerpo snake verde.png";
+			break;
+		case AMARILLO:
+			cabezaString = "recursos/Cabeza snake amarillo.png";
+			cuerpoString = "recursos/Cuerpo snake amarillo.png";
+			break;
+		default: // AZUL
+			cabezaString = "recursos/Cabeza snake azul.png";
+			cuerpoString = "recursos/Cuerpo snake azul.png";
+			break;
+		}
+		this.imagenCabeza = new ImageIcon(cabezaString).getImage();
+		this.imagenCuerpo = new ImageIcon(cuerpoString).getImage();
 	}
 	
 	@Override

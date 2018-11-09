@@ -26,7 +26,7 @@ public class GameFirstClass extends JFrame {
 	// Window Basics
 	public GameFirstClass() {
 
-		setTitle("Prueba de teclas");
+		setTitle("Snake");
 		setBounds(100, 100, 600, 500);
 		setResizable(false);
 		setLocationRelativeTo(null);

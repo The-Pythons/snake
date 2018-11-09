@@ -1,5 +1,7 @@
 package logica;
 
+import org.omg.CORBA.MARSHAL;
+
 import snake.Orientacion;
 import snake.Serpiente;
 
@@ -57,6 +59,7 @@ public class SessionBot extends Thread {
 				if (d == 4)
 					d = 0;
 			}
+			
 			if (!serpiente.getEstado()) {
 				serpiente.avanzar();
 				c++;

@@ -26,11 +26,11 @@ public class Escenario extends Thread {
 		elementos = new ArrayList<Dibujable>();
 		elementos.add(null);
 		//mover de aqui a una sala de testeo
-		this.crearSerpiente(20, 10, Orientacion.N);
+		this.crearSerpiente(20, 10, Orientacion.N, 1);  // El 4to parametro indica el color de la serpiente
 		Session s1 = new Session(this,this.getSerpiente(0),null);// Cada jugador va tener una session 
 											// que sera un thread las intancia de la serpiente
 		
-		this.crearSerpiente(10, 10, Orientacion.S);
+		this.crearSerpiente(10, 10, Orientacion.S, 2);  // El 4to parametro indica el color de la serpiente
 		this.getSerpiente(1).crecer();
 		this.getSerpiente(1).crecer();
 		this.getSerpiente(1).crecer();
@@ -164,9 +164,10 @@ public class Escenario extends Thread {
 	}
 	
 
-	public void crearSerpiente(int x, int y, Orientacion orientacion) {
+	public void crearSerpiente(int x, int y, Orientacion orientacion, int color) {
 		Serpiente s = new Serpiente(x, y, orientacion);
-		Dibujable ss = new serpienteDibujable(s);
+		Dibujable ss = new serpienteDibujable(s, color);	// ingresar en el 2do parametro valores
+														// de 1-4 para cambiar el color del snake
 		//area[x][y] = s;
 		colocarSerpiente(s);
 		elementos.add(ss);

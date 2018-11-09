@@ -107,7 +107,6 @@ public class Serpiente  implements Choques{
 		
 	}
 
-
 	@Override
 	public void chocar(Serpiente s1) {
 		
