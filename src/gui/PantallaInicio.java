@@ -15,10 +15,7 @@ public class PantallaInicio extends JFrame {
 	private JTextField txtNombre;
 	private String usuario;
 	private String clave;
-	private String sala;
-	private boolean registroUsuario;
-	private boolean registroSala;
-
+	
 	public PantallaInicio() {
 		setResizable(false);
 		setForeground(new Color(0, 0, 0));
@@ -152,10 +149,14 @@ public class PantallaInicio extends JFrame {
 	}
 
 	private void sala() {
-		new PantallaSelecionSala(this);
+		new PantallaSeleccionSala(this);
 	}
 
 	private void jugar() {
+	}
+	
+	public String getUsuario() {
+		return usuario;
 	}
 
 	public static void main(String[] args) {

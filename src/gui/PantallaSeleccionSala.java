@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class PantallaSelecionSala extends JFrame {
+public class PantallaSeleccionSala extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField passwordField;
@@ -32,9 +32,9 @@ public class PantallaSelecionSala extends JFrame {
 	private DefaultListModel<String> modelo;
 	private PantallaInicio inicio;
 	private String clave;
-	private String nombre;
+	private String sala;
 
-	public PantallaSelecionSala(PantallaInicio inicio) {
+	public PantallaSeleccionSala(PantallaInicio inicio) {
 		this.inicio = inicio;
 		setResizable(false);
 
@@ -54,21 +54,21 @@ public class PantallaSelecionSala extends JFrame {
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNombre.setForeground(new Color(255, 255, 0));
-		lblNombre.setBounds(10, 73, 73, 14);
+		lblNombre.setBounds(55, 73, 73, 14);
 		contentPane.add(lblNombre);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblContrasea.setForeground(new Color(255, 255, 0));
-		lblContrasea.setBounds(10, 98, 89, 14);
+		lblContrasea.setBounds(55, 98, 89, 14);
 		contentPane.add(lblContrasea);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(104, 97, 71, 19);
+		passwordField.setBounds(149, 97, 71, 19);
 		contentPane.add(passwordField);
 
 		nombreField = new JTextField();
-		nombreField.setBounds(104, 70, 71, 19);
+		nombreField.setBounds(149, 70, 71, 19);
 		contentPane.add(nombreField);
 
 		JButton btnAadirSala = new JButton("Añadir Sala");
@@ -107,54 +107,98 @@ public class PantallaSelecionSala extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (arg0.getClickCount() == 2) {
-					mostrarSeleccionDeLaLista((String) listaSalas.getSelectedValue());	
+					seleccionarSala(listaSalas.getSelectedValue());
 				}
 			}
 		});
 		listaSalas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		modelo = new DefaultListModel<String>();
-		modelo.addElement("Elemento1");
-		modelo.addElement("Elemento2");
-		modelo.addElement("Elemento3");
+		modelo.addElement("Sala1");
+		modelo.addElement("Sala2");
+		modelo.addElement("Sala3");
 		listaSalas.setModel(modelo);
 
 		JScrollPane scrollPane = new JScrollPane(listaSalas);
 		scrollPane.setBounds(284, 69, 140, 156);
 		scrollPane.setViewportView(listaSalas);
 		contentPane.add(scrollPane);
-		
+
+		JButton btnIngrersar = new JButton("Ingrersar");
+		btnIngrersar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ingrersar();
+			}
+		});
+		btnIngrersar.setBounds(151, 132, 100, 23);
+		contentPane.add(btnIngrersar);
+
 		setLocationRelativeTo(inicio);
 		setVisible(true);
 	}
 
+	protected void ingrersar() {
+		char[] claveTxt = passwordField.getPassword();
+		clave = new String(claveTxt);
+		sala = new String(nombreField.getText());
+		if (sala.equals("") || clave.equals("")) {
+			JOptionPane.showMessageDialog(null, "Ingresa una sala y contraseña", "ATENCION!",
+					JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			if (!verificarSalaBD()) {
+				JOptionPane.showMessageDialog(null, "Sala o clave incorrecta", "ATENCION!",
+						JOptionPane.INFORMATION_MESSAGE);
+			} else {
+				setVisible(false);
+				new PantallaSala(this, sala, inicio.getUsuario());
+			}
+		}
+
+	}
+
+	private boolean verificarSalaBD() {
+		if(sala.equals("Sala1") && clave.equals("123"))
+			return true;
+		return false;
+	}
+
 	protected void actualizar() {
-		
+
 	}
 
 	private void salaNueva() {
 		char[] claveTxt = passwordField.getPassword();
 		clave = new String(claveTxt);
-		nombre = new String(nombreField.getText());
-		if (nombre.equals("") || clave.equals("")) {
+		sala = new String(nombreField.getText());
+		if (sala.equals("") || clave.equals("")) {
 			JOptionPane.showMessageDialog(null, "Ingresa una sala y contraseña", "ATENCION!",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			if(verificarBD()) {
-				JOptionPane.showMessageDialog(null, "Sala ya registrada", "ATENCION!",
-						JOptionPane.INFORMATION_MESSAGE);
+			if (verificarNuevaSalaBD()) {
+				JOptionPane.showMessageDialog(null, "Sala ya registrada", "ATENCION!", JOptionPane.INFORMATION_MESSAGE);
 			} else {
-			modelo.addElement(nombre);
-			listaSalas.setModel(modelo);
+				modelo.addElement(sala);
+				listaSalas.setModel(modelo);
 			}
 		}
 	}
 
-	private boolean verificarBD() {
-		return modelo.contains(nombre);
+	private boolean verificarNuevaSalaBD() {
+		return modelo.contains(sala);
+	}
+
+	public void seleccionarSala(String seleccionado) {
+		sala = seleccionado;
+		nombreField.setText(sala);
+	}
+
+	public String getSala() {
+		return sala;
 	}
 	
-	public void mostrarSeleccionDeLaLista(String seleccionado) {
-		JOptionPane.showMessageDialog(this, seleccionado);
+	public void eliminarSala(String sala) {
+		modelo.removeElement(sala);
+		listaSalas.setModel(modelo);
+		setVisible(true);
 	}
 
 }
