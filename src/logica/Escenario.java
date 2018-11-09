@@ -247,7 +247,7 @@ public class Escenario extends Thread {
 	public void limpiarSerpiente(Serpiente s) {
 
 		Punto2D posicion = s.cabeza.getPosicion();
-	//	vaciarPosicion(posicion); // Head
+		vaciarPosicion(posicion); // Head
 		Cuerpo cuerpo;
 		Iterator<Cuerpo> itcuerpo = s.getCuerpo().iterator();
 		while (itcuerpo.hasNext()) {
