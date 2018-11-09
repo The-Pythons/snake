@@ -20,14 +20,14 @@ public class SessionBot extends Thread {
 
 	public void run() {
 
-		while (true) {
+		
 			serpiente();
 			escenario.limpiarSerpiente(serpiente);
 			System.out.println("has muerto");
 
 			// serpiente.getCabeza().setPosicion(15, 15);
 			// serpiente.revivir();
-		}
+		
 	}
 
 	private void serpiente() {
