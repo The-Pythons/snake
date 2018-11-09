@@ -37,10 +37,10 @@ public class Session extends Thread {
 		while (!this.serpiente.getEstado()) {
 			
 			ti = System.currentTimeMillis();
+			serpiente.girar(usuario.getDir());
 			escenario.colicionador(this.serpiente);
 			escenario.limpiarSerpiente(this.serpiente);
 			if (!serpiente.getEstado()) {
-				serpiente.girar(usuario.getDir());
 				serpiente.avanzar();
 				escenario.colocarSerpiente(this.serpiente);
 			}
