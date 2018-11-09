@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class PantallaInicio extends JFrame {
-	
+
 	private Fondo contentPane;
 	private JTextField txtUsuario;
 	private JPasswordField txtClave;
@@ -112,7 +112,7 @@ public class PantallaInicio extends JFrame {
 		btnNewButton.setBounds(335, 229, 89, 23);
 		contentPane.add(btnNewButton);
 	}
-	
+
 	private void ingresar() {
 		char[] claveTxt = txtClave.getPassword();
 		clave = new String(claveTxt);
@@ -134,27 +134,26 @@ public class PantallaInicio extends JFrame {
 			}
 		}
 	}
-	
+
 	private void registro() {
 		new PantallaRegistro(this);
 		char[] claveTxt = txtClave.getPassword();
 		clave = new String(claveTxt);
 		usuario = new String(txtUsuario.getText());
 	}
-	
+
 	public void escribirUsuarioClave(String usuario, String clave) {
 		txtUsuario.setText(usuario);
 		txtClave.setText(clave);
 	}
-	
-	private void sala(){
-		PantallaSala s = new PantallaSala();
-		s.frame.setVisible(true);
+
+	private void sala() {
+		new PantallaSala();
 	}
-	
+
 	private void jugar() {
 	}
-	
+
 	public static void main(String[] args) {
 		new PantallaInicio().setVisible(true);
 	}

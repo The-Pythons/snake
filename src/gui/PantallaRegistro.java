@@ -22,7 +22,6 @@ import java.awt.event.ActionEvent;
 //public class PantallaRegistro extends JFrame {
 public class PantallaRegistro extends JDialog {
 
-
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
