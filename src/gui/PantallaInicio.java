@@ -44,12 +44,14 @@ public class PantallaInicio extends JFrame {
 		txtUsuario = new JTextField();
 		txtUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		txtUsuario.setBounds(190, 105, 86, 20);
+		txtUsuario.setText("juan");
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
 		txtClave = new JPasswordField();
 		txtClave.setHorizontalAlignment(SwingConstants.CENTER);
 		txtClave.setBounds(190, 133, 86, 20);
+		txtClave.setText("123");
 		contentPane.add(txtClave);
 
 		JButton btnIngresar = new JButton("Ingresar");
@@ -111,6 +113,8 @@ public class PantallaInicio extends JFrame {
 		});
 		btnNewButton.setBounds(335, 229, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		setLocationRelativeTo(null);
 	}
 
 	private void ingresar() {
@@ -148,7 +152,7 @@ public class PantallaInicio extends JFrame {
 	}
 
 	private void sala() {
-		new PantallaSala();
+		new PantallaSala(this);
 	}
 
 	private void jugar() {

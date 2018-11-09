@@ -4,17 +4,22 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PantallaSala extends JFrame {
 
@@ -22,8 +27,13 @@ public class PantallaSala extends JFrame {
 	private JPasswordField passwordField;
 	private JTextField nombreField;
 	private JList<String> listaSalas;
+	private DefaultListModel<String> modelo;
+	private PantallaInicio inicio;
+	private String clave;
+	private String nombre;
 
-	public PantallaSala() {
+	public PantallaSala(PantallaInicio inicio) {
+		this.inicio = inicio;
 		setResizable(false);
 
 		setBounds(100, 100, 450, 300);
@@ -59,7 +69,12 @@ public class PantallaSala extends JFrame {
 		nombreField.setBounds(104, 70, 71, 19);
 		contentPane.add(nombreField);
 
-		JButton btnAadirSala = new JButton("A\u00F1adir Sala");
+		JButton btnAadirSala = new JButton("Añadir Sala");
+		btnAadirSala.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				salaNueva();
+			}
+		});
 		btnAadirSala.setBounds(36, 132, 105, 23);
 		contentPane.add(btnAadirSala);
 
@@ -80,14 +95,43 @@ public class PantallaSala extends JFrame {
 		btnActualizar.setBounds(314, 228, 91, 23);
 		contentPane.add(btnActualizar);
 
+		listaSalas = new JList<String>();
+		listaSalas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		modelo = new DefaultListModel<String>();
+		modelo.addElement("Elemento1");
+		modelo.addElement("Elemento2");
+		modelo.addElement("Elemento3");
+		listaSalas.setModel(modelo);
+
 		JScrollPane scrollPane = new JScrollPane(listaSalas);
 		scrollPane.setBounds(284, 69, 140, 156);
+		scrollPane.setViewportView(listaSalas);
 		contentPane.add(scrollPane);
-
-		listaSalas = new JList<String>();
-//		listaSalas.setBounds(284, 69, 140, 156);
-		contentPane.add(listaSalas);
-
+		
+		setLocationRelativeTo(inicio);
 		setVisible(true);
 	}
+
+	private void salaNueva() {
+		char[] claveTxt = passwordField.getPassword();
+		clave = new String(claveTxt);
+		nombre = new String(nombreField.getText());
+		if (nombre.equals("") || clave.equals("")) {
+			JOptionPane.showMessageDialog(null, "Ingresa una sala y contraseña", "ATENCION!",
+					JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			if(verificarBD()) {
+				JOptionPane.showMessageDialog(null, "Sala ya registrada", "ATENCION!",
+						JOptionPane.INFORMATION_MESSAGE);
+			} else {
+			modelo.addElement(nombre);
+			listaSalas.setModel(modelo);
+			}
+		}
+	}
+
+	private boolean verificarBD() {
+		return modelo.contains(nombre);
+	}
+
 }
