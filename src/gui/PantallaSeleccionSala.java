@@ -66,7 +66,7 @@ public class PantallaSeleccionSala extends JFrame {
 		lblNombre.setBounds(55, 73, 73, 14);
 		contentPane.add(lblNombre);
 
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
+		JLabel lblContrasea = new JLabel("Contraseña:");
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblContrasea.setForeground(new Color(255, 255, 0));
 		lblContrasea.setBounds(55, 98, 89, 14);
@@ -188,7 +188,6 @@ public class PantallaSeleccionSala extends JFrame {
 				JOptionPane.showMessageDialog(null, "Sala ya registrada", "ATENCION!", JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				modelo.addElement(sala);
-				listaSalas.setModel(modelo);
 			}
 		}
 	}
@@ -208,7 +207,6 @@ public class PantallaSeleccionSala extends JFrame {
 	
 	public void eliminarSala(String sala) {
 		modelo.removeElement(sala);
-		listaSalas.setModel(modelo);
 		setVisible(true);
 	}
 

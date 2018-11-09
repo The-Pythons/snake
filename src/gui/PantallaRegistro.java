@@ -1,6 +1,5 @@
 package gui;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -11,7 +10,6 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -19,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-//public class PantallaRegistro extends JFrame {
 public class PantallaRegistro extends JDialog {
 
 	private JPanel contentPane;
@@ -32,9 +29,7 @@ public class PantallaRegistro extends JDialog {
 		this.inicio = inicio;
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		contentPane = new JPanel();
-//		setContentPane(contentPane);
 
 		getContentPane().setLayout(new BorderLayout());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

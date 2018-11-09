@@ -100,7 +100,6 @@ public class PantallaSala extends JFrame {
 	protected void listo() {
 		if (!modelo.contains(usuario)) {
 			modelo.addElement(usuario);
-			listaUsuarios.setModel(modelo);
 		}
 
 	}
