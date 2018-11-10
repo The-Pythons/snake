@@ -40,10 +40,12 @@ public class GameFirstClass extends JFrame {
 		this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/arena.jpg").getImage());
 		setContentPane(this.contentPane);
 		contentPane.setLayout(null);
+		
+		new Repintar(this).start();;
 
 	}
 
-	public void repintar() {
+	/*public void repintar() {
 		long tf, ti;
 		while (true) {
 			ti = System.currentTimeMillis();
@@ -58,12 +60,12 @@ public class GameFirstClass extends JFrame {
 
 		}
 	}
-
+*/
 	// main
 	public static void main(String[] args) {
 		GameFirstClass g = new GameFirstClass();
 		g.setVisible(true);
-		g.repintar();
+		//g.repintar();
 	}
 	
 	

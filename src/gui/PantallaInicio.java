@@ -15,6 +15,7 @@ public class PantallaInicio extends JFrame {
 	private JTextField txtNombre;
 	private String usuario;
 	private String clave;
+	GameFirstClass g; 
 	
 	public PantallaInicio() {
 		setResizable(false);
@@ -112,6 +113,7 @@ public class PantallaInicio extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		setLocationRelativeTo(null);
+//		setVisible(true);
 	}
 
 	private void ingresar() {
@@ -153,7 +155,10 @@ public class PantallaInicio extends JFrame {
 	}
 
 	private void jugar() {
-	}
+		g = new GameFirstClass();
+		g.setVisible(true);
+		
+		}
 	
 	public String getUsuario() {
 		return usuario;
