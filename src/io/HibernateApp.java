@@ -192,13 +192,13 @@ public class HibernateApp {
 		this.factory.close();
 	}
 	
-	//Test listar todos usuarios, funciona.
+	/*//Test listar todos usuarios, funciona.
 	public static void main(String[] args) {
 		HibernateApp obj = new HibernateApp();
 		for(String usuario : obj.listarUsuarios())
 			System.out.println(usuario);
 		obj.cierreSessFac();
-	}
+	}*/
 	
 	/*//Test listar todas partidas, funciona.
 	public static void main(String[] args) {
