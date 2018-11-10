@@ -22,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class PantallaSeleccionSala extends JFrame {
 
@@ -39,7 +41,14 @@ public class PantallaSeleccionSala extends JFrame {
 		setResizable(false);
 
 		setBounds(100, 100, 450, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				dispose();
+				inicio.setVisible(true);
+			}
+		});
 		contentPane = new JPanel();
 //		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,7 +66,7 @@ public class PantallaSeleccionSala extends JFrame {
 		lblNombre.setBounds(55, 73, 73, 14);
 		contentPane.add(lblNombre);
 
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
+		JLabel lblContrasea = new JLabel("Contraseña:");
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblContrasea.setForeground(new Color(255, 255, 0));
 		lblContrasea.setBounds(55, 98, 89, 14);
@@ -65,10 +74,12 @@ public class PantallaSeleccionSala extends JFrame {
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(149, 97, 71, 19);
+		passwordField.setText("123");
 		contentPane.add(passwordField);
 
 		nombreField = new JTextField();
 		nombreField.setBounds(149, 70, 71, 19);
+		nombreField.setText("Sala1");
 		contentPane.add(nombreField);
 
 		JButton btnAadirSala = new JButton("Añadir Sala");
@@ -177,7 +188,6 @@ public class PantallaSeleccionSala extends JFrame {
 				JOptionPane.showMessageDialog(null, "Sala ya registrada", "ATENCION!", JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				modelo.addElement(sala);
-				listaSalas.setModel(modelo);
 			}
 		}
 	}
@@ -197,7 +207,6 @@ public class PantallaSeleccionSala extends JFrame {
 	
 	public void eliminarSala(String sala) {
 		modelo.removeElement(sala);
-		listaSalas.setModel(modelo);
 		setVisible(true);
 	}
 
