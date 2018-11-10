@@ -1,9 +1,5 @@
 package io;
 
-import java.security.MessageDigest;
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-
 public class Seguridad {
 	
 	public static String cifra(String cadena){

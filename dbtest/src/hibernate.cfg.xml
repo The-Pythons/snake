@@ -11,5 +11,6 @@
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 		<mapping resource="io/usuario.hbm.xml" />
+		<mapping resource="io/partida.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

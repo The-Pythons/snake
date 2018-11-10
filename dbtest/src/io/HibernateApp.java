@@ -91,6 +91,25 @@ public class HibernateApp {
 			return 1;//Exito
 	}
 	
+	public int agregarPartida(Partida p) throws Exception{
+		Transaction tx = session.beginTransaction();
+		try{
+			try{
+				session.persist(p);
+			}catch (HibernateException a){
+				return -1;//Usuario ya existe
+			}
+			tx.commit();
+		}
+		catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+			return 0;//Fallo Transaccion
+		} 
+			return 1;//Exito
+	}
+	
 	/* 
 	 * @param: Usuario a INSERTAR a la tabla Usuario.
 	 * @return: 1 en caso de EXITO
@@ -150,6 +169,23 @@ public class HibernateApp {
 		}
 	}
 	
+	public List<Partida> listarTodasPartidas(){
+		Transaction tx = session.beginTransaction();
+		try{
+			Query q = session.createQuery("Select p from Partida p");
+			@SuppressWarnings("unchecked")
+			List<Partida>listaDePart = q.getResultList();
+			tx.commit();
+			return listaDePart;
+		}
+		catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+			return null;
+		} 
+	}
+	
 	private void cierreSessFac(){
 		this.session.close();
 		this.factory.close();
@@ -160,6 +196,14 @@ public class HibernateApp {
 		HibernateApp obj = new HibernateApp();
 		for(String usuario : obj.listarUsuarios())
 			System.out.println(usuario);
+		obj.cierreSessFac();
+	}*/
+	
+	/*//Test listar todas partidas, funciona.
+	public static void main(String[] args) {
+		HibernateApp obj = new HibernateApp();
+		for(Partida p : obj.listarTodasPartidas())
+			System.out.println(p);
 		obj.cierreSessFac();
 	}*/
 	
@@ -183,6 +227,27 @@ public class HibernateApp {
 		
 		obj.cierreSessFac();
 	}*/
+	
+	//Test agregar partida, funciona.
+	public static void main(String[] args) throws Exception {
+		HibernateApp obj = new HibernateApp();
+		
+		//Muestro usuarios
+		for(Partida p : obj.listarTodasPartidas())
+			System.out.println(p);
+		
+		//Nuevo usuario a agregar
+		Partida part = new Partida();
+		
+		//Agrego
+		obj.agregarPartida(part);
+		
+		//Muestro nuevamente usuarios
+		for(Partida p : obj.listarTodasPartidas())
+			System.out.println(p);
+		
+		obj.cierreSessFac();
+	}
 	
 	/*//Test eliminar usuario, funciona.
 	public static void main(String[] args) {
