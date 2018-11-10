@@ -47,22 +47,6 @@ public class HibernateApp {
 			} 
 		}
 	
-	private List<Usuario> listarTablaUsuario(){//Metodo para listar toda la tabla Usuario, por ahora private.
-		Transaction tx = session.beginTransaction();
-		try{
-			Query q = session.createQuery("Select u from Usuario u");
-			@SuppressWarnings("unchecked")
-			List<Usuario>listaDeCad = q.getResultList();
-			tx.commit();
-			return listaDeCad;
-		}
-		catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-			return null;
-		} 
-	}
 	/* 
 	 * @param: Usuario a INSERTAR a la tabla Usuario.
 	 * @return: 1 en caso de EXITO
@@ -186,18 +170,35 @@ public class HibernateApp {
 		} 
 	}
 	
+	private List<Usuario> listarTablaUsuario(){//Metodo para listar toda la tabla Usuario, por ahora private.
+		Transaction tx = session.beginTransaction();
+		try{
+			Query q = session.createQuery("Select u from Usuario u");
+			@SuppressWarnings("unchecked")
+			List<Usuario>listaDeCad = q.getResultList();
+			tx.commit();
+			return listaDeCad;
+		}
+		catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+			return null;
+		} 
+	}
+	
 	private void cierreSessFac(){
 		this.session.close();
 		this.factory.close();
 	}
 	
-	/*//Test listar todos usuarios, funciona.
+	//Test listar todos usuarios, funciona.
 	public static void main(String[] args) {
 		HibernateApp obj = new HibernateApp();
 		for(String usuario : obj.listarUsuarios())
 			System.out.println(usuario);
 		obj.cierreSessFac();
-	}*/
+	}
 	
 	/*//Test listar todas partidas, funciona.
 	public static void main(String[] args) {
@@ -228,7 +229,7 @@ public class HibernateApp {
 		obj.cierreSessFac();
 	}*/
 	
-	//Test agregar partida, funciona.
+	/*//Test agregar partida, funciona.
 	public static void main(String[] args) throws Exception {
 		HibernateApp obj = new HibernateApp();
 		
@@ -247,7 +248,7 @@ public class HibernateApp {
 			System.out.println(p);
 		
 		obj.cierreSessFac();
-	}
+	}*/
 	
 	/*//Test eliminar usuario, funciona.
 	public static void main(String[] args) {
@@ -269,6 +270,7 @@ public class HibernateApp {
 			
 			obj.cierreSessFac();		
 	}*/
+	
 	
 	/*//Test existeUsuario, funciona.
 	public static void main(String[] args) throws Exception {
