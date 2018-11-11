@@ -26,9 +26,14 @@ public class Session extends Thread {
 		serpiente();
 		escenario.limpiarSerpiente(serpiente);
 		System.out.println("has muerto");
-		
+		Usuario.puntaje = 0;
+		System.out.println(Usuario.puntaje);
 		serpiente.getCabeza().setPosicion(15, 15);
+		Usuario.gameOver = 1;
 		serpiente.revivir();
+		Usuario.puntaje = 0;
+		Usuario.nivel = 1;
+		
 	}}
 
 	private void serpiente() {
@@ -42,7 +47,7 @@ public class Session extends Thread {
 			escenario.limpiarSerpiente(this.serpiente);
 			if (!serpiente.getEstado()) {
 				serpiente.avanzar();
-				escenario.colocarSerpiente(this.serpiente);
+				escenario.colocarSerpiente(this.serpiente);		
 			}
 			tf = System.currentTimeMillis();
 			try {

@@ -127,7 +127,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			}
 		if (dx == 0 && dy == 0)
 			g2d2.drawString("Read", AnchoPantalla/2, AltoPantalla/2);
-		g2d2.setColor(Color.WHITE);
+		g2d2.setColor(Color.GREEN);
 		g2d2.drawString("Score " + score + "Level: " + level, 10, 10);
 
 	}

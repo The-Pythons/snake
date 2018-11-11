@@ -1,5 +1,5 @@
 package gui;
-
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import logica.Dibujable;
 import logica.Escenario;
+import logica.Usuario;
 
 public class JPanelGrafico extends JPanel {
 
@@ -36,10 +37,18 @@ public class JPanelGrafico extends JPanel {
 			Dibujable d = iterador.next();
 			if (d != null && !d.getEstado(g))
 				d.dibujar(g);
+			g.setColor(Color.GREEN);
+			g.drawString("Puntaje:" +Usuario.puntaje+" "+"Nivel: "+ Usuario.nivel , 10, 10);
+//			if(Usuario.gameOver == 1) {
+//				g.setColor(Color.BLACK.brighter());
+//				g.drawString("GAME OVER",600/2-50, 500/2-50);
+			}
+
 		}
 
 	}
-}
+	
+
 
 /*public void paintComponent(Graphics g) {
 	Fruta fru = new Fruta(30,30);

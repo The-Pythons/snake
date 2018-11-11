@@ -6,6 +6,7 @@ import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import io.Usuario;
 import logica.Escenario;
 
 public class GameFirstClass extends JFrame {
@@ -40,7 +41,6 @@ public class GameFirstClass extends JFrame {
 		this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/arena.jpg").getImage());
 		setContentPane(this.contentPane);
 		contentPane.setLayout(null);
-		
 		new Repintar(this).start();;
 
 	}

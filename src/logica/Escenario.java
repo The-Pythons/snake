@@ -27,30 +27,27 @@ public class Escenario extends Thread {
 		serpientes = new ArrayList<Serpiente>();
 		elementos = new ArrayList<Dibujable>();
 		elementos.add(null);
-		//mover de aqui a una sala de testeo
-		this.crearSerpiente(20, 10, Orientacion.N, Skin.ROSA); 
+		// mover de aqui a una sala de testeo
+		this.crearSerpiente(20, 10, Orientacion.N, Skin.ROSA);
 		// El 4to parametro indica el color de la serpiente
 		usuario = new Usuario();
-		Session s1 = new Session(this,this.getSerpiente(0),usuario);// Cada jugador va tener una session 
-											// que sera un thread las intancia de la serpiente
-		
-		
-		this.crearSerpiente(10, 10, Orientacion.S, Skin.VERDE);  // El 4to parametro indica el color de la serpiente
+		Session s1 = new Session(this, this.getSerpiente(0), usuario);// Cada jugador va tener una session
+		// que sera un thread las intancia de la serpiente
+
+		this.crearSerpiente(10, 10, Orientacion.S, Skin.VERDE); // El 4to parametro indica el color de la serpiente
 		this.getSerpiente(1).crecer();
 		this.getSerpiente(1).crecer();
 		this.getSerpiente(1).crecer();
-	//	this.colocarSerpiente(this.getSerpiente(1));
+		// this.colocarSerpiente(this.getSerpiente(1));
 		this.crearFruta(new Punto2D(20, 5));
 		this.crearObtaculo(10, 20);
 		this.crearParedes();
 		s1.start();
-		
-		SessionBot sbot= new SessionBot(this,this.getSerpiente(1),null);
+
+		SessionBot sbot = new SessionBot(this, this.getSerpiente(1), null);
 		sbot.start();
-		
+
 	}
-
-
 
 	public void girarSerpiente(int id, Orientacion dir) {
 		getSerpiente(0).girar(dir);
@@ -63,36 +60,34 @@ public class Escenario extends Thread {
 		return area[pos.x][pos.y];
 	}
 
-	
 	/*
-	 * Devuelve  el elemento dibujable proximamente esto no deberia estar y trbajaria con esto 
-	 * solo el cliente mientras que servidor la logica.
+	 * Devuelve el elemento dibujable proximamente esto no deberia estar y trbajaria
+	 * con esto solo el cliente mientras que servidor la logica.
 	 */
 	public ArrayList<Dibujable> getElementos() {
 		return this.elementos;
 	}
 
-	
 	/*
-	 * Metodos que trabajan con la matriz 
+	 * Metodos que trabajan con la matriz
 	 */
-	
+
 	/*
 	 * Vacia la posicion en la matriz
-	 *  
+	 * 
 	 */
 	private boolean posicionVacia(Punto2D pos) {
 		return area[pos.x][pos.y] == null;
 	}
-	
+
 	/*
 	 * Indica si la posicion de la matriz esta vacia
-	 *  
+	 * 
 	 */
 	public void vaciarPosicion(Punto2D pos) {
 		area[pos.x][pos.y] = null;
 	}
-	
+
 	public void mostrar() {
 		int i, j;
 		for (i = 0; i < dim_y; i++) {
@@ -118,17 +113,15 @@ public class Escenario extends Thread {
 
 	/*
 	 * 
-	 * Son los metodos para crear correctamente los objetos 
-	 * dentro del Escenario . Sin causar problemas . Donde se crea el objeto 
-	 * colicionable en la matriz y su elemento dibujable en la 
-	 * lista 
-	 * PD: si quieren reducirlos mejor
-	 *  
-	 * */
+	 * Son los metodos para crear correctamente los objetos dentro del Escenario .
+	 * Sin causar problemas . Donde se crea el objeto colicionable en la matriz y su
+	 * elemento dibujable en la lista PD: si quieren reducirlos mejor
+	 * 
+	 */
 	void crearObtaculo(Punto2D pos) {
 		crearObtaculo(pos.x, pos.y);
 	}
-	
+
 	void crearObtaculo(int x, int y) {
 		Obstaculo o = new Obstaculo(x, y);
 		Dibujable os = new obstaculoDibujable(o);
@@ -168,28 +161,28 @@ public class Escenario extends Thread {
 			crearFruta(new Punto2D(x, y));
 		}
 	}
-	
 
 	public void crearSerpiente(int x, int y, Orientacion orientacion, Skin color) {
 		Serpiente s = new Serpiente(x, y, orientacion);
-		Dibujable ss = new serpienteDibujable(s, color);	// ingresar en el 2do parametro valores
-														// de 1-4 para cambiar el color del snake
-		//area[x][y] = s;
+		Dibujable ss = new serpienteDibujable(s, color); // ingresar en el 2do parametro valores
+		// de 1-4 para cambiar el color del snake
+		// area[x][y] = s;
 		colocarSerpiente(s);
 		elementos.add(ss);
 		serpientes.add(s);
 	}
 
-
 	public Serpiente getSerpiente(int id) {
 		return serpientes.get(id);
 	}
 
-	/* Funciona gracias a la interfas choques. Todos los elementos "fisicos" con los que choca
-	 * la serpiente incluyendose a si misma . Deberan tener implementada la interfas y de esta manera 
-	 * el objeto sabe como reacionar y como  modificar a la serpiente dependiendo su efecto.
-	 * Por ejemplo frutas dan punto y la hace crecer mientras que los obtaculos la matan.	
-	*/
+	/*
+	 * Funciona gracias a la interfas choques. Todos los elementos "fisicos" con los
+	 * que choca la serpiente incluyendose a si misma . Deberan tener implementada
+	 * la interfas y de esta manera el objeto sabe como reacionar y como modificar a
+	 * la serpiente dependiendo su efecto. Por ejemplo frutas dan punto y la hace
+	 * crecer mientras que los obtaculos la matan.
+	 */
 	void colicionador(Serpiente s1) {
 		Punto2D pos = s1.getPosicionSig();
 		pos = s1.getPosicionSig();
@@ -197,31 +190,33 @@ public class Escenario extends Thread {
 		if (e == null)
 			return;
 		e.chocar(s1);
+
 		if (e.getEstado()) {
 			e.eliminar(this);
-		}
-		/*
-		 * if(!pos.puntoCorrecto(dim_x, dim_y)){ limpiarSerpiente(s1);
-		 * colocarSerpiente(s1); if(pos.y>=dim_y) s1.getCabeza().setPosicion(pos.x,1);
-		 * if(pos.x>=dim_x) s1.getCabeza().setPosicion(1,pos.y); if(pos.y<=0)
-		 * s1.getCabeza().setPosicion(pos.x,dim_y-1); if(pos.x<=0)
-		 * s1.getCabeza().setPosicion(dim_x-1,pos.y); }
-		 */
-	}
+			Usuario.puntaje++;
+			System.out.println(Usuario.puntaje);
+			if (Usuario.puntaje % 10 == 0)
+				Usuario.nivel++;
 
-	
-	
+		}
+	}
+	/*
+	 * if(!pos.puntoCorrecto(dim_x, dim_y)){ limpiarSerpiente(s1);
+	 * colocarSerpiente(s1); if(pos.y>=dim_y) s1.getCabeza().setPosicion(pos.x,1);
+	 * if(pos.x>=dim_x) s1.getCabeza().setPosicion(1,pos.y); if(pos.y<=0)
+	 * s1.getCabeza().setPosicion(pos.x,dim_y-1); if(pos.x<=0)
+	 * s1.getCabeza().setPosicion(dim_x-1,pos.y); }
+	 */
+
 	/*
 	 * 
-	 * Son los metodos por los cuales se actualiza el estado de la serpiente 
-	 * en la matriz de coliciones :
-	 * Colocar en la matriz ya sea de forma individual o todas las serpientes 
-	 * en la matriz y de la misma manera eliminarlos de la misma  
-	 *  
-	 * */
-	
-	
-	
+	 * Son los metodos por los cuales se actualiza el estado de la serpiente en la
+	 * matriz de coliciones : Colocar en la matriz ya sea de forma individual o
+	 * todas las serpientes en la matriz y de la misma manera eliminarlos de la
+	 * misma
+	 * 
+	 */
+
 	void colocarSerpientes() {
 		Iterator<Serpiente> iterador = serpientes.iterator();
 		while (iterador.hasNext()) {
@@ -231,8 +226,7 @@ public class Escenario extends Thread {
 	}
 
 	public void colocarSerpiente(Serpiente s) {
-		
-		
+
 		Punto2D posicion = s.cabeza.getPosicion();
 		area[posicion.x][posicion.y] = s; // Head
 		Iterator<Cuerpo> itcuerpo = s.getCuerpo().iterator();
@@ -268,12 +262,8 @@ public class Escenario extends Thread {
 		}
 	}
 
-
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
-
 }
-
