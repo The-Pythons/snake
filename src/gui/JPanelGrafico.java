@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import logica.Dibujable;
 import logica.Escenario;
 import logica.Usuario;
+import snake.Serpiente;
 
 public class JPanelGrafico extends JPanel {
 
@@ -39,12 +40,17 @@ public class JPanelGrafico extends JPanel {
 				d.dibujar(g);
 			g.setColor(Color.GREEN);
 			g.drawString("Puntaje:" +Usuario.puntaje+" "+"Nivel: "+ Usuario.nivel , 10, 10);
-//			if(Usuario.gameOver == 1) {
+			
+//			if(Usuario.gameOver == 0) {
 //				g.setColor(Color.BLACK.brighter());
 //				g.drawString("GAME OVER",600/2-50, 500/2-50);
-			}
-
+//				}
 		}
+		if(Usuario.gameOver == 1) {
+			g.setColor(Color.BLACK.brighter());
+			g.drawString("GAME OVER",600/2-50, 500/2-50);
+			}
+	}
 
 	}
 	
