@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import org.omg.CORBA.MARSHAL;
 
 import snake.Orientacion;
@@ -21,10 +23,24 @@ public class SessionBot extends Thread {
 	public void run() {
 
 		
+//			serpiente();
+//			escenario.limpiarSerpiente(serpiente);
+//			System.out.println("has muerto");
+		while(true) {
 			serpiente();
 			escenario.limpiarSerpiente(serpiente);
-			System.out.println("has muerto");
-
+			System.out.println("has muerto Boot");
+//			int x = (int) (Math.random() );
+//			int y = (int) (Math.random() );
+//			x = x - (x % 20)+15;
+//			y = y - (y % 20)+15;
+			
+			int x = ThreadLocalRandom.current().nextInt(2, 30 - 2);
+			int y = ThreadLocalRandom.current().nextInt(2, 24 - 2);
+			serpiente.getCabeza().setPosicion(x, y);
+			serpiente.revivir();
+			serpiente();
+			}
 			// serpiente.getCabeza().setPosicion(15, 15);
 			// serpiente.revivir();
 		

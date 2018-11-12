@@ -26,11 +26,24 @@ public class Session extends Thread {
 		serpiente();
 		escenario.limpiarSerpiente(serpiente);
 		System.out.println("has muerto");
+		
 		Usuario.puntaje = 0;
 		System.out.println(Usuario.puntaje);
 		serpiente.getCabeza().setPosicion(15, 15);
 		Usuario.gameOver = 1;
+		if(serpiente.getEstado())
+		{
+			try {
+				Thread.sleep(3005);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		Usuario.gameOver = 0;
+			
 		serpiente.revivir();
+	
 		Usuario.puntaje = 0;
 		Usuario.nivel = 1;
 		
@@ -49,6 +62,7 @@ public class Session extends Thread {
 				serpiente.avanzar();
 				escenario.colocarSerpiente(this.serpiente);		
 			}
+			
 			tf = System.currentTimeMillis();
 			try {
 				Thread.sleep(serpiente.getVelocidad() - (tf - ti));
