@@ -50,6 +50,7 @@ public class JPanelGrafico extends JPanel {
 			g.setColor(Color.BLACK.brighter());
 			g.drawString("GAME OVER",600/2-50, 500/2-50);
 			}
+		///El mensaje por fuera una vez
 	}
 
 	}
