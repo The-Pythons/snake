@@ -34,7 +34,7 @@ public class Session extends Thread {
 		if(serpiente.getEstado())
 		{
 			try {
-				Thread.sleep(3005);
+				Thread.sleep(2005);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

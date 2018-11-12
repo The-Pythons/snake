@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 
 import logica.Dibujable;
 import logica.Punto2D;
+import logica.Usuario;
 
 public class serpienteDibujable extends Dibujable {
 	
@@ -47,6 +48,7 @@ public class serpienteDibujable extends Dibujable {
 	
 	@Override
 	public void dibujar(Graphics g) {
+		
 		Punto2D pos=s.cabeza.getPosicion();
 		//g.setColor(Color.RED);
 		g.drawImage(this.imagenCabeza, pos.x*super.TAMANO, pos.y*super.TAMANO, super.TAMANO, super.TAMANO, null);
@@ -57,6 +59,7 @@ public class serpienteDibujable extends Dibujable {
 			g.drawImage(this.imagenCuerpo, pos.x*super.TAMANO, pos.y*super.TAMANO, super.TAMANO, super.TAMANO, null);
 			//g.fillRect(pos.x*super.TAMANO,pos.y*super.TAMANO,super.TAMANO, super.TAMANO);
 		}
+	
 	}
 	
 	@Override

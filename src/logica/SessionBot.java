@@ -34,8 +34,7 @@ public class SessionBot extends Thread {
 //			int y = (int) (Math.random() );
 //			x = x - (x % 20)+15;
 //			y = y - (y % 20)+15;
-			
-			int x = ThreadLocalRandom.current().nextInt(2, 30 - 2);
+			int x = ThreadLocalRandom.current().nextInt(2, 30 - 2);///min es 2 por la longitud con la que se crea
 			int y = ThreadLocalRandom.current().nextInt(2, 24 - 2);
 			serpiente.getCabeza().setPosicion(x, y);
 			serpiente.revivir();

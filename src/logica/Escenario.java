@@ -37,8 +37,18 @@ public class Escenario extends Thread {
 		this.crearSerpiente(10, 10, Orientacion.S, Skin.VERDE); // El 4to parametro indica el color de la serpiente
 		this.getSerpiente(1).crecer();
 		this.getSerpiente(1).crecer();
-		this.getSerpiente(1).crecer();
+		this.getSerpiente(1).crecer(); ///BOOT
 		// this.colocarSerpiente(this.getSerpiente(1));
+		
+		/////Agregando/////////
+		/*	this.crearFruta(new Punto2D(10, 2));
+			this.crearObtaculo((int)(Math.random()*29)+1,(int)(Math.random()*23)+1);
+			this.crearObtaculo((int)(Math.random()*29)+1,(int)(Math.random()*23)+1);
+			this.crearObtaculo((int)(Math.random()*29)+1,(int)(Math.random()*23)+1);
+			this.crearObtaculo((int)(Math.random()*29)+1,(int)(Math.random()*23)+1);
+			this.crearObtaculo((int)(Math.random()*29)+1,(int)(Math.random()*23)+1);
+			this.crearObtaculo((int)(Math.random()*29)+1,(int)(Math.random()*23)+1);
+		*//////
 		this.crearFruta(new Punto2D(20, 5));
 		this.crearObtaculo(10, 20);
 		this.crearParedes();
@@ -197,7 +207,6 @@ public class Escenario extends Thread {
 			System.out.println(Usuario.puntaje);
 			if (Usuario.puntaje % 10 == 0)
 				Usuario.nivel++;
-
 		}
 	}
 	/*
