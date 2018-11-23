@@ -27,7 +27,7 @@ import java.awt.event.WindowEvent;
 
 public class PantallaSeleccionSala extends JFrame {
 
-	private JPanel contentPane;
+	private Fondo contentPane;
 	private JPasswordField passwordField;
 	private JTextField nombreField;
 	private JList<String> listaSalas;
@@ -49,26 +49,27 @@ public class PantallaSeleccionSala extends JFrame {
 				inicio.setVisible(true);
 			}
 		});
-		contentPane = new JPanel();
+		contentPane = new Fondo();
+		contentPane.setBackground("C:\\Users\\Mica\\Documents\\Facu\\Progamaci\u00F3n Avanzada\\Taller\\snake\\recursos\\FondoSala.png");
 //		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setBackground(new Color(0, 102, 0));
 		contentPane.setLayout(null);
 
-		JLabel lblCrearSala = new JLabel("CREAR SALA");
-		lblCrearSala.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblCrearSala.setBounds(10, 31, 155, 28);
+		JLabel lblCrearSala = new JLabel("SALAS");
+		lblCrearSala.setFont(new Font("GROBOLD", Font.BOLD, 20));
+		lblCrearSala.setBounds(185, 24, 89, 25);
 		contentPane.add(lblCrearSala);
 
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNombre.setForeground(new Color(255, 255, 0));
+		lblNombre.setForeground(new Color(0, 0, 0));
 		lblNombre.setBounds(55, 73, 73, 14);
 		contentPane.add(lblNombre);
 
 		JLabel lblContrasea = new JLabel("Contraseña:");
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblContrasea.setForeground(new Color(255, 255, 0));
+		lblContrasea.setForeground(new Color(0, 0, 0));
 		lblContrasea.setBounds(55, 98, 89, 14);
 		contentPane.add(lblContrasea);
 
@@ -93,16 +94,9 @@ public class PantallaSeleccionSala extends JFrame {
 
 		JLabel lblSalasActuales = new JLabel("Salas Actuales");
 		lblSalasActuales.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblSalasActuales.setForeground(new Color(255, 204, 0));
-		lblSalasActuales.setBounds(300, 31, 105, 14);
+		lblSalasActuales.setForeground(new Color(0, 0, 0));
+		lblSalasActuales.setBounds(300, 52, 105, 14);
 		contentPane.add(lblSalasActuales);
-
-		JLabel lblMultijugador = new JLabel("MULTIJUGADOR");
-		lblMultijugador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMultijugador.setForeground(new Color(255, 0, 0));
-		lblMultijugador.setFont(new Font("Viner Hand ITC", Font.PLAIN, 25));
-		lblMultijugador.setBounds(105, 0, 204, 45);
-		contentPane.add(lblMultijugador);
 
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.addActionListener(new ActionListener() {

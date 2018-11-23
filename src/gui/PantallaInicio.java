@@ -23,23 +23,26 @@ public class PantallaInicio extends JFrame {
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		contentPane = new Fondo();
-		contentPane.setBackground("recursos/snake-306109_960_720.png");
+		contentPane.setBackground("recursos\\Fondo.jpg");
+		contentPane.setBackground(Color.DARK_GRAY);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblUsuario_1 = new JLabel("Usuario");
-		lblUsuario_1.setForeground(Color.GRAY);
+		lblUsuario_1.setForeground(new Color(0, 0, 0));
 		lblUsuario_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblUsuario_1.setBounds(103, 108, 67, 14);
+		lblUsuario_1.setBounds(113, 108, 67, 14);
 		contentPane.add(lblUsuario_1);
 
 		JLabel lblContrasea = new JLabel("Contraseña");
-		lblContrasea.setForeground(Color.GRAY);
+		lblContrasea.setForeground(new Color(0, 0, 0));
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblContrasea.setBounds(103, 133, 83, 14);
+		lblContrasea.setBounds(113, 136, 67, 14);
 		contentPane.add(lblContrasea);
 
 		txtUsuario = new JTextField();
+		txtUsuario.setBackground(new Color(255, 255, 255));
+		txtUsuario.setForeground(new Color(0, 0, 0));
 		txtUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		txtUsuario.setBounds(190, 105, 86, 20);
 		txtUsuario.setText("juan");
@@ -70,17 +73,11 @@ public class PantallaInicio extends JFrame {
 		btnRegistrarse.setBounds(10, 229, 101, 23);
 		contentPane.add(btnRegistrarse);
 
-		JLabel lblNoTienesUna = new JLabel("No tienes una cuenta? Registrate!");
-		lblNoTienesUna.setBackground(new Color(255, 255, 0));
-		lblNoTienesUna.setForeground(new Color(0, 0, 0));
-		lblNoTienesUna.setBounds(10, 211, 256, 14);
-		contentPane.add(lblNoTienesUna);
-
 		JLabel lblSnake = new JLabel("SNAKE");
 		lblSnake.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSnake.setForeground(Color.BLACK);
-		lblSnake.setFont(new Font("Viner Hand ITC", Font.PLAIN, 40));
-		lblSnake.setBounds(140, 22, 165, 54);
+		lblSnake.setForeground(new Color(0, 0, 0));
+		lblSnake.setFont(new Font("GROBOLD", Font.PLAIN, 40));
+		lblSnake.setBounds(139, 43, 165, 54);
 		contentPane.add(lblSnake);
 
 		JLabel lblJuegoLocal = new JLabel("JUEGO LOCAL");
@@ -92,7 +89,7 @@ public class PantallaInicio extends JFrame {
 
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNombre.setForeground(Color.GRAY);
+		lblNombre.setForeground(new Color(0, 0, 0));
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNombre.setBounds(268, 201, 57, 14);
 		contentPane.add(lblNombre);

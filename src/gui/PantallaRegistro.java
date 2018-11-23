@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 
 public class PantallaRegistro extends JDialog {
 
-	private JPanel contentPane;
+	private Fondo contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private PantallaInicio inicio;
@@ -29,8 +29,9 @@ public class PantallaRegistro extends JDialog {
 		this.inicio = inicio;
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		contentPane = new JPanel();
-
+		contentPane = new Fondo();
+		contentPane.setBackground("recursos\\FondoRegistro.png");
+//
 		getContentPane().setLayout(new BorderLayout());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPane, BorderLayout.CENTER);
@@ -40,19 +41,19 @@ public class PantallaRegistro extends JDialog {
 
 		JLabel lblRegistro = new JLabel("REGISTRO");
 		lblRegistro.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRegistro.setForeground(new Color(255, 0, 0));
-		lblRegistro.setFont(new Font("Viner Hand ITC", Font.PLAIN, 40));
+		lblRegistro.setForeground(new Color(255, 255, 255));
+		lblRegistro.setFont(new Font("GROBOLD", Font.PLAIN, 40));
 		lblRegistro.setBounds(90, 23, 243, 86);
 		contentPane.add(lblRegistro);
 
 		JLabel lblNombreUsuario = new JLabel("Nombre Usuario:");
-		lblNombreUsuario.setForeground(new Color(255, 255, 0));
+		lblNombreUsuario.setForeground(new Color(255, 255, 255));
 		lblNombreUsuario.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNombreUsuario.setBounds(100, 128, 142, 14);
 		contentPane.add(lblNombreUsuario);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setForeground(new Color(255, 255, 0));
+		lblContrasea.setForeground(new Color(255, 255, 255));
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblContrasea.setBounds(100, 155, 97, 14);
 		contentPane.add(lblContrasea);

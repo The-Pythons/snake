@@ -20,7 +20,7 @@ import java.awt.Font;
 
 public class PantallaSala extends JFrame {
 
-	private JPanel contentPane;
+	private Fondo contentPane;
 	private PantallaSeleccionSala seleccionSala;
 	private JList<String> listaUsuarios;
 	private DefaultListModel<String> modelo;
@@ -33,8 +33,9 @@ public class PantallaSala extends JFrame {
 		this.usuario = usuario;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
+		contentPane = new Fondo();
 		contentPane.setBackground(Color.LIGHT_GRAY);
+		contentPane.setBackground("recursos\\Fondo.jpg");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -53,8 +54,8 @@ public class PantallaSala extends JFrame {
 		contentPane.add(scrollPane);
 
 		JLabel label = new JLabel("Usuarios");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label.setBounds(325, 55, 55, 14);
+		label.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label.setBounds(323, 62, 55, 14);
 		contentPane.add(label);
 
 		JButton ListoButton = new JButton("Listo");
@@ -63,11 +64,11 @@ public class PantallaSala extends JFrame {
 				listo();
 			}
 		});
-		ListoButton.setBounds(68, 95, 89, 23);
+		ListoButton.setBounds(131, 118, 89, 23);
 		contentPane.add(ListoButton);
 
 		JButton btnJugar = new JButton("Jugar");
-		btnJugar.setBounds(68, 138, 89, 23);
+		btnJugar.setBounds(131, 152, 89, 23);
 		contentPane.add(btnJugar);
 
 		JButton btnEliminarSala = new JButton("Eliminar Sala");
@@ -76,17 +77,17 @@ public class PantallaSala extends JFrame {
 			eliminarSala();
 			}
 		});
-		btnEliminarSala.setBounds(55, 227, 118, 23);
+		btnEliminarSala.setBounds(121, 227, 118, 23);
 		contentPane.add(btnEliminarSala);
 
 		JLabel lblSala = new JLabel("Sala:");
 		lblSala.setFont(new Font("Berlin Sans FB Demi", Font.PLAIN, 37));
-		lblSala.setBounds(10, 11, 101, 43);
+		lblSala.setBounds(75, 11, 101, 43);
 		contentPane.add(lblSala);
 
 		JLabel lblNombresala = new JLabel(seleccionSala.getSala());
 		lblNombresala.setFont(new Font("Berlin Sans FB Demi", Font.PLAIN, 38));
-		lblNombresala.setBounds(97, 13, 216, 38);
+		lblNombresala.setBounds(162, 13, 216, 38);
 		contentPane.add(lblNombresala);
 
 		setVisible(true);
