@@ -110,6 +110,20 @@ public class TestHibernate {
 		obj.cierreSessFac();
 	}
 	
+	@Test
+	public void testNoExisteUsuario() throws Exception {
+		HibernateApp obj = new HibernateApp();
+		//Muestro tabla usuario
+		for(Usuario usuario : obj.listarTablaUsuario())
+			System.out.println(usuario);
+		Usuario user;
+		if((user=obj.existeUsuario("adgsg")) != null)
+			System.out.println("Datos del usuario: " + user);
+		else
+			System.out.println("********* SOY NULL *************");
+		obj.cierreSessFac();
+	}
+	
 	//Test update datos usuario, funciona.
 	@Test
 	public void testUpdateDeUsuario() throws Exception {

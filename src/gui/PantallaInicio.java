@@ -2,6 +2,9 @@ package gui;
 
 import javax.swing.*;
 
+import io.HibernateApp;
+import io.Usuario;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -46,20 +49,24 @@ public class PantallaInicio extends JFrame {
 		txtUsuario.setForeground(new Color(0, 0, 0));
 		txtUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		txtUsuario.setBounds(190, 105, 86, 20);
-		txtUsuario.setText("juan");
+		txtUsuario.setText("");
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
 		txtClave = new JPasswordField();
 		txtClave.setHorizontalAlignment(SwingConstants.CENTER);
 		txtClave.setBounds(190, 133, 86, 20);
-		txtClave.setText("123");
+		txtClave.setText("");
 		contentPane.add(txtClave);
 
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ingresar();
+				try {
+					ingresar();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		btnIngresar.setBounds(190, 164, 89, 23);
@@ -117,24 +124,40 @@ public class PantallaInicio extends JFrame {
 //		setVisible(true);
 	}
 	
-	private void ingresar() {
+	private void ingresar() throws Exception {
+		HibernateApp obj = new HibernateApp();
+		Usuario user;
+		usuario = txtUsuario.getText();
 		char[] claveTxt = txtClave.getPassword();
 		clave = new String(claveTxt);
-		usuario = new String(txtUsuario.getText());
+		user = new Usuario(usuario,clave,false);
 		if (usuario.equals("") || clave.equals("")) {
 			JOptionPane.showMessageDialog(null, "Ingresa un usuario y contraseña", "ATENCION!",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			if (usuario.equals("juan") && clave.equals("123")) {
-				setVisible(false);
-				sala();
-			} else {
-				JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecto", "ERROR",
-						JOptionPane.INFORMATION_MESSAGE);
+			user = obj.existeUsuario(usuario);
+			if (user == null){
+				JOptionPane.showMessageDialog(null, "El usuario y/o contraseña es/son incorrecta/s", "ERROR",
+						JOptionPane.INFORMATION_MESSAGE);}
+			else {
+				if(!user.getPassword().equals(clave))
+					JOptionPane.showMessageDialog(null, "El usuario y/o contraseña es/son incorrecta/s", "ERROR",
+							JOptionPane.INFORMATION_MESSAGE);
+				else{
+					if(user.getLogState())
+						JOptionPane.showMessageDialog(null, "El usuario ya se encuentra logueado", "ERROR",
+								JOptionPane.INFORMATION_MESSAGE);
+					else
+					{
+						user.setLogState(true);
+						obj.updateUsuario(user);
+						setVisible(false);
+						sala();
+					}
+				}
 				txtUsuario.setText("");
 				txtClave.setText("");
 				txtUsuario.requestFocus();
-
 			}
 		}
 	}
@@ -156,9 +179,11 @@ public class PantallaInicio extends JFrame {
 	}
 
 	private void jugar() {
+		//Hay que ver bien donde va...
 		String []canciones = new String[]{"./Audios/gameTheme1.mp3","./Audios/gameTheme2.mp3","./Audios/gameTheme3.mp3"};
 		PlayerThread elReproductor = new PlayerThread(canciones[(int)(Math.random() * 3)]);
 		elReproductor.start();
+		
 		g = new GameFirstClass();
 		g.setVisible(true);
 		}
