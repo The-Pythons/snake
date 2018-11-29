@@ -10,7 +10,7 @@ public class HistorialP {
 		this.puntaje = (double) 0;
 	}
 	
-	public HistorialP(HistorialP_ID id, Fecha partidaFecha, double puntaje) {
+	public HistorialP(HistorialP_ID id, double puntaje) {
 		this.historialP_ID = id;
 		this.puntaje = puntaje;
 	}

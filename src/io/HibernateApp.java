@@ -74,6 +74,12 @@ public class HibernateApp {
 			return 1;//Exito
 	}
 	
+	/* 
+	 * @param: Partida a agregar (Se genera con el constructor de la misma, con la fecha actual).
+	 * @return: 1 en caso de EXITO
+	 * 			0 en caso de FALLA TRANSACCION
+	 * 		   -1 en caso PARTIDA YA EXISTE
+	 */
 	public int agregarPartida(Partida p) throws Exception{
 		Transaction tx = session.beginTransaction();
 		try{
@@ -94,10 +100,9 @@ public class HibernateApp {
 	}
 	
 	/* 
-	 * @param: Usuario a INSERTAR a la tabla Usuario.
+	 * @param: Usuario a ELIMINAR de la tabla Usuario.
 	 * @return: 1 en caso de EXITO
 	 * 			0 en caso de FALLA TRANSACCION
-	 * 		   ¿-1 en caso USUARIO NO EXISTE? //ver si hace falta
 	 */
 	public int eliminarUsuario(Usuario user){
 		Transaction tx = session.beginTransaction();
@@ -138,6 +143,11 @@ public class HibernateApp {
 		return us;//Si no existe en la BD, us es null.
 	}
 	
+	/*
+	 * @param: Usuario a modificar.
+	 * @return: True en caso de exito.
+	 * 			False en caso de fallo.
+	 */
 	public boolean updateUsuario(Usuario user){
 		Transaction tx = session.beginTransaction();
 		try{
@@ -152,6 +162,10 @@ public class HibernateApp {
 		}
 	}
 	
+	/*
+	 * @return: Retorna una lista con todas las partidas en caso de exito.
+	 * 			Retorna null en caso de fallo.
+	 */
 	public List<Partida> listarTodasPartidas(){
 		Transaction tx = session.beginTransaction();
 		try{
@@ -169,6 +183,10 @@ public class HibernateApp {
 		} 
 	}
 	
+	/*
+	 * @return: Retorna una lista con todos los datos de la tabla usuario en caso de exito.
+	 * 			Retorna null en caso de fallo.
+	 */
 	public List<Usuario> listarTablaUsuario(){
 		Transaction tx = session.beginTransaction();
 		try{
@@ -185,6 +203,11 @@ public class HibernateApp {
 			return null;
 		} 
 	}
+	
+	/*
+	 * @return: Retorna una lista con el historial de las partidas en caso de exito.
+	 * 			Retorna null en caso de fallo.
+	 */
 	
 	public List<HistorialP> listarTablaHistorial(){
 		Transaction tx = session.beginTransaction();
@@ -203,10 +226,18 @@ public class HibernateApp {
 		} 
 	}
 	
-	public int agregarPartidaHistorial(String userID, int partidaID,Fecha date, double puntos){
+	/*
+	 * @param: userID - ID del usuario que participo en la partida.
+	 * 		   partidaID - ID de la partida en cuestion.
+	 * 		   puntos - Puntos obtenidos por el usuario correspondiente al userID.
+	 * @return: -1 en caso de que ya exista la tupla.
+	 * 			 0 en caso de fallo transaccion.
+	 * 			 1 en caso de exito.
+	 */
+	public int agregarPartidaHistorial(String userID, int partidaID, double puntos){
 		/* Creamos objeto para agregar */
 		HistorialP_ID actualID = new HistorialP_ID(userID,partidaID);
-		HistorialP actual = new HistorialP(actualID,date,puntos);
+		HistorialP actual = new HistorialP(actualID,puntos);
 		Transaction tx = session.beginTransaction();
 		try{
 			try{
@@ -225,6 +256,10 @@ public class HibernateApp {
 			return 1;//Exito
 	}
 	
+	/*
+	 * @param: id - ID correspondiente al usuario para el cual se realiza la consulta.
+	 * @return: List fin - Lista de las partidas jugadas por el usuario en cuestion.
+	 */
 	public List<HistorialP> listarHistorialUsuario(String id){
 		HibernateApp obj = new HibernateApp();
 		List<HistorialP> mid = obj.listarTablaHistorial();
