@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import io.HibernateApp;
 import io.HistorialP;
-import io.HistorialP_ID;
 import io.Usuario;
 import io.Seguridad;
 import io.Partida;
