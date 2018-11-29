@@ -68,8 +68,6 @@ public class GameFirstClass extends JFrame {
 		//g.repintar();
 	}
 	
-	
-	
 	// Double Buffer
 	/*@Override
 	public void paint(Graphics g) {
@@ -77,15 +75,8 @@ public class GameFirstClass extends JFrame {
 		//dbg = dbImage.getGraphics();
 		paintComponent(dbg);
 		//g.drawImage(dbImage, 0, 0, this);
-		
-		
-		
 	}*/
 	
-	
-	
-	
-
 	public void paintComponent(Graphics g) {
 		g.fillOval(x, y, 10, 10);
 		tarea = new TimerTask() {

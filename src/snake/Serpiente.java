@@ -2,6 +2,7 @@ package snake;
 
 import java.util.ArrayList;
 import frutas.Fruta;
+import gui.PlayerThread;
 import logica.Choques;
 import logica.Escenario;
 import logica.Punto2D;
@@ -26,7 +27,6 @@ public class Serpiente  implements Choques{
 		Cuerpo c = new Cuerpo( new Punto2D(x,y), orientacion);
 		c.moverI();
 		this.cuerpo.add(c);
-		
 	}
 	
 
@@ -35,14 +35,15 @@ public class Serpiente  implements Choques{
 		 * Agrega un segmento de cuerpo al final de la lista en funcion del ultimo
 		 * segmento
 		 */
+		PlayerThread elReproductor = new PlayerThread("./Audios/sound2.mp3");
+		elReproductor.start();
 		Orientacion orientacion = this.cuerpo.get(this.cuerpo.size() - 1).getOrientacion();
 		Punto2D posicion = this.cuerpo.get(this.cuerpo.size() - 1).getPosicion();
 		Cuerpo c = new Cuerpo( new Punto2D(posicion.x,posicion.y), orientacion);
 		c.moverI();
 		this.cuerpo.add(c);
-	
-	
 	}
+	
 	public Punto2D getPosicionSig(){
 		Punto2D pc = this.cabeza.getPosicion();
 		Punto2D pos = new Punto2D(pc.x,pc.y);
@@ -73,15 +74,16 @@ public class Serpiente  implements Choques{
 		}
 		this.cuerpo.set(0, aux); // El primer segmento queda en la posicion que tenia la cebeza
 		this.cabeza.setPosicion(getPosicionSig());
-
-		
 	}
+	
 	public void muere() {
 		estado=true;
 	}
+	
 	public void revivirInmortal() {
 		estado=false;
 	}
+	
 	public void revivir() {
 		estado=false;
 		this.cuerpo.clear();
@@ -138,8 +140,5 @@ public class Serpiente  implements Choques{
 	public long getVelocidad() {
 		return this.velocidad;
 	}
-
-
-
 
 }

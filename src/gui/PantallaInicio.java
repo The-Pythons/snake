@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.InputStream;
 import java.awt.event.ActionEvent;
 
 public class PantallaInicio extends JFrame {
@@ -100,19 +101,22 @@ public class PantallaInicio extends JFrame {
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 
+		PlayerThread elReproductor = new PlayerThread("./Audios/openingSnake.mp3");
+		elReproductor.start();
+		
 		JButton btnNewButton = new JButton("Jugar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				elReproductor.stop();//Ver como hacerlo de otra forma...
 				jugar();
 			}
 		});
 		btnNewButton.setBounds(335, 229, 89, 23);
 		contentPane.add(btnNewButton);
-		
 		setLocationRelativeTo(null);
 //		setVisible(true);
 	}
-
+	
 	private void ingresar() {
 		char[] claveTxt = txtClave.getPassword();
 		clave = new String(claveTxt);
@@ -152,9 +156,11 @@ public class PantallaInicio extends JFrame {
 	}
 
 	private void jugar() {
+		String []canciones = new String[]{"./Audios/gameTheme1.mp3","./Audios/gameTheme2.mp3","./Audios/gameTheme3.mp3"};
+		PlayerThread elReproductor = new PlayerThread(canciones[(int)(Math.random() * 3)]);
+		elReproductor.start();
 		g = new GameFirstClass();
 		g.setVisible(true);
-		
 		}
 	
 	public String getUsuario() {

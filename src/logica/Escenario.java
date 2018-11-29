@@ -189,7 +189,7 @@ public class Escenario extends Thread {
 	/*
 	 * Funciona gracias a la interfas choques. Todos los elementos "fisicos" con los
 	 * que choca la serpiente incluyendose a si misma . Deberan tener implementada
-	 * la interfas y de esta manera el objeto sabe como reacionar y como modificar a
+	 * la interfaz y de esta manera el objeto sabe como reaccionar y como modificar a
 	 * la serpiente dependiendo su efecto. Por ejemplo frutas dan punto y la hace
 	 * crecer mientras que los obtaculos la matan.
 	 */

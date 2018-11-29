@@ -12,6 +12,11 @@ import org.hibernate.cfg.Configuration;
 
 import io.Usuario;
 
+/*
+ * Link de descarga SQLiteStudio: https://sqlitestudio.pl/index.rvt
+ * (Recomendado para una gestion mas comoda de la BD)
+ */
+
 public class HibernateApp {
 	
 	public Configuration cfg;
@@ -208,7 +213,6 @@ public class HibernateApp {
 	 * @return: Retorna una lista con el historial de las partidas en caso de exito.
 	 * 			Retorna null en caso de fallo.
 	 */
-	
 	public List<HistorialP> listarTablaHistorial(){
 		Transaction tx = session.beginTransaction();
 		try{
