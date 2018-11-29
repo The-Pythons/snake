@@ -3,8 +3,6 @@ package io;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 //import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -171,7 +169,7 @@ public class HibernateApp {
 		} 
 	}
 	
-	private List<Usuario> listarTablaUsuario(){//Metodo para listar toda la tabla Usuario completamente, por ahora private.
+	public List<Usuario> listarTablaUsuario(){
 		Transaction tx = session.beginTransaction();
 		try{
 			Query q = session.createQuery("Select u from Usuario u");
@@ -239,145 +237,9 @@ public class HibernateApp {
 		return fin;
 	}
 	
-	private void cierreSessFac(){
+	public void cierreSessFac(){
 		this.session.close();
 		this.factory.close();
 	}
 	
-	/*//Test listar todos usuarios, funciona.
-	public static void main(String[] args) {
-		HibernateApp obj = new HibernateApp();
-		for(String usuario : obj.listarUsuarios())
-			System.out.println(usuario);
-		obj.cierreSessFac();
-	}*/
-	
-	/*//Test listar todas partidas, funciona.
-	public static void main(String[] args) {
-		HibernateApp obj = new HibernateApp();
-		for(Partida p : obj.listarTodasPartidas())
-			System.out.println(p);
-		obj.cierreSessFac();
-	}*/
-	
-	/*//Test agregar usuario, funciona.
-	public static void main(String[] args) throws Exception {
-		HibernateApp obj = new HibernateApp();
-		
-		//Muestro usuarios
-		for(String usuario : obj.listarUsuarios())
-			System.out.println(usuario);
-		
-		//Nuevo usuario a agregar
-		Usuario user = new Usuario("qwerty","12345",false);
-		
-		//Agrego
-		obj.agregarUsuario(user);
-		
-		//Muestro nuevamente usuarios
-		for(String usuario : obj.listarUsuarios())
-			System.out.println(usuario);
-		
-		obj.cierreSessFac();
-	}*/
-	
-	/*//Test agregar partida, funciona.
-	public static void main(String[] args) throws Exception {
-		HibernateApp obj = new HibernateApp();
-		
-		//Muestro usuarios
-		for(Partida p : obj.listarTodasPartidas())
-			System.out.println(p);
-		
-		//Nuevo usuario a agregar
-		Partida part = new Partida();
-		
-		//Agrego
-		obj.agregarPartida(part);
-		
-		//Muestro nuevamente usuarios
-		for(Partida p : obj.listarTodasPartidas())
-			System.out.println(p);
-		
-		obj.cierreSessFac();
-	}*/
-	
-	/*//Test eliminar usuario, funciona.
-	public static void main(String[] args) {
-			HibernateApp obj = new HibernateApp();
-			
-			//Muestro usuarios
-			for(String usuario : obj.listarUsuarios())
-				System.out.println(usuario);
-			
-			//Nuevo usuario a eliminar
-			Usuario user = new Usuario("qwerty","12345",false);
-			
-			//Elimino
-			obj.eliminarUsuario(user);
-			
-			//Muestro nuevamente usuarios
-			for(String usuario : obj.listarUsuarios())
-				System.out.println(usuario);
-			
-			obj.cierreSessFac();		
-	}*/
-	
-	
-	/*//Test existeUsuario, funciona.
-	public static void main(String[] args) throws Exception {
-		HibernateApp obj = new HibernateApp();
-		//Muestro tabla usuario
-		for(Usuario usuario : obj.listarTablaUsuario())
-			System.out.println(usuario);
-		Usuario user;
-		if((user=obj.existeUsuario("adgsg")) != null)
-			System.out.println("Datos del usuario: " + user);
-		
-		obj.cierreSessFac();
-	}*/
-	
-	/*//Test update datos usuario, funciona.
-	public static void main(String[] args) throws Exception {
-		HibernateApp obj = new HibernateApp();
-		
-		//Muestro tabla usuario
-		for(Usuario usuario : obj.listarTablaUsuario())
-			System.out.println(usuario);
-
-		//Recupero datos de 1 usuario a updatear
-		Usuario user = obj.existeUsuario("fernando");
-		
-		//Modifico datos
-		user.setLogState(True);
-		user.setPassword(Seguridad.cifra("1252a"));
-
-		//Update
-		obj.updateUsuario(user);
-		
-		//Muestro nuevamente usuarios
-		for(Usuario usuario : obj.listarTablaUsuario())
-			System.out.println(usuario);
-		obj.cierreSessFac();		
-	}*/
-	
-	
-	/*//Test listar HistorialP
-	public static void main(String[] args) {
-		HibernateApp obj = new HibernateApp();
-		for(HistorialP h : obj.listarTablaHistorial())
-			System.out.println(h);
-		obj.cierreSessFac();
-	}*/
-	
-	//Test listar historial de usuario
-	public static void main(String[] args) throws Exception {
-		HibernateApp obj = new HibernateApp();
-		List<HistorialP> l = obj.listarHistorialUsuario("rnsalva");
-		if(l.isEmpty())
-			System.out.println("ESTOY VACIA");
-		for(HistorialP d : l)
-			System.out.println(d);
-		obj.cierreSessFac();
-	}
 }
