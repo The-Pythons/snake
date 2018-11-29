@@ -14,6 +14,9 @@ import javax.swing.JDialog;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import io.HibernateApp;
+import io.Usuario;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -86,24 +89,25 @@ public class PantallaRegistro extends JDialog {
 		char[] claveTxt = passwordField.getPassword();
 		String clave = new String(claveTxt);
 		String usuario = new String(textField.getText());
+		HibernateApp obj = new HibernateApp();
+		Usuario user = new Usuario(usuario,clave,false);
 		if (usuario.equals("") || clave.equals("")) {
 			JOptionPane.showMessageDialog(null, "Ingresa un usuario y contraseña", "ATENCION!",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			if (verificarEnBD(usuario))
-				JOptionPane.showMessageDialog(null, "Usuario ya registrado", "ATENCION!",
-						JOptionPane.INFORMATION_MESSAGE);
-			else {
+			try {
+				obj.agregarUsuario(user);
+				JOptionPane.showMessageDialog(null, "¡Te has registrado con exito!", "Usuario REGISTRADO",
+							JOptionPane.INFORMATION_MESSAGE);
 				inicio.escribirUsuarioClave(usuario, clave);
 				dispose();
-			}
-		}
-	}
 
-	private boolean verificarEnBD(String usuario) {
-		if (usuario.equals("juan"))
-			return true;
-		return false;
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "El usuario ya existe", "ERROR",
+							JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+		}
 	}
 
 }

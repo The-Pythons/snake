@@ -8,7 +8,6 @@ import io.Usuario;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.io.InputStream;
 import java.awt.event.ActionEvent;
 
 public class PantallaInicio extends JFrame {
