@@ -4,18 +4,18 @@ public class Usuario {
 
 	private String user;
 	private String password;
-	private int estado; //Para saber si esta logueado. 0 = offline - 1 = online.
+	private boolean logState; //Para saber si esta logueado. false = offline - true = online.
 	
 	public Usuario(){
 		this.user = "";
 		this.password = "";
-		this.estado = 0;
+		this.logState = false;
 	}
 	
-	public Usuario(String user, String password, int estado) {
+	public Usuario(String user, String password, boolean state) {
 		this.user = user;
 		this.password = password;
-		this.estado = estado;
+		this.logState = state;
 	}
 
 	public String getUser() {
@@ -34,17 +34,17 @@ public class Usuario {
 		this.password = password;
 	}
 
-	public int getEstado() {
-		return estado;
+	public boolean getLogState() {
+		return logState;
 	}
 
-	public void setEstado(int estado) {
-		this.estado = estado;
+	public void setLogState(boolean estado) {
+		this.logState = estado;
 	}
 
 	@Override
 	public String toString() {
-		return user + "|" + password +  "|" + estado;
+		return user + "|" + password +  "|" + logState;
 	}
 
 }

@@ -7,6 +7,6 @@
  <class name="io.Usuario" table="Usuario">
   <id column="User" name="user" type="string" />
   <property column="Password" name="password" not-null="true" type="string" />
-  <property column="Estado" name="estado" not-null="true" type="int"></property>
+  <property column="LogState" name="logState" not-null="true" type="boolean"></property>
  </class>
 </hibernate-mapping>

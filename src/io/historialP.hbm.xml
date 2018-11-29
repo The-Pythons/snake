@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+ <class name="io.HistorialP" table="HistorialP">
+  <composite-id name="historialP_ID">
+  <key-property name="userID" column="UserID" type="string"/>
+  <key-property name="partidaID" column="PartidaID" type="int"/>
+  </composite-id>
+  <property column="Puntos" name="puntaje" not-null="true" type="double"></property>
+ </class>
+</hibernate-mapping>

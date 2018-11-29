@@ -1,5 +1,8 @@
 package io;
 
+
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -81,7 +84,7 @@ public class HibernateApp {
 			try{
 				session.persist(p);
 			}catch (HibernateException a){
-				return -1;//Usuario ya existe
+				return -1;
 			}
 			tx.commit();
 		}
@@ -170,7 +173,7 @@ public class HibernateApp {
 		} 
 	}
 	
-	private List<Usuario> listarTablaUsuario(){//Metodo para listar toda la tabla Usuario, por ahora private.
+	private List<Usuario> listarTablaUsuario(){//Metodo para listar toda la tabla Usuario completamente, por ahora private.
 		Transaction tx = session.beginTransaction();
 		try{
 			Query q = session.createQuery("Select u from Usuario u");
@@ -185,6 +188,57 @@ public class HibernateApp {
 			e.printStackTrace();
 			return null;
 		} 
+	}
+	
+	public List<HistorialP> listarTablaHistorial(){
+		Transaction tx = session.beginTransaction();
+		try{
+			Query q = session.createQuery("Select h from HistorialP h");
+			@SuppressWarnings("unchecked")
+			List<HistorialP>listaDeCad = q.getResultList();
+			tx.commit();
+			return listaDeCad;
+		}
+		catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+			return null;
+		} 
+	}
+	
+	public int agregarPartidaHistorial(String userID, int partidaID,Fecha date, double puntos){
+		/* Creamos objeto para agregar */
+		HistorialP_ID actualID = new HistorialP_ID(userID,partidaID);
+		HistorialP actual = new HistorialP(actualID,date,puntos);
+		Transaction tx = session.beginTransaction();
+		try{
+			try{
+				session.persist(actual);
+			}catch (HibernateException a){
+				return -1;//Ya existe
+			}
+			tx.commit();
+		}
+		catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+			return 0;//Fallo Transaccion
+		} 
+			return 1;//Exito
+	}
+	
+	public List<HistorialP> listarHistorialUsuario(String id){
+		HibernateApp obj = new HibernateApp();
+		List<HistorialP> mid = obj.listarTablaHistorial();
+		LinkedList<HistorialP> fin = new LinkedList<HistorialP>();
+		for(int i=0; i < mid.size(); i++){
+			if(mid.get(i).gethistorialP_ID().getUserID().equals(id))
+				fin.add(mid.get(i));
+		}
+		obj.cierreSessFac();
+		return fin;
 	}
 	
 	private void cierreSessFac(){
@@ -217,7 +271,7 @@ public class HibernateApp {
 			System.out.println(usuario);
 		
 		//Nuevo usuario a agregar
-		Usuario user = new Usuario("aaaa","12345",0);
+		Usuario user = new Usuario("qwerty","12345",false);
 		
 		//Agrego
 		obj.agregarUsuario(user);
@@ -259,7 +313,7 @@ public class HibernateApp {
 				System.out.println(usuario);
 			
 			//Nuevo usuario a eliminar
-			Usuario user = new Usuario("aaaa","12345",0);
+			Usuario user = new Usuario("qwerty","12345",false);
 			
 			//Elimino
 			obj.eliminarUsuario(user);
@@ -297,7 +351,7 @@ public class HibernateApp {
 		Usuario user = obj.existeUsuario("fernando");
 		
 		//Modifico datos
-		user.setEstado(1);
+		user.setLogState(True);
 		user.setPassword(Seguridad.cifra("1252a"));
 
 		//Update
@@ -308,4 +362,24 @@ public class HibernateApp {
 			System.out.println(usuario);
 		obj.cierreSessFac();		
 	}*/
+	
+	
+	/*//Test listar HistorialP
+	public static void main(String[] args) {
+		HibernateApp obj = new HibernateApp();
+		for(HistorialP h : obj.listarTablaHistorial())
+			System.out.println(h);
+		obj.cierreSessFac();
+	}*/
+	
+	//Test listar historial de usuario
+	public static void main(String[] args) throws Exception {
+		HibernateApp obj = new HibernateApp();
+		List<HistorialP> l = obj.listarHistorialUsuario("rnsalva");
+		if(l.isEmpty())
+			System.out.println("ESTOY VACIA");
+		for(HistorialP d : l)
+			System.out.println(d);
+		obj.cierreSessFac();
+	}
 }
