@@ -99,6 +99,7 @@ public class PantallaRegistro extends JDialog {
 				obj.agregarUsuario(user);
 				JOptionPane.showMessageDialog(null, "¡Te has registrado con exito!", "Usuario REGISTRADO",
 							JOptionPane.INFORMATION_MESSAGE);
+				obj.cierreSessFac();
 				inicio.escribirUsuarioClave(usuario, clave);
 				dispose();
 			} catch (Exception e) {

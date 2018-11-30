@@ -83,7 +83,7 @@ public class PantallaInicio extends JFrame {
 		});
 		btnRegistrarse.setBounds(10, 229, 101, 23);
 		contentPane.add(btnRegistrarse);
-
+		
 		JLabel lblSnake = new JLabel("SNAKE");
 		lblSnake.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSnake.setForeground(new Color(0, 0, 0));
@@ -171,10 +171,11 @@ public class PantallaInicio extends JFrame {
 						obj.updateUsuario(user);
 						setVisible(false);
 						sala();
+						obj.cierreSessFac();
 					}
 				}
-				txtUsuario.setText("");
-				txtClave.setText("");
+				txtUsuario.setText(usuario);
+				txtClave.setText(clave);
 				txtUsuario.requestFocus();
 			}
 		}
