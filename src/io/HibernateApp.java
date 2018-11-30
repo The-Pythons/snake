@@ -155,6 +155,7 @@ public class HibernateApp {
 	 */
 	public boolean updateUsuario(Usuario user){
 		Transaction tx = session.beginTransaction();
+		user.setPassword(Seguridad.cifra(user.getPassword()));
 		try{
 			session.merge(user);
 			tx.commit();

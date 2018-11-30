@@ -1,6 +1,6 @@
 package logica;
 
-import gui.PlayerThread;
+import Audio.PlayerThread;
 import snake.Orientacion;
 import snake.Serpiente;
 

@@ -11,7 +11,7 @@ import io.Seguridad;
 import io.Partida;
 
 public class TestHibernate {
-	
+
 	//Test listar todos usuarios, funciona.
 	@Test
 	public void testListarTodosUsuarios() {

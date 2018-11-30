@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.*;
 
-
+import Audio.PlayerThread;
 import io.HibernateApp;
 import io.Usuario;
 
@@ -111,6 +111,7 @@ public class PantallaInicio extends JFrame {
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 
+		/*Comenzamos a reproducir el audio de inicio*/
 		this.elReproductor = new PlayerThread("./Audios/openingSnake.mp3");
 		elReproductor.start();
 		
