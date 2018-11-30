@@ -101,7 +101,6 @@ public class PantallaRegistro extends JDialog {
 							JOptionPane.INFORMATION_MESSAGE);
 				inicio.escribirUsuarioClave(usuario, clave);
 				dispose();
-
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "El usuario ya existe", "ERROR",
 							JOptionPane.INFORMATION_MESSAGE);

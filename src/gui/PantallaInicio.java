@@ -2,12 +2,15 @@ package gui;
 
 import javax.swing.*;
 
+
 import io.HibernateApp;
 import io.Usuario;
 
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class PantallaInicio extends JFrame {
@@ -19,6 +22,7 @@ public class PantallaInicio extends JFrame {
 	private String usuario;
 	private String clave;
 	GameFirstClass g; 
+	private PlayerThread elReproductor = null;
 	
 	public PantallaInicio() {
 		setResizable(false);
@@ -107,7 +111,7 @@ public class PantallaInicio extends JFrame {
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 
-		PlayerThread elReproductor = new PlayerThread("./Audios/openingSnake.mp3");
+		this.elReproductor = new PlayerThread("./Audios/openingSnake.mp3");
 		elReproductor.start();
 		
 		JButton btnNewButton = new JButton("Jugar");
@@ -117,6 +121,21 @@ public class PantallaInicio extends JFrame {
 				jugar();
 			}
 		});
+		
+		/*Codigo para capturar salida de la aplicacion*/
+		try{
+			this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+			addWindowListener(new WindowAdapter(){
+				public void windowClosing(WindowEvent e){
+					confirmarSalida();
+					}
+				});
+			this.setVisible(true);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		btnNewButton.setBounds(335, 229, 89, 23);
 		contentPane.add(btnNewButton);
 		setLocationRelativeTo(null);
@@ -182,7 +201,6 @@ public class PantallaInicio extends JFrame {
 		String []canciones = new String[]{"./Audios/gameTheme1.mp3","./Audios/gameTheme2.mp3","./Audios/gameTheme3.mp3"};
 		PlayerThread elReproductor = new PlayerThread(canciones[(int)(Math.random() * 3)]);
 		elReproductor.start();
-		
 		g = new GameFirstClass();
 		g.setVisible(true);
 		}
@@ -190,7 +208,15 @@ public class PantallaInicio extends JFrame {
 	public String getUsuario() {
 		return usuario;
 	}
-
+	
+	public void confirmarSalida(){
+		int value = JOptionPane.showConfirmDialog(this, "¿Desea salir de la aplicacion?","Warning",JOptionPane.YES_NO_OPTION);
+		if(value == JOptionPane.YES_OPTION){
+			this.elReproductor.stop();
+			System.exit(0);
+			}
+	}
+	
 	public static void main(String[] args) {
 		new PantallaInicio().setVisible(true);
 	}
