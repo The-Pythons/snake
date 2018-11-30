@@ -1,6 +1,5 @@
 package logica;
 
-import gui.PlayerThread;
 import snake.Orientacion;
 import snake.Serpiente;
 
@@ -9,7 +8,7 @@ public class Session extends Thread {
 	Escenario escenario;
 	Usuario usuario;
 	Serpiente serpiente;
-	private PlayerThread elReproductor = null;
+
 	public Session(Escenario escenario,Serpiente serpiente, Usuario usuario) {
 		super();
 		this.escenario = escenario;
@@ -19,37 +18,36 @@ public class Session extends Thread {
 	}
 
 	public void run() {
+
 		
 		//usuario.setDir(Orientacion.N);
+	
 		while(true) {
 		serpiente();
 		escenario.limpiarSerpiente(serpiente);
 		System.out.println("has muerto");
 		
-		Usuario.puntaje = 0;
-		System.out.println(Usuario.puntaje);
+		usuario.puntaje = 0;
+		
+		System.out.println(usuario.puntaje);
 		serpiente.getCabeza().setPosicion(15, 15);
-		Usuario.gameOver = 1;
-		if(serpiente.getEstado())
-		{
-			elReproductor = new PlayerThread("./Audios/perdiste.mp3");
-			elReproductor.start();
+		usuario.gameover = true;
+		if(serpiente.getEstado()){
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(2005);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		Usuario.gameOver = 0;
+		usuario.gameover = false;
 			
 		serpiente.revivir();
 	
-		Usuario.puntaje = 0;
-		Usuario.nivel = 1;
-		
-	}
-}
+		usuario.puntaje = 0;
+		usuario.nivel = 1;
+	
+	}}
 
 	private void serpiente() {
 		long ti, tf;
