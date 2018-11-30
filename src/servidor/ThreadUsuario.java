@@ -12,7 +12,7 @@ import mensajes.MsjSalida;
 import io.HibernateApp;
 import io.Usuario;
 
-public class ThreadUsuario {
+public class ThreadUsuario  extends Thread{
 
 	private Servidor servidorPrincipal;
 	private Socket socket;
@@ -31,6 +31,7 @@ public class ThreadUsuario {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	public void run() {

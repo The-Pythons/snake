@@ -4,51 +4,63 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import logica.Escenario;
-import logica.Usuario;
+import logica.ConexionUsuario;
 import snake.Orientacion;
 
+public class AL extends KeyAdapter {
+	Orientacion dir;
+	ConexionUsuario u;
+	static int dirIzq = KeyEvent.VK_LEFT;
+	static int dirDer = KeyEvent.VK_RIGHT;
+	static int dirArriba = KeyEvent.VK_UP;
+	static int dirAbajo = KeyEvent.VK_DOWN;
 
-	public class AL extends KeyAdapter {
-		Orientacion dir ;
-		Usuario  u;
-		@Override
-		public void keyPressed(KeyEvent event) {
-			int keyCode = event.getKeyCode();
-			if (keyCode == KeyEvent.VK_LEFT) {
-				if(dir!=Orientacion.O){
-					dir = Orientacion.E;
-					u.setDir(dir);
-				}
-			}
-			if (keyCode == KeyEvent.VK_RIGHT) {
-				if(dir!=Orientacion.E){
-					dir = Orientacion.O;
-					u.setDir(dir);
-				}
-				
-			}
-			if (keyCode == KeyEvent.VK_UP) {
-				if(dir!=Orientacion.S){
-					dir = Orientacion.N;
-					u.setDir(dir);
-				}
-			}
-			if (keyCode == KeyEvent.VK_DOWN) {
-				if(dir!=Orientacion.N){
-					dir = Orientacion.S;
-					u.setDir(dir);
-				}
+	@Override
+	public void keyPressed(KeyEvent event) {
+		int keyCode = event.getKeyCode();
+		if (keyCode == this.dirIzq) {
+			if (dir != Orientacion.O) {
+				dir = Orientacion.E;
+				u.setDir(dir);
 			}
 		}
-		public Orientacion getDir() {
-			return dir;
-		}
-		public AL(Usuario u) {
-			this.u=u;
-		}
+		if (keyCode == this.dirDer) {
+			if (dir != Orientacion.E) {
+				dir = Orientacion.O;
+				u.setDir(dir);
+			}
 
-		@Override
-		public void keyReleased(KeyEvent event) {
+		}
+		if (keyCode == this.dirArriba) {
+			if (dir != Orientacion.S) {
+				dir = Orientacion.N;
+				u.setDir(dir);
+			}
+		}
+		if (keyCode == this.dirAbajo) {
+			if (dir != Orientacion.N) {
+				dir = Orientacion.S;
+				u.setDir(dir);
+			}
 		}
 	}
 
+	public Orientacion getDir() {
+		return dir;
+	}
+
+	public AL(ConexionUsuario u) {
+		this.u = u;
+	}
+
+	@Override
+	public void keyReleased(KeyEvent event) {
+	}
+	
+	public static void cambiarDirecciones (int arriba, int abajo, int izquierda, int derecha) {
+		dirArriba = arriba;
+		dirAbajo = abajo;
+		dirIzq = izquierda;
+		dirDer = derecha;
+	}
+}

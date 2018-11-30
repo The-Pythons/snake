@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 
+
 import Audio.PlayerThread;
 import io.HibernateApp;
 import io.Usuario;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
 
 public class PantallaInicio extends JFrame {
@@ -29,11 +31,12 @@ public class PantallaInicio extends JFrame {
 	private String clave;
 	GameFirstClass g;
 	private PlayerThread elReproductor = null;
+	ConexionCliente conex;
 	private Socket socket;
 	private ObjectInputStream entrada;
 	private ObjectOutputStream salida;
 
-	public PantallaInicio() {
+	public PantallaInicio() throws IOException, ClassNotFoundException {
 		setResizable(false);
 		setForeground(new Color(0, 0, 0));
 		setBounds(100, 100, 450, 300);
@@ -44,6 +47,7 @@ public class PantallaInicio extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		crearConexionServidor();
+		
 
 		JLabel lblUsuario_1 = new JLabel("Usuario");
 		lblUsuario_1.setForeground(new Color(0, 0, 0));
@@ -93,6 +97,17 @@ public class PantallaInicio extends JFrame {
 		});
 		btnRegistrarse.setBounds(10, 229, 101, 23);
 		contentPane.add(btnRegistrarse);
+		
+		JButton btnConfig = new JButton("Controles");
+		btnConfig.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//new ConfigurarBotones();
+				ConfigurarBotones cb = new ConfigurarBotones();
+				cb.setVisible(true);
+			}
+		});
+		btnConfig.setBounds(10, 200, 101, 23);
+		contentPane.add(btnConfig);
 
 		JLabel lblSnake = new JLabel("SNAKE");
 		lblSnake.setHorizontalAlignment(SwingConstants.CENTER);
@@ -145,18 +160,42 @@ public class PantallaInicio extends JFrame {
 		btnNewButton.setBounds(335, 229, 89, 23);
 		contentPane.add(btnNewButton);
 		setLocationRelativeTo(null);
-//		setVisible(true);
+		setVisible(true);
 	}
 
-	private void crearConexionServidor() {
+	private void crearConexionServidor() throws IOException, ClassNotFoundException {
+		System.out.println("Iniciando socket");
 		try {
-			socket = new Socket("localhost",1025);
+			socket = new Socket("localhost",5000);
+		} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		System.out.println("Usuario conectado");
+		/*try {
 			entrada = new ObjectInputStream(socket.getInputStream());
-			salida = new ObjectOutputStream(socket.getOutputStream());
+			System.out.println("holaa");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	*/
+		try {
+			salida = new ObjectOutputStream(socket.getOutputStream());
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		conex= new ConexionCliente(socket);
+		conex.start();
+		//System.out.println(entrada.readObject());
+		//System.out.println("holaa");
+		
 	}
 
 	private void ingresar() throws Exception {
@@ -172,7 +211,7 @@ public class PantallaInicio extends JFrame {
 		} else {
 			// Aca hay qe leer la respuesta
 			salida.writeObject(new MsjLogin(usuario, clave, false));
-			MsjSalida respuesta = (MsjSalida) entrada.readObject();
+			MsjSalida respuesta = (MsjSalida) conex.entrada.readObject();
 			if (!respuesta.isRespuesta()) {
 				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
 						JOptionPane.INFORMATION_MESSAGE);
@@ -183,6 +222,7 @@ public class PantallaInicio extends JFrame {
 				setVisible(false);
 				sala();
 			}
+			//conex = new ConexionCliente(socket);
 //			user = obj.existeUsuario(usuario);
 //			if (user == null){
 //				JOptionPane.showMessageDialog(null, "El usuario y/o contraseña es/son incorrecta/s", "ERROR",
@@ -246,8 +286,8 @@ public class PantallaInicio extends JFrame {
 		}
 	}
 
-	public static void main(String[] args) {
-		new PantallaInicio().setVisible(true);
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+		new PantallaInicio();
 	}
 
 }

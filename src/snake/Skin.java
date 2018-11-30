@@ -1,5 +1,5 @@
 package snake;
 
 public enum Skin {
-	ROSA,VERDE,AMARILLO,AZUL
+	ROSA,VERDE,AMARILLO,AZUL,VIOLETA,DORADA
 }

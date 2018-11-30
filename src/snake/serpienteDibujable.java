@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 import logica.Dibujable;
 import logica.Punto2D;
-import logica.Usuario;
+import logica.ConexionUsuario;
 
 public class serpienteDibujable extends Dibujable {
 	
@@ -37,9 +37,17 @@ public class serpienteDibujable extends Dibujable {
 			cabezaString = "recursos/Cabeza snake amarillo.png";
 			cuerpoString = "recursos/Cuerpo snake amarillo.png";
 			break;
-		default: // AZUL
+		case AZUL: // AZUL
 			cabezaString = "recursos/Cabeza snake azul.png";
 			cuerpoString = "recursos/Cuerpo snake azul.png";
+			break;
+		case VIOLETA: // AZUL
+			cabezaString = "recursos/Cabeza snake violeta.png";
+			cuerpoString = "recursos/Cuerpo snake violeta.png";
+			break;
+		case DORADA: // AZUL
+			cabezaString = "recursos/Cabeza snake dorada.png";
+			cuerpoString = "recursos/Cuerpo snake dorada.png";
 			break;
 		}
 		this.imagenCabeza = new ImageIcon(cabezaString).getImage();

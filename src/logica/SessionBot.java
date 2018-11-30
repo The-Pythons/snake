@@ -6,18 +6,19 @@ import org.omg.CORBA.MARSHAL;
 
 import snake.Orientacion;
 import snake.Serpiente;
+import snake.Skin;
 
 public class SessionBot extends Thread {
 
 	Escenario escenario;
-	Usuario usuario;
+	ConexionUsuario usuario;
 	Serpiente serpiente;
 
-	public SessionBot(Escenario escenario, Serpiente serpiente, Usuario usuario) {
+	public SessionBot(Escenario escenario, ConexionUsuario usuario) {
 		super();
 		this.escenario = escenario;
 		this.usuario = usuario;
-		this.serpiente = serpiente;
+		this.serpiente = escenario.crearSerpiente(20, 20, Orientacion.N, Skin.VERDE);;
 	}
 
 	public void run() {

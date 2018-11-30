@@ -7,9 +7,10 @@ import java.util.Iterator;
 
 import javax.swing.JPanel;
 
+import Audio.PlayerThread;
 import logica.Dibujable;
 import logica.Escenario;
-import logica.Usuario;
+import logica.ConexionUsuario;
 import snake.Serpiente;
 
 public class JPanelGrafico extends JPanel {
@@ -26,12 +27,14 @@ public class JPanelGrafico extends JPanel {
 	Image background;
 
 	public JPanelGrafico(Escenario escenario, Image background) {
+		//PlayerThread elReproductor = new PlayerThread("./Audios/perdiste.mp3");
+		//elReproductor.start();
 		this.elementos = escenario.getElementos();
 		this.background = background;
 	}
 
 	public void paintComponent(Graphics g) {
-
+		try{
 		g.drawImage(this.background, 0, 0, 600, 500, null);
 		Iterator<Dibujable> iterador = elementos.iterator();
 		while (iterador.hasNext()) {
@@ -39,21 +42,24 @@ public class JPanelGrafico extends JPanel {
 			if (d != null && !d.getEstado(g))
 				d.dibujar(g);
 			g.setColor(Color.GREEN);
-			g.drawString("Puntaje:" +Usuario.puntaje+" "+"Nivel: "+ Usuario.nivel , 10, 10);
+			}
+		}
+		catch(Exception e){}; //SOLUCIONA TODO XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD.
+			//g.drawString("Puntaje:" +ConexionUsuario.puntaje+" "+"Nivel: "+ ConexionUsuario.nivel , 10, 10);
 			
 //			if(Usuario.gameOver == 0) {
 //				g.setColor(Color.BLACK.brighter());
 //				g.drawString("GAME OVER",600/2-50, 500/2-50);
 //				}
 		}
-		if(Usuario.gameOver == 1) {
+		/*if(ConexionUsuario.gameOver == 1) {
 			g.setColor(Color.BLACK.brighter());
 			g.drawString("GAME OVER",600/2-50, 500/2-50);
-			}
+			}*/
 		///El mensaje por fuera una vez
 	}
 
-	}
+
 	
 
 

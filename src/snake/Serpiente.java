@@ -1,6 +1,8 @@
 package snake;
 
 import java.util.ArrayList;
+
+import Audio.PlayerThread;
 import frutas.Fruta;
 import logica.Choques;
 import logica.Escenario;
@@ -28,13 +30,12 @@ public class Serpiente  implements Choques{
 		this.cuerpo.add(c);
 	}
 	
-
-	public void crecer() {
+	  public void crecer() {
 		/*
 		 * Agrega un segmento de cuerpo al final de la lista en funcion del ultimo
 		 * segmento
 		 */
-		Audio.PlayerThread elReproductor = new Audio.PlayerThread("./Audios/sound2.mp3");
+		PlayerThread elReproductor = new PlayerThread("./Audios/sound2.mp3");
 		elReproductor.start();
 		Orientacion orientacion = this.cuerpo.get(this.cuerpo.size() - 1).getOrientacion();
 		Punto2D posicion = this.cuerpo.get(this.cuerpo.size() - 1).getPosicion();
@@ -63,7 +64,7 @@ public class Serpiente  implements Choques{
 		return pos;
 	}
 
-	public void avanzar() {
+	 public void avanzar() {
 		Orientacion orientacion = this.cabeza.getOrientacion();
 		//Orientacion auxo;
 		Punto2D posicion = this.cabeza.getPosicion();
@@ -103,7 +104,18 @@ public class Serpiente  implements Choques{
 		return cuerpo;
 	}
 
-	public void girar(Orientacion dir) {
+	public void girar(Orientacion newdir) {
+		
+		Orientacion dir = cabeza.getOrientacion();
+		if(newdir==Orientacion.E && dir!=Orientacion.O )
+			dir = Orientacion.E;
+		if(newdir==Orientacion.O && dir!=Orientacion.E )
+			dir = Orientacion.O;
+		if(newdir==Orientacion.N && dir!=Orientacion.S )
+			dir = Orientacion.N;
+		if(newdir==Orientacion.S && dir!=Orientacion.N )
+			dir = Orientacion.S;
+		
 		cabeza.setOrientacion(dir);
 		
 	}

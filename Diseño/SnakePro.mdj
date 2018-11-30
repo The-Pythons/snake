@@ -9,7 +9,7 @@
 			"_parent": {
 				"$ref": "AAAAAAFF+h6SjaM2Hec="
 			},
-			"name": "Juego",
+			"name": "Modelo de Dominio de Clases",
 			"ownedElements": [
 				{
 					"_type": "UMLClassDiagram",
@@ -77,7 +77,7 @@
 											"top": 736,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -253,7 +253,7 @@
 											"top": 1504,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -482,7 +482,7 @@
 											"top": 992,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -1207,7 +1207,7 @@
 											"top": 736,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -1389,6 +1389,8 @@
 												"$ref": "AAAAAAFmAsCqQUeBsWM="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 1008,
 											"top": 64,
@@ -1400,6 +1402,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFmAsCqQUeBsWM="
 											},
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;1",
 											"left": 1101,
 											"top": 119,
@@ -1414,12 +1418,14 @@
 												"$ref": "AAAAAAFmAsCqQUeBsWM="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 1008,
 											"top": 64,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -1428,6 +1434,8 @@
 												"$ref": "AAAAAAFmAsCqQUeBsWM="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 1008,
 											"top": 64,
@@ -1435,6 +1443,8 @@
 											"horizontalAlignment": 1
 										}
 									],
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1096,
 									"top": 112,
@@ -1462,6 +1472,8 @@
 									"model": {
 										"$ref": "AAAAAAFmAsCqQUd+QiM="
 									},
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1096,
 									"top": 137,
@@ -1477,6 +1489,8 @@
 									"model": {
 										"$ref": "AAAAAAFmAsCqQUd+QiM="
 									},
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1096,
 									"top": 147,
@@ -1493,6 +1507,8 @@
 										"$ref": "AAAAAAFmAsCqQUd+QiM="
 									},
 									"visible": false,
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 344,
 									"top": 16,
@@ -1509,6 +1525,8 @@
 										"$ref": "AAAAAAFmAsCqQUd+QiM="
 									},
 									"visible": false,
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 344,
 									"top": 16,
@@ -1516,6 +1534,8 @@
 									"height": 10
 								}
 							],
+							"lineColor": "#a4a4a4",
+							"fontColor": "#a4a4a4",
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 1096,
@@ -1565,6 +1585,8 @@
 												"$ref": "AAAAAAFmAsGZ3Eg/vq8="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 1472,
 											"top": 144,
@@ -1576,6 +1598,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFmAsGZ3Eg/vq8="
 											},
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;1",
 											"left": 1293,
 											"top": 199,
@@ -1590,12 +1614,14 @@
 												"$ref": "AAAAAAFmAsGZ3Eg/vq8="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 1472,
 											"top": 144,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -1604,6 +1630,8 @@
 												"$ref": "AAAAAAFmAsGZ3Eg/vq8="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 1472,
 											"top": 144,
@@ -1611,6 +1639,8 @@
 											"horizontalAlignment": 1
 										}
 									],
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1288,
 									"top": 192,
@@ -1638,6 +1668,8 @@
 									"model": {
 										"$ref": "AAAAAAFmAsGZ3Eg8wuc="
 									},
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1288,
 									"top": 217,
@@ -1653,6 +1685,8 @@
 									"model": {
 										"$ref": "AAAAAAFmAsGZ3Eg8wuc="
 									},
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1288,
 									"top": 227,
@@ -1669,6 +1703,8 @@
 										"$ref": "AAAAAAFmAsGZ3Eg8wuc="
 									},
 									"visible": false,
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 736,
 									"top": 72,
@@ -1685,6 +1721,8 @@
 										"$ref": "AAAAAAFmAsGZ3Eg8wuc="
 									},
 									"visible": false,
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 736,
 									"top": 72,
@@ -1692,6 +1730,8 @@
 									"height": 10
 								}
 							],
+							"lineColor": "#a4a4a4",
+							"fontColor": "#a4a4a4",
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 1288,
@@ -1741,6 +1781,8 @@
 												"$ref": "AAAAAAFmAsIB3EisEys="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 1136,
 											"top": -48,
@@ -1752,6 +1794,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFmAsIB3EisEys="
 											},
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;1",
 											"left": 1285,
 											"top": 119,
@@ -1766,12 +1810,14 @@
 												"$ref": "AAAAAAFmAsIB3EisEys="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 1136,
 											"top": -48,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -1780,6 +1826,8 @@
 												"$ref": "AAAAAAFmAsIB3EisEys="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 1136,
 											"top": -48,
@@ -1787,6 +1835,8 @@
 											"horizontalAlignment": 1
 										}
 									],
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1280,
 									"top": 112,
@@ -1814,6 +1864,8 @@
 									"model": {
 										"$ref": "AAAAAAFmAsIB3Eipou4="
 									},
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1280,
 									"top": 137,
@@ -1829,6 +1881,8 @@
 									"model": {
 										"$ref": "AAAAAAFmAsIB3Eipou4="
 									},
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1280,
 									"top": 147,
@@ -1845,6 +1899,8 @@
 										"$ref": "AAAAAAFmAsIB3Eipou4="
 									},
 									"visible": false,
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 568,
 									"top": -24,
@@ -1861,6 +1917,8 @@
 										"$ref": "AAAAAAFmAsIB3Eipou4="
 									},
 									"visible": false,
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 568,
 									"top": -24,
@@ -1868,6 +1926,8 @@
 									"height": 10
 								}
 							],
+							"lineColor": "#a4a4a4",
+							"fontColor": "#a4a4a4",
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 1280,
@@ -1964,6 +2024,8 @@
 									"edgePosition": 1
 								}
 							],
+							"lineColor": "#a4a4a4",
+							"fontColor": "#a4a4a4",
 							"font": "Arial;13;0",
 							"head": {
 								"$ref": "AAAAAAFmAsCqQUeAc0M="
@@ -2058,6 +2120,8 @@
 									"edgePosition": 1
 								}
 							],
+							"lineColor": "#a4a4a4",
+							"fontColor": "#a4a4a4",
 							"font": "Arial;13;0",
 							"head": {
 								"$ref": "AAAAAAFmAsCqQUeAc0M="
@@ -2135,7 +2199,7 @@
 											"top": 160,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -2370,7 +2434,7 @@
 											"top": 336,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -3037,7 +3101,7 @@
 											"top": 464,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -3213,7 +3277,7 @@
 											"top": 448,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -3389,7 +3453,7 @@
 											"top": 1008,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -4184,7 +4248,7 @@
 											"top": 336,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -4396,7 +4460,7 @@
 											"top": 464,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -5167,7 +5231,7 @@
 											"top": -64,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -5684,7 +5748,7 @@
 											"top": 208,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -5896,7 +5960,7 @@
 											"top": -464,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -6091,7 +6155,7 @@
 											"top": -464,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -7022,7 +7086,7 @@
 											"left": 96,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -8812,6 +8876,8 @@
 										"$ref": "AAAAAAFmjuR2hsZWy9E="
 									},
 									"visible": false,
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 64,
 									"width": 10,
@@ -8827,12 +8893,16 @@
 										"$ref": "AAAAAAFmjuR2hsZXyoE="
 									},
 									"visible": false,
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 64,
 									"width": 10,
 									"height": 10
 								}
 							],
+							"lineColor": "#a4a4a4",
+							"fontColor": "#a4a4a4",
 							"font": "Arial;13;0",
 							"head": {
 								"$ref": "AAAAAAFmjmI9iZ3PjGw="
@@ -9225,7 +9295,7 @@
 											"top": -80,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -9758,6 +9828,8 @@
 												"$ref": "AAAAAAFm9laDJs2T/gk="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 96,
 											"top": -32,
@@ -9769,6 +9841,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFm9laDJs2T/gk="
 											},
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;1",
 											"left": 1285,
 											"top": 39,
@@ -9783,12 +9857,14 @@
 												"$ref": "AAAAAAFm9laDJs2T/gk="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 96,
 											"top": -32,
 											"width": 211.6943359375,
 											"height": 13,
-											"text": "(from Juego)"
+											"text": "(from Modelo de Dominio de Clases)"
 										},
 										{
 											"_type": "LabelView",
@@ -9797,6 +9873,8 @@
 												"$ref": "AAAAAAFm9laDJs2T/gk="
 											},
 											"visible": false,
+											"lineColor": "#a4a4a4",
+											"fontColor": "#a4a4a4",
 											"font": "Arial;13;0",
 											"left": 96,
 											"top": -32,
@@ -9804,6 +9882,8 @@
 											"horizontalAlignment": 1
 										}
 									],
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1280,
 									"top": 32,
@@ -9831,6 +9911,8 @@
 									"model": {
 										"$ref": "AAAAAAFm9laDI82Qzlk="
 									},
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1280,
 									"top": 57,
@@ -9846,6 +9928,8 @@
 									"model": {
 										"$ref": "AAAAAAFm9laDI82Qzlk="
 									},
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 1280,
 									"top": 67,
@@ -9862,6 +9946,8 @@
 										"$ref": "AAAAAAFm9laDI82Qzlk="
 									},
 									"visible": false,
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 48,
 									"top": -16,
@@ -9878,6 +9964,8 @@
 										"$ref": "AAAAAAFm9laDI82Qzlk="
 									},
 									"visible": false,
+									"lineColor": "#a4a4a4",
+									"fontColor": "#a4a4a4",
 									"font": "Arial;13;0",
 									"left": 48,
 									"top": -16,
@@ -9885,6 +9973,8 @@
 									"height": 10
 								}
 							],
+							"lineColor": "#a4a4a4",
+							"fontColor": "#a4a4a4",
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 1280,
@@ -9981,6 +10071,8 @@
 									"edgePosition": 1
 								}
 							],
+							"lineColor": "#a4a4a4",
+							"fontColor": "#a4a4a4",
 							"font": "Arial;13;0",
 							"head": {
 								"$ref": "AAAAAAFmAsCqQUeAc0M="

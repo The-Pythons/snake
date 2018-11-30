@@ -15,29 +15,34 @@ import snake.serpienteDibujable;
 public class Escenario extends Thread {
 	ArrayList<Serpiente> serpientes;
 	ArrayList<Dibujable> elementos;
+	
 	Choques[][] area;
 	int dim_x, dim_y;
-	Usuario usuario;
+	ConexionUsuario usuario;
+	int frutas;
+	public int frutaactual;
 
 	public Escenario(int dim_x, int dim_y) {
 		this.dim_x = dim_x;
 		this.dim_y = dim_y;
+		this.frutaactual=0;
 		area = new Choques[dim_x][dim_y];
 		vaciarArea();
 		serpientes = new ArrayList<Serpiente>();
 		elementos = new ArrayList<Dibujable>();
 		elementos.add(null);
+		this.frutas = 0;
 		// mover de aqui a una sala de testeo
-		this.crearSerpiente(20, 10, Orientacion.N, Skin.ROSA);
+		//this.crearSerpiente(20, 10, Orientacion.N, Skin.ROSA);
 		// El 4to parametro indica el color de la serpiente
-		usuario = new Usuario();
-		Session s1 = new Session(this, this.getSerpiente(0), usuario);// Cada jugador va tener una session
+		//usuario = new ConexionUsuario();
+		//Session s1 = new Session(this, usuario);// Cada jugador va tener una session
 		// que sera un thread las intancia de la serpiente
 
-		this.crearSerpiente(10, 10, Orientacion.S, Skin.VERDE); // El 4to parametro indica el color de la serpiente
-		this.getSerpiente(1).crecer();
-		this.getSerpiente(1).crecer();
-		this.getSerpiente(1).crecer(); ///BOOT
+		//this.crearSerpiente(10, 10, Orientacion.S, Skin.VERDE); // El 4to parametro indica el color de la serpiente
+		//this.getSerpiente(1).crecer();
+		//this.getSerpiente(1).crecer();
+		//this.getSerpiente(1).crecer(); ///BOOT
 		// this.colocarSerpiente(this.getSerpiente(1));
 		
 		/////Agregando/////////
@@ -49,13 +54,13 @@ public class Escenario extends Thread {
 			this.crearObtaculo((int)(Math.random()*29)+1,(int)(Math.random()*23)+1);
 			this.crearObtaculo((int)(Math.random()*29)+1,(int)(Math.random()*23)+1);
 		*//////
-		this.crearFruta(new Punto2D(20, 5));
-		this.crearObtaculo(10, 20);
-		this.crearParedes();
-		s1.start();
+		//this.crearFruta(new Punto2D(20, 5));
+		//this.crearObtaculo(10, 20);
+		//this.crearParedes();
+		//s1.start();
 
-		SessionBot sbot = new SessionBot(this, this.getSerpiente(1), null);
-		sbot.start();
+		//SessionBot sbot = new SessionBot(this, null);
+		//sbot.start();
 
 	}
 
@@ -66,7 +71,7 @@ public class Escenario extends Thread {
 	// facilmente
 	// compatible codigos anteriores
 
-	private Choques getElemofarea(Punto2D pos) {
+	private synchronized Choques getElemofarea(Punto2D pos) {
 		return area[pos.x][pos.y];
 	}
 
@@ -74,7 +79,7 @@ public class Escenario extends Thread {
 	 * Devuelve el elemento dibujable proximamente esto no deberia estar y trbajaria
 	 * con esto solo el cliente mientras que servidor la logica.
 	 */
-	public ArrayList<Dibujable> getElementos() {
+	public synchronized ArrayList<Dibujable> getElementos() {
 		return this.elementos;
 	}
 
@@ -86,7 +91,7 @@ public class Escenario extends Thread {
 	 * Vacia la posicion en la matriz
 	 * 
 	 */
-	private boolean posicionVacia(Punto2D pos) {
+	private synchronized boolean posicionVacia(Punto2D pos) {
 		return area[pos.x][pos.y] == null;
 	}
 
@@ -94,7 +99,7 @@ public class Escenario extends Thread {
 	 * Indica si la posicion de la matriz esta vacia
 	 * 
 	 */
-	public void vaciarPosicion(Punto2D pos) {
+	public synchronized void vaciarPosicion(Punto2D pos) {
 		area[pos.x][pos.y] = null;
 	}
 
@@ -132,22 +137,34 @@ public class Escenario extends Thread {
 		crearObtaculo(pos.x, pos.y);
 	}
 
+
 	void crearObtaculo(int x, int y) {
 		Obstaculo o = new Obstaculo(x, y);
 		Dibujable os = new obstaculoDibujable(o);
-		area[x][y] = o;
-		elementos.add(os);
+		//area[x][y] = o;
+		agregarArea(new Punto2D(x,y),o);
+		agregarALaLista(os);
 	}
+	
 
 	public void crearFruta(Punto2D pos) {
 		if (!pos.puntoCorrecto(dim_x, dim_y))
 			return;
 		Fruta f = new Fruta(pos);
 		Dibujable fs = new frutaDibujable(f);
-		area[pos.x][pos.y] = f;
-		elementos.add(fs);
+		//area[pos.x][pos.y] = f;
+		agregarArea(pos,f);
+		agregarALaLista(fs);
+		this.frutas++;
+	}
+	public  void  agregarALaLista(Dibujable o){
+		elementos.add(o);
 	}
 
+	public synchronized void agregarArea(Punto2D punto, Choques obj){
+		area[punto.x][punto.y] = obj;
+	}
+	
 	public void crearParedes() {// rodea todos los bordes del escenario con obstaculos
 		for (int i = 0; i < dim_x; i++)// piso
 			crearObtaculo(i, 0);
@@ -159,27 +176,30 @@ public class Escenario extends Thread {
 			crearObtaculo(i, dim_y - 1);
 	}
 
-	public void crearFrutaAzar(int cantidad) {
+	synchronized public void crearFrutaAzar(int cantidad) {
 		int x, y, i;
 		for (i = 0; i < cantidad; i++) {
 			do {
 				// https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html
 				x = ThreadLocalRandom.current().nextInt(1, dim_x - 1);
 				y = ThreadLocalRandom.current().nextInt(1, dim_y - 1);
-			} while (area[x][y] != null);// genero enteros al azar para x e y hasta que encuentro una ubicacion vacia
+			} while (!posicionVacia(new Punto2D(x,y)));// genero enteros al azar para x e y hasta que encuentro una ubicacion vacia
 			// area[x][y] = new Fruta(x, y);// creo una fruta en ese lugar
 			crearFruta(new Punto2D(x, y));
+			this.frutas++;
 		}
+		this.frutaactual=0;
 	}
 
-	public void crearSerpiente(int x, int y, Orientacion orientacion, Skin color) {
+	public Serpiente crearSerpiente(int x, int y, Orientacion orientacion, Skin color) {
 		Serpiente s = new Serpiente(x, y, orientacion);
 		Dibujable ss = new serpienteDibujable(s, color); // ingresar en el 2do parametro valores
 		// de 1-4 para cambiar el color del snake
 		// area[x][y] = s;
 		colocarSerpiente(s);
-		elementos.add(ss);
+		agregarALaLista(ss);
 		serpientes.add(s);
+		return s;
 	}
 
 	public Serpiente getSerpiente(int id) {
@@ -193,20 +213,19 @@ public class Escenario extends Thread {
 	 * la serpiente dependiendo su efecto. Por ejemplo frutas dan punto y la hace
 	 * crecer mientras que los obtaculos la matan.
 	 */
-	void colicionador(Serpiente s1) {
+	synchronized void colicionador(Serpiente s1) {
 		Punto2D pos = s1.getPosicionSig();
 		pos = s1.getPosicionSig();
 		Choques e = getElemofarea(pos);
 		if (e == null)
 			return;
 		e.chocar(s1);
-
 		if (e.getEstado()) {
 			e.eliminar(this);
-			Usuario.puntaje++;
-			System.out.println(Usuario.puntaje);
-			if (Usuario.puntaje % 10 == 0)
-				Usuario.nivel++;
+			//ConexionUsuario.puntaje++;
+			//System.out.println(ConexionUsuario.puntaje);
+			//if (ConexionUsuario.puntaje % 10 == 0)
+				//ConexionUsuario.nivel++;
 		}
 	}
 	/*
@@ -226,15 +245,13 @@ public class Escenario extends Thread {
 	 * 
 	 */
 
-	void colocarSerpientes() {
+	synchronized void colocarSerpientes() {
 		Iterator<Serpiente> iterador = serpientes.iterator();
-		while (iterador.hasNext()) {
+		while (iterador.hasNext())
 			colocarSerpiente(iterador.next());
-
-		}
 	}
 
-	public void colocarSerpiente(Serpiente s) {
+	synchronized public void colocarSerpiente(Serpiente s) {
 
 		Punto2D posicion = s.cabeza.getPosicion();
 		area[posicion.x][posicion.y] = s; // Head
@@ -243,11 +260,12 @@ public class Escenario extends Thread {
 		while (itcuerpo.hasNext()) {
 			cuerpo = itcuerpo.next();
 			posicion = cuerpo.getPosicion();
-			area[posicion.x][posicion.y] = s; // Body
+			//area[posicion.x][posicion.y] = s; // Body
+			agregarArea(posicion,s);
 		}
 	}
 
-	public void limpiarSerpiente(Serpiente s) {
+	synchronized public void limpiarSerpiente(Serpiente s) {
 
 		Punto2D posicion = s.cabeza.getPosicion();
 		vaciarPosicion(posicion); // Head
@@ -261,7 +279,7 @@ public class Escenario extends Thread {
 
 	}
 
-	void limpiarSerpientes() {
+	synchronized void limpiarSerpientes() {
 		Iterator<Serpiente> iterador = serpientes.iterator();
 		while (iterador.hasNext()) {
 			Serpiente s = iterador.next();
@@ -271,8 +289,9 @@ public class Escenario extends Thread {
 		}
 	}
 
-	public Usuario getUsuario() {
+	public ConexionUsuario getUsuario() {
 		return usuario;
 	}
 
 }
+

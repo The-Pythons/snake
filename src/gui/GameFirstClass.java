@@ -7,7 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import io.Usuario;
+import logica.ConexionUsuario;
 import logica.Escenario;
+import logica.Sala;
 
 public class GameFirstClass extends JFrame {
 
@@ -33,12 +35,15 @@ public class GameFirstClass extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.escenario = new Escenario(30, 24);
-		
-		this.controles = new AL(this.escenario.getUsuario());
+		ConexionUsuario usuario= new ConexionUsuario();// solo para testeo
+		this.controles = new AL(usuario);
+		Sala sala = new Sala("Test",5);// solo para testeo
+		sala.start();
+		sala.nuevaSession(usuario); // solo para testeo
 		addKeyListener(this.controles);
 		//escenario.start();
 		//this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/clover.jpg").getImage());
-		this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/arena.jpg").getImage());
+		this.contentPane = new JPanelGrafico(sala.getEscenario(), new ImageIcon("recursos/arena.jpg").getImage());
 		setContentPane(this.contentPane);
 		contentPane.setLayout(null);
 		new Repintar(this).start();;

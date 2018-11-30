@@ -18,7 +18,8 @@ public class ThreadServidor extends Thread {
 	
 	public void run() {
 		try {
-			sockeServidor = new ServerSocket(1025);
+			sockeServidor = new ServerSocket(5000);
+			System.out.println("Servidor conectado");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -26,7 +27,8 @@ public class ThreadServidor extends Thread {
 		while(true) {
 			try {
 				Socket socketCliente = sockeServidor.accept();
-				new ThreadUsuario(socketCliente,servidorPrincipal);
+				ThreadUsuario u=new ThreadUsuario(socketCliente,servidorPrincipal);
+				u.start();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
