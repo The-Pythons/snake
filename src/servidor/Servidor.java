@@ -20,6 +20,7 @@ public class Servidor {
 	}
 	
 	public void crearSala() {
+//		new sala();
 		
 	}
 	

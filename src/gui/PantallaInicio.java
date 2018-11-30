@@ -151,11 +151,6 @@ public class PantallaInicio extends JFrame {
 	private void crearConexionServidor() {
 		try {
 			socket = new Socket("localhost",1025);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
 			entrada = new ObjectInputStream(socket.getInputStream());
 			salida = new ObjectOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
