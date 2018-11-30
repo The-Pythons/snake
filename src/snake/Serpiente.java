@@ -2,7 +2,6 @@ package snake;
 
 import java.util.ArrayList;
 import frutas.Fruta;
-import gui.PlayerThread;
 import logica.Choques;
 import logica.Escenario;
 import logica.Punto2D;
@@ -35,7 +34,7 @@ public class Serpiente  implements Choques{
 		 * Agrega un segmento de cuerpo al final de la lista en funcion del ultimo
 		 * segmento
 		 */
-		PlayerThread elReproductor = new PlayerThread("./Audios/sound2.mp3");
+		Audio.PlayerThread elReproductor = new Audio.PlayerThread("./Audios/sound2.mp3");
 		elReproductor.start();
 		Orientacion orientacion = this.cuerpo.get(this.cuerpo.size() - 1).getOrientacion();
 		Punto2D posicion = this.cuerpo.get(this.cuerpo.size() - 1).getPosicion();

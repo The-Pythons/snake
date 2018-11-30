@@ -34,7 +34,7 @@ public class PantallaRegistro extends JDialog {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		contentPane = new Fondo();
 		contentPane.setBackground("recursos\\FondoRegistro.png");
-//
+
 		getContentPane().setLayout(new BorderLayout());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPane, BorderLayout.CENTER);
