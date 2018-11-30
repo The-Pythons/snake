@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import io.HibernateApp;
+
 public class ThreadServidor extends Thread {
 	
 	private ServerSocket sockeServidor;

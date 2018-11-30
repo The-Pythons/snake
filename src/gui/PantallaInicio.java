@@ -5,12 +5,18 @@ import javax.swing.*;
 import Audio.PlayerThread;
 import io.HibernateApp;
 import io.Usuario;
+import mensajes.MsjLogin;
+import mensajes.MsjSalida;
 
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.awt.event.ActionEvent;
 
 public class PantallaInicio extends JFrame {
@@ -21,9 +27,12 @@ public class PantallaInicio extends JFrame {
 	private JTextField txtNombre;
 	private String usuario;
 	private String clave;
-	GameFirstClass g; 
+	GameFirstClass g;
 	private PlayerThread elReproductor = null;
-	
+	private Socket socket;
+	private ObjectInputStream entrada;
+	private ObjectOutputStream salida;
+
 	public PantallaInicio() {
 		setResizable(false);
 		setForeground(new Color(0, 0, 0));
@@ -34,6 +43,7 @@ public class PantallaInicio extends JFrame {
 		contentPane.setBackground(Color.DARK_GRAY);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		crearConexionServidor();
 
 		JLabel lblUsuario_1 = new JLabel("Usuario");
 		lblUsuario_1.setForeground(new Color(0, 0, 0));
@@ -83,7 +93,7 @@ public class PantallaInicio extends JFrame {
 		});
 		btnRegistrarse.setBounds(10, 229, 101, 23);
 		contentPane.add(btnRegistrarse);
-		
+
 		JLabel lblSnake = new JLabel("SNAKE");
 		lblSnake.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSnake.setForeground(new Color(0, 0, 0));
@@ -111,70 +121,94 @@ public class PantallaInicio extends JFrame {
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 
-		/*Comenzamos a reproducir el audio de inicio*/
+		/* Comenzamos a reproducir el audio de inicio */
 		this.elReproductor = new PlayerThread("./Audios/openingSnake.mp3");
 		elReproductor.start();
-		
+
 		JButton btnNewButton = new JButton("Jugar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				elReproductor.stop();//Ver como hacerlo de otra forma...
+				elReproductor.stop();// Ver como hacerlo de otra forma...
 				jugar();
 			}
 		});
-		
-		/*Codigo para capturar salida de la aplicacion*/
+
+		/* Codigo para capturar salida de la aplicacion */
 
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		addWindowListener(new WindowAdapter(){
-			public void windowClosing(WindowEvent e){
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
 				confirmarSalida();
-				}
+			}
 		});
-			
 
 		btnNewButton.setBounds(335, 229, 89, 23);
 		contentPane.add(btnNewButton);
 		setLocationRelativeTo(null);
 //		setVisible(true);
 	}
-	
+
+	private void crearConexionServidor() {
+		try {
+			socket = new Socket("localhost",1025);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			entrada = new ObjectInputStream(socket.getInputStream());
+			salida = new ObjectOutputStream(socket.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	private void ingresar() throws Exception {
-		HibernateApp obj = new HibernateApp();
-		Usuario user;
+//		HibernateApp obj = new HibernateApp();
+//		Usuario user;
 		usuario = txtUsuario.getText();
 		char[] claveTxt = txtClave.getPassword();
 		clave = new String(claveTxt);
-		user = new Usuario(usuario,clave,false);
+//		user = new Usuario(usuario,clave,false);
 		if (usuario.equals("") || clave.equals("")) {
 			JOptionPane.showMessageDialog(null, "Ingresa un usuario y contraseña", "ATENCION!",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			user = obj.existeUsuario(usuario);
-			if (user == null){
-				JOptionPane.showMessageDialog(null, "El usuario y/o contraseña es/son incorrecta/s", "ERROR",
-						JOptionPane.INFORMATION_MESSAGE);}
-			else {
-				if(!user.getPassword().equals(clave))
-					JOptionPane.showMessageDialog(null, "El usuario y/o contraseña es/son incorrecta/s", "ERROR",
-							JOptionPane.INFORMATION_MESSAGE);
-				else{
-					if(user.getLogState())
-						JOptionPane.showMessageDialog(null, "El usuario ya se encuentra logueado", "ERROR",
-								JOptionPane.INFORMATION_MESSAGE);
-					else
-					{
-						user.setLogState(true);
-						obj.updateUsuario(user);
-						setVisible(false);
-						sala();
-						obj.cierreSessFac();
-					}
-				}
+			// Aca hay qe leer la respuesta
+			salida.writeObject(new MsjLogin(usuario, clave, false));
+			MsjSalida respuesta = (MsjSalida) entrada.readObject();
+			if (!respuesta.isRespuesta()) {
+				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
+						JOptionPane.INFORMATION_MESSAGE);
 				txtUsuario.setText(usuario);
 				txtClave.setText(clave);
 				txtUsuario.requestFocus();
+			} else {
+				setVisible(false);
+				sala();
 			}
+//			user = obj.existeUsuario(usuario);
+//			if (user == null){
+//				JOptionPane.showMessageDialog(null, "El usuario y/o contraseña es/son incorrecta/s", "ERROR",
+//						JOptionPane.INFORMATION_MESSAGE);}
+//			else {
+//				if(!user.getPassword().equals(clave))
+//					JOptionPane.showMessageDialog(null, "El usuario y/o contraseña es/son incorrecta/s", "ERROR",
+//							JOptionPane.INFORMATION_MESSAGE);
+//				else{
+//					if(user.getLogState())
+//						JOptionPane.showMessageDialog(null, "El usuario ya se encuentra logueado", "ERROR",
+//								JOptionPane.INFORMATION_MESSAGE);
+//					else
+//					{
+//						user.setLogState(true);
+//						obj.updateUsuario(user);
+//						setVisible(false);
+//						sala();
+//						obj.cierreSessFac();
+//					}
+//				}
 		}
 	}
 
@@ -195,26 +229,28 @@ public class PantallaInicio extends JFrame {
 	}
 
 	private void jugar() {
-		//Hay que ver bien donde va...
-		String []canciones = new String[]{"./Audios/gameTheme1.mp3","./Audios/gameTheme2.mp3","./Audios/gameTheme3.mp3"};
-		PlayerThread elReproductor = new PlayerThread(canciones[(int)(Math.random() * 3)]);
+		// Hay que ver bien donde va...
+		String[] canciones = new String[] { "./Audios/gameTheme1.mp3", "./Audios/gameTheme2.mp3",
+				"./Audios/gameTheme3.mp3" };
+		PlayerThread elReproductor = new PlayerThread(canciones[(int) (Math.random() * 3)]);
 		elReproductor.start();
 		g = new GameFirstClass();
 		g.setVisible(true);
-		}
-	
+	}
+
 	public String getUsuario() {
 		return usuario;
 	}
-	
-	public void confirmarSalida(){
-		int value = JOptionPane.showConfirmDialog(this, "¿Desea salir de la aplicacion?","Warning",JOptionPane.YES_NO_OPTION);
-		if(value == JOptionPane.YES_OPTION){
+
+	public void confirmarSalida() {
+		int value = JOptionPane.showConfirmDialog(this, "¿Desea salir de la aplicacion?", "Warning",
+				JOptionPane.YES_NO_OPTION);
+		if (value == JOptionPane.YES_OPTION) {
 			this.elReproductor.stop();
 			System.exit(0);
-			}
+		}
 	}
-	
+
 	public static void main(String[] args) {
 		new PantallaInicio().setVisible(true);
 	}

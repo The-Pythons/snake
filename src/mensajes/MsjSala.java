@@ -9,37 +9,31 @@ public class MsjSala implements Serializable {
 	private boolean crear;
 	private boolean loguerase;
 	private boolean eliminar;
+	
+	
+	public MsjSala(String nombreSala, String passwordSala, boolean crear, boolean loguerase, boolean eliminar) {
+		this.nombreSala = nombreSala;
+		this.passwordSala = passwordSala;
+		this.crear = crear;
+		this.loguerase = loguerase;
+		this.eliminar = eliminar;
+	}
 	public String getNombreSala() {
 		return nombreSala;
 	}
-	public void setNombreSala(String nombreSala) {
-		this.nombreSala = nombreSala;
-	}
+
 	public String getPasswordSala() {
 		return passwordSala;
 	}
-	public void setPasswordSala(String passwordSala) {
-		this.passwordSala = passwordSala;
-	}
+
 	public boolean isCrear() {
 		return crear;
-	}
-	public void setCrear(boolean crear) {
-		this.crear = crear;
 	}
 	public boolean isLoguerase() {
 		return loguerase;
 	}
-	public void setLoguerase(boolean loguerase) {
-		this.loguerase = loguerase;
-	}
+	
 	public boolean isEliminar() {
 		return eliminar;
 	}
-	public void setEliminar(boolean eliminar) {
-		this.eliminar = eliminar;
-	}
-	
-	
-
 }
