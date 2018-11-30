@@ -123,19 +123,15 @@ public class PantallaInicio extends JFrame {
 		});
 		
 		/*Codigo para capturar salida de la aplicacion*/
-		try{
-			this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-			addWindowListener(new WindowAdapter(){
-				public void windowClosing(WindowEvent e){
-					confirmarSalida();
-					}
-				});
-			this.setVisible(true);
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		
+
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+				confirmarSalida();
+				}
+		});
+			
+
 		btnNewButton.setBounds(335, 229, 89, 23);
 		contentPane.add(btnNewButton);
 		setLocationRelativeTo(null);
