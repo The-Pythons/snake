@@ -25,7 +25,6 @@ public class Servidor {
 	}
 	
 
-	
 	public HibernateApp getBaseDeDatos() {
 		return baseDeDatos;
 	}
