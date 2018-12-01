@@ -1,8 +1,10 @@
 package snake;
 
+import java.io.Serializable;
+
 import logica.Punto2D;
 
-public class Cabeza {
+public class Cabeza implements Serializable{
 	private Punto2D posicion;
 	private Orientacion orientacion;
 

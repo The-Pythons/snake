@@ -2,6 +2,8 @@ package gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -24,16 +26,28 @@ public class JPanelGrafico extends JPanel {
 	 * Create the panel.
 	 */
 	ArrayList<Dibujable> elementos;
+	ConexionCliente cliente;
 	Image background;
 
-	public JPanelGrafico(Escenario escenario, Image background) {
+	public JPanelGrafico(ConexionCliente cliente, Image background) {
 		//PlayerThread elReproductor = new PlayerThread("./Audios/perdiste.mp3");
 		//elReproductor.start();
-		this.elementos = escenario.getElementos();
+		//this.elementos = escenario.getElementos();
+		this.cliente=cliente;
 		this.background = background;
 	}
 
 	public void paintComponent(Graphics g) {
+		
+		try {
+			elementos = (ArrayList<Dibujable>) this.cliente.entrada.readObject();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try{
 		g.drawImage(this.background, 0, 0, 900, 680, null);
 		Iterator<Dibujable> iterador = elementos.iterator();

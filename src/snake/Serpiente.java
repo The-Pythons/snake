@@ -1,5 +1,6 @@
 package snake;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Audio.PlayerThread;
@@ -10,8 +11,12 @@ import logica.Punto2D;
 
 
 
-public class Serpiente  implements Choques{
+public class Serpiente  implements Choques, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Cabeza cabeza;
 	ArrayList<Cuerpo> cuerpo;
 	int velocidad;

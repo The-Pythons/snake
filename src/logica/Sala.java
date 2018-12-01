@@ -10,6 +10,7 @@ public class Sala extends Thread{
 	private Escenario escenario;
 	boolean eliminar;
 	int cant_frutasmaxima;
+	public boolean estantodoslistos;
 	//private int cant_frutasmaxima;
 	
 	public Sala(String nombre,int cant_fruta) {
@@ -27,17 +28,19 @@ public class Sala extends Thread{
 	}
 	
 	public void run() {
+				
 		while(!eliminar){
 			escenario.crearFrutaAzar(escenario.frutaactual);
 			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				}
 			}
-		}
 		
-	}
+		}
+	
 	public void nuevaSession(ConexionUsuario usuario) {
 			Session s = new Session(escenario,usuario);
 			sessiones.add(s);
@@ -63,6 +66,20 @@ public class Sala extends Thread{
 	
 	public String getPass() {
 		return nombre;
+	}
+	
+	public boolean estanTodosListos() {
+		for(Session s:sessiones) {
+			if(!s.estoyListoUsuario())
+				return false;
+		}
+		return true;
+	}
+
+	public void jugar() {
+		for(Session s:sessiones)
+			s.start();
+		
 	}
 	
 	

@@ -2,6 +2,7 @@ package frutas;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import logica.Choques;
@@ -9,7 +10,11 @@ import logica.Escenario;
 import logica.Punto2D;
 import snake.Serpiente;
 
-public class Fruta implements Choques {
+public class Fruta implements Choques, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Punto2D pos;
 	String tipo = "F";
 	protected boolean estado = false;

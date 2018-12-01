@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import javax.swing.JOptionPane;
 
+import mensajes.MsjEstoylisto;
 import mensajes.MsjLogin;
 import mensajes.MsjSala;
 import mensajes.MsjSalida;
@@ -24,6 +25,7 @@ public class ThreadUsuario extends Thread {
 	private HibernateApp baseDeDatos;
 	private Usuario user;
 	private ConexionUsuario usuarioEnJuego;
+	private Sala sala;
 
 	public ThreadUsuario(Socket socket, Servidor servidorPrincipal) {
 		this.servidorPrincipal = servidorPrincipal;
@@ -41,16 +43,25 @@ public class ThreadUsuario extends Thread {
 	}
 
 	public void run() {
-//		Usuario user = null;
+	
+		ingresarUsuario();
+		conectarConSala();
+		estoyListo();
+		jugar();
+
+	}
+	
+	private void ingresarUsuario() {
 		MsjLogin mensaje;
-		boolean logeado=false; 
+		boolean logeado = false;
 		try {
 			do {
 				mensaje = (MsjLogin) entrada.readObject();
-				if(mensaje.isRegistrar()){
+				if (mensaje.isRegistrar()) {
 					try {
-						int resp=this.baseDeDatos.agregarUsuario(new Usuario(mensaje.getLogin(),mensaje.getPassword(),false));
-						if(resp==1)
+						int resp = this.baseDeDatos
+								.agregarUsuario(new Usuario(mensaje.getLogin(), mensaje.getPassword(), false));
+						if (resp == 1)
 							salida.writeObject((new MsjSalida(true, "Estas registrado con existo!!")));
 						else
 							salida.writeObject((new MsjSalida(false, "Error, usuario ya existe")));
@@ -61,7 +72,7 @@ public class ThreadUsuario extends Thread {
 						e.printStackTrace();
 					}
 				}
-				
+
 				try {
 					user = baseDeDatos.existeUsuario(mensaje.getLogin());
 				} catch (Exception e) {
@@ -77,19 +88,19 @@ public class ThreadUsuario extends Thread {
 					}
 
 					else {
-						//*if (user.getLogState())
-							//salida.writeObject((new MsjSalida(false, "El usuario ya se encuentra logueado")));
-						//else {
+						// *if (user.getLogState())
+						// salida.writeObject((new MsjSalida(false, "El usuario ya se encuentra
+						// logueado")));
+						// else {
 
-							salida.writeObject((new MsjSalida(true, "Bienvenido")));
-							//user.setLogState(true);
-							logeado = true;
-						}
+						salida.writeObject((new MsjSalida(true, "Bienvenido")));
+						// user.setLogState(true);
+						logeado = true;
 					}
 				}
+			}
 
-
-			 while (user ==null || !logeado && !mensaje.isRegistrar());
+			while (user == null || !logeado && !mensaje.isRegistrar());
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -98,8 +109,46 @@ public class ThreadUsuario extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
 
-		conectarConSala();
+	private void estoyListo() {
+		MsjEstoylisto mensaje=null;
+		try {
+			mensaje = (MsjEstoylisto) entrada.readObject();
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (mensaje.getEstoyListo()) {
+			this.usuarioEnJuego.estoyListo();
+		}
+
+	}
+
+	private void jugar() {
+
+		while (!this.sala.estanTodosListos()) {
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		try {
+			salida.writeObject(new MsjSalida(true,"estan todos listos"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.sala.jugar();
+
+		RecibirMovimientos recv = new RecibirMovimientos(usuarioEnJuego, entrada);
+		recv.start();
+		EnviarObjetos obj = new EnviarObjetos(salida, sala.getEscenario().getElementos());
+		obj.start();
 
 	}
 
@@ -110,19 +159,20 @@ public class ThreadUsuario extends Thread {
 			do {
 				mensaje = (MsjSala) entrada.readObject();
 				if (mensaje.isCrear()) {
-					this.servidorPrincipal.crearSala(mensaje.getNombreSala(),mensaje.getPasswordSala());
+					this.servidorPrincipal.crearSala(mensaje.getNombreSala(), mensaje.getPasswordSala());
 					salida.writeObject(new MsjSalida(true, "Sala creada"));
 				}
-				
+
 				if (mensaje.isLoguerase()) {
-					 Sala sala = this.servidorPrincipal.getSala(mensaje.getNombreSala(),mensaje.getPasswordSala());
-					 if(sala == null)
-						 salida.writeObject(new MsjSalida(false, "Sala o clave incorrecta"));
-					 else{
-						 salida.writeObject(new MsjSalida(true, "Te conectaste a una sala, felicitaciones"));
-						 usuarioConectado = true;
-						 sala.nuevaSession(usuarioEnJuego);
-					 }
+					sala = this.servidorPrincipal.getSala(mensaje.getNombreSala(), mensaje.getPasswordSala());
+					if (sala == null)
+						salida.writeObject(new MsjSalida(false, "Sala o clave incorrecta"));
+					else {
+						salida.writeObject(new MsjSalida(true, "Te conectaste a una sala, felicitaciones"));
+						usuarioConectado = true;
+						sala.nuevaSession(usuarioEnJuego);
+						return;
+					}
 				}
 
 				if (mensaje.isEliminar()) {

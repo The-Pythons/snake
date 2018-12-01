@@ -8,9 +8,13 @@ import javax.swing.ImageIcon;
 
 import logica.Dibujable;
 
-public class obstaculoDibujable extends Dibujable {
+public class obstaculoDibujable extends Dibujable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Obstaculo o;
 	private Image image;
 	public obstaculoDibujable(Obstaculo o) {

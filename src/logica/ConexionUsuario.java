@@ -13,9 +13,17 @@ public class ConexionUsuario {
 	public int puntaje;
 	public  int nivel = 1;
 	public boolean gameOver;
+	public boolean listo;
 	public Orientacion diractual;
 	
 	
+	
+	public void estoyListo() {
+		listo=true;
+	}
+	public boolean getListo() {
+		return listo;
+	}
 	
 	public ConexionUsuario() {
 		this.colaDire =  new LinkedList<Orientacion>();

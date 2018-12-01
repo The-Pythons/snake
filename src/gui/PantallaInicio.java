@@ -240,7 +240,7 @@ public class PantallaInicio extends JFrame {
 				"./Audios/gameTheme3.mp3" };
 		PlayerThread elReproductor = new PlayerThread(canciones[(int) (Math.random() * 3)]);
 		elReproductor.start();
-		g = new GameFirstClass();
+		g = new GameFirstClass(null,null);
 		g.setVisible(true);
 	}
 

@@ -10,6 +10,10 @@ import logica.Dibujable;
 
 public class frutaDibujable extends Dibujable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Fruta f;
 	private Image image;
 	

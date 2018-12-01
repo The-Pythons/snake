@@ -74,5 +74,9 @@ public class Session extends Thread {
 
 		}
 	}
+	
+	public boolean estoyListoUsuario() {
+		return usuario.getListo();
+	}
 
 }

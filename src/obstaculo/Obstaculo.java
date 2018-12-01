@@ -1,5 +1,6 @@
 package obstaculo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import logica.Choques;
@@ -7,7 +8,11 @@ import logica.Escenario;
 import logica.Punto2D;
 import snake.Serpiente;
 
-public class Obstaculo implements Choques {
+public class Obstaculo implements Choques, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Punto2D pos;
 	String tipo = "X";
 

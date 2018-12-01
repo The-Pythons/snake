@@ -1,6 +1,8 @@
 package logica;
 
-public class Punto2D {
+import java.io.Serializable;
+
+public class Punto2D implements Serializable{
 	public int x;
 	public int y;
 	

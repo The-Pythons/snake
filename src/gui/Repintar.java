@@ -16,7 +16,9 @@ public class Repintar extends Thread {
 
 	public void run(){
 		long tf, ti;
+		
 		while (true) {
+			
 			ti = System.currentTimeMillis();
 			c.repaint();
 			try {

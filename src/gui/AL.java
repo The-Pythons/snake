@@ -2,14 +2,17 @@ package gui;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import logica.Escenario;
+import mensajes.MsjJugada;
 import logica.ConexionUsuario;
 import snake.Orientacion;
 
 public class AL extends KeyAdapter {
 	Orientacion dir;
-	ConexionUsuario u;
+	ObjectOutputStream u;
 	static int dirIzq = KeyEvent.VK_LEFT;
 	static int dirDer = KeyEvent.VK_RIGHT;
 	static int dirArriba = KeyEvent.VK_UP;
@@ -21,26 +24,46 @@ public class AL extends KeyAdapter {
 		if (keyCode == this.dirIzq) {
 			if (dir != Orientacion.O) {
 				dir = Orientacion.E;
-				u.setDir(dir);
+				try {
+					this.u.writeObject(new MsjJugada(dir));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		if (keyCode == this.dirDer) {
 			if (dir != Orientacion.E) {
 				dir = Orientacion.O;
-				u.setDir(dir);
+				try {
+					this.u.writeObject(new MsjJugada(dir));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 		}
 		if (keyCode == this.dirArriba) {
 			if (dir != Orientacion.S) {
 				dir = Orientacion.N;
-				u.setDir(dir);
+				try {
+					this.u.writeObject(new MsjJugada(dir));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		if (keyCode == this.dirAbajo) {
 			if (dir != Orientacion.N) {
 				dir = Orientacion.S;
-				u.setDir(dir);
+				try {
+					this.u.writeObject(new MsjJugada(dir));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -49,8 +72,8 @@ public class AL extends KeyAdapter {
 		return dir;
 	}
 
-	public AL(ConexionUsuario u) {
-		this.u = u;
+	public AL(ObjectOutputStream salida) {
+		this.u = salida;
 	}
 
 	@Override

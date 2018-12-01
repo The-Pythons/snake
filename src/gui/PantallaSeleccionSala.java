@@ -235,6 +235,10 @@ public class PantallaSeleccionSala extends JFrame {
 	public String getSala() {
 		return sala;
 	}
+	
+	public PantallaInicio getInicio() {
+		return inicio;
+	}
 
 	public void eliminarSala(String sala) {
 		modelo.removeElement(sala);

@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Graphics;
+import java.io.ObjectOutputStream;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.ImageIcon;
@@ -28,7 +29,7 @@ public class GameFirstClass extends JFrame {
 	private JPanelGrafico contentPane;
 
 	// Window Basics
-	public GameFirstClass() {
+	public GameFirstClass(ConexionCliente entrada, ObjectOutputStream salida) {
 
 		setTitle("Snake");
 		int h=700,l=960;
@@ -38,17 +39,18 @@ public class GameFirstClass extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.escenario = new Escenario(l/Dibujable.TAMANO, h/Dibujable.TAMANO);
 		ConexionUsuario usuario= new ConexionUsuario();// solo para testeo
-		this.controles = new AL(usuario);
+		this.controles = new AL(salida);
 		Sala sala = new Sala("Test",5);// solo para testeo
 		sala.start();
 		sala.nuevaSession(usuario); // solo para testeo
 		addKeyListener(this.controles);
 		//escenario.start();
 		//this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/clover.jpg").getImage());
-		this.contentPane = new JPanelGrafico(sala.getEscenario(), new ImageIcon("recursos/arena.jpg").getImage());
+		this.contentPane = new JPanelGrafico(entrada, new ImageIcon("recursos/arena.jpg").getImage());
 		setContentPane(this.contentPane);
 		contentPane.setLayout(null);
-		new Repintar(this).start();;
+		new Repintar(this).start();
+		setVisible(true);
 
 	}
 
@@ -69,11 +71,11 @@ public class GameFirstClass extends JFrame {
 	}
 */
 	// main
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		GameFirstClass g = new GameFirstClass();
 		g.setVisible(true);
 		//g.repintar();
-	}
+	}*/
 	
 	// Double Buffer
 	/*@Override
