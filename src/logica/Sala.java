@@ -40,7 +40,7 @@ public class Sala extends Thread{
 	public void nuevaSession(ConexionUsuario usuario) {
 			Session s = new Session(escenario,usuario);
 			sessiones.add(s);
-			s.start();
+//			s.start();
 	}
 	public Escenario getEscenario() {
 		return escenario;
@@ -53,6 +53,11 @@ public class Sala extends Thread{
 		SessionBot s= new SessionBot(this.escenario,null);
 		s.start();
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	
 	
 	
 	
