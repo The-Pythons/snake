@@ -16,7 +16,7 @@ public class Sala extends Thread{
 		this.cant_frutasmaxima=cant_fruta;
 		
 		this.sessiones = new ArrayList<Session>();
-		this.escenario = new Escenario(30*2, 24*2);
+		this.escenario = new Escenario(50, 38);
 		//escenario.setFrutamaxima(cant_fruta);
 		this.escenario.crearParedes();
 		this.escenario.crearFrutaAzar(cant_fruta);
