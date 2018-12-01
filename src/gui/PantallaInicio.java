@@ -144,7 +144,7 @@ public class PantallaInicio extends JFrame {
 		JButton btnNewButton = new JButton("Jugar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				elReproductor.stop();// Ver como hacerlo de otra forma...
+				elReproductor.stop();//Ver como hacerlo de otra forma...
 				jugar();
 			}
 		});
@@ -175,16 +175,7 @@ public class PantallaInicio extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
 		System.out.println("Usuario conectado");
-		/*try {
-			entrada = new ObjectInputStream(socket.getInputStream());
-			System.out.println("holaa");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	*/
 		try {
 			salida = new ObjectOutputStream(socket.getOutputStream());
 		}
@@ -194,16 +185,9 @@ public class PantallaInicio extends JFrame {
 		}
 		conex= new ConexionCliente(socket);
 		conex.start();
-		//System.out.println(entrada.readObject());
-		//System.out.println("holaa");
-		
 	}
 
 	private void ingresar() throws Exception {
-//		HibernateApp obj = new HibernateApp();
-//		Usuario user;
-		//crearConexionServidor();
-		//socket = new Socket("localhost",5000);
 		if(socket==null){
 			socket = new Socket("localhost",5000);
 			conex= new ConexionCliente(socket);
@@ -232,28 +216,6 @@ public class PantallaInicio extends JFrame {
 				setVisible(false);
 				sala();
 			}
-			//conex = new ConexionCliente(socket);
-//			user = obj.existeUsuario(usuario);
-//			if (user == null){
-//				JOptionPane.showMessageDialog(null, "El usuario y/o contraseña es/son incorrecta/s", "ERROR",
-//						JOptionPane.INFORMATION_MESSAGE);}
-//			else {
-//				if(!user.getPassword().equals(clave))
-//					JOptionPane.showMessageDialog(null, "El usuario y/o contraseña es/son incorrecta/s", "ERROR",
-//							JOptionPane.INFORMATION_MESSAGE);
-//				else{
-//					if(user.getLogState())
-//						JOptionPane.showMessageDialog(null, "El usuario ya se encuentra logueado", "ERROR",
-//								JOptionPane.INFORMATION_MESSAGE);
-//					else
-//					{
-//						user.setLogState(true);
-//						obj.updateUsuario(user);
-//						setVisible(false);
-//						sala();
-//						obj.cierreSessFac();
-//					}
-//				}
 		}
 	}
 

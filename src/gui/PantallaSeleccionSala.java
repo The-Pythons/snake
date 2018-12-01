@@ -15,6 +15,10 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import mensajes.MsjSala;
+import mensajes.MsjSalida;
+
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
@@ -24,6 +28,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 
 public class PantallaSeleccionSala extends JFrame {
 
@@ -35,9 +44,14 @@ public class PantallaSeleccionSala extends JFrame {
 	private PantallaInicio inicio;
 	private String clave;
 	private String sala;
+	private ObjectOutputStream salida;
+	private ObjectInputStream entrada;
 
 	public PantallaSeleccionSala(PantallaInicio inicio) {
 		this.inicio = inicio;
+		this.salida = inicio.getSalida();
+		this.entrada = inicio.getConex().entrada;
+
 		setResizable(false);
 
 		setBounds(100, 100, 450, 300);
@@ -50,8 +64,8 @@ public class PantallaSeleccionSala extends JFrame {
 			}
 		});
 		contentPane = new Fondo();
-		contentPane.setBackground("C:\\Users\\Mica\\Documents\\Facu\\Progamaci\u00F3n Avanzada\\Taller\\snake\\recursos\\FondoSala.png");
-//		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground("recursos\\FondoSala.png");
+		// contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setBackground(new Color(0, 102, 0));
 		contentPane.setLayout(null);
@@ -86,7 +100,12 @@ public class PantallaSeleccionSala extends JFrame {
 		JButton btnAadirSala = new JButton("Añadir Sala");
 		btnAadirSala.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				salaNueva();
+				try {
+					salaNueva();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnAadirSala.setBounds(36, 132, 105, 23);
@@ -131,7 +150,12 @@ public class PantallaSeleccionSala extends JFrame {
 		JButton btnIngrersar = new JButton("Ingrersar");
 		btnIngrersar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ingrersar();
+				try {
+					ingresar();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnIngrersar.setBounds(151, 132, 100, 23);
@@ -141,7 +165,7 @@ public class PantallaSeleccionSala extends JFrame {
 		setVisible(true);
 	}
 
-	protected void ingrersar() {
+	protected void ingresar() throws Exception {
 		char[] claveTxt = passwordField.getPassword();
 		clave = new String(claveTxt);
 		sala = new String(nombreField.getText());
@@ -149,10 +173,18 @@ public class PantallaSeleccionSala extends JFrame {
 			JOptionPane.showMessageDialog(null, "Ingresa una sala y contraseña", "ATENCION!",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			if (!verificarSalaBD()) {
-				JOptionPane.showMessageDialog(null, "Sala o clave incorrecta", "ATENCION!",
+			salida.writeObject(new MsjSala(sala, clave, false, true, false));
+			MsjSalida respuesta = (MsjSalida) entrada.readObject();
+			if (!respuesta.isRespuesta()) {
+				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
 						JOptionPane.INFORMATION_MESSAGE);
-			} else {
+			}
+			// if (!verificarSalaBD()) {
+			// JOptionPane.showMessageDialog(null, "Sala o clave incorrecta",
+			// "ATENCION!",
+			// JOptionPane.INFORMATION_MESSAGE);
+			// }
+			else {
 				setVisible(false);
 				new PantallaSala(this, sala, inicio.getUsuario());
 			}
@@ -160,17 +192,17 @@ public class PantallaSeleccionSala extends JFrame {
 
 	}
 
-	private boolean verificarSalaBD() {
-		if(sala.equals("Sala1") && clave.equals("123"))
-			return true;
-		return false;
-	}
+//	private boolean verificarSalaBD() {
+//		if (sala.equals("Sala1") && clave.equals("123"))
+//			return true;
+//		return false;
+//	}
 
 	protected void actualizar() {
 
 	}
 
-	private void salaNueva() {
+	private void salaNueva() throws Exception {
 		char[] claveTxt = passwordField.getPassword();
 		clave = new String(claveTxt);
 		sala = new String(nombreField.getText());
@@ -178,17 +210,24 @@ public class PantallaSeleccionSala extends JFrame {
 			JOptionPane.showMessageDialog(null, "Ingresa una sala y contraseña", "ATENCION!",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			if (verificarNuevaSalaBD()) {
-				JOptionPane.showMessageDialog(null, "Sala ya registrada", "ATENCION!", JOptionPane.INFORMATION_MESSAGE);
-			} else {
+			salida.writeObject(new MsjSala(sala, clave, true, false, false));
+			MsjSalida respuesta = (MsjSalida) entrada.readObject();
+			if (!respuesta.isRespuesta()) {
+				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+//			if (verificarNuevaSalaBD()) {
+//				JOptionPane.showMessageDialog(null, "Sala ya registrada", "ATENCION!", JOptionPane.INFORMATION_MESSAGE);
+//			} 
+			else {
 				modelo.addElement(sala);
 			}
 		}
 	}
 
-	private boolean verificarNuevaSalaBD() {
-		return modelo.contains(sala);
-	}
+//	private boolean verificarNuevaSalaBD() {
+//		return modelo.contains(sala);
+//	}
 
 	public void seleccionarSala(String seleccionado) {
 		sala = seleccionado;
@@ -198,7 +237,7 @@ public class PantallaSeleccionSala extends JFrame {
 	public String getSala() {
 		return sala;
 	}
-	
+
 	public void eliminarSala(String sala) {
 		modelo.removeElement(sala);
 		setVisible(true);

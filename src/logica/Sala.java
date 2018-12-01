@@ -16,7 +16,7 @@ public class Sala extends Thread{
 		this.cant_frutasmaxima=cant_fruta;
 		
 		this.sessiones = new ArrayList<Session>();
-		this.escenario = new Escenario(30*2, 24*2);
+		this.escenario = new Escenario(50, 38);
 		//escenario.setFrutamaxima(cant_fruta);
 		this.escenario.crearParedes();
 		this.escenario.crearFrutaAzar(cant_fruta);
@@ -40,7 +40,7 @@ public class Sala extends Thread{
 	public void nuevaSession(ConexionUsuario usuario) {
 			Session s = new Session(escenario,usuario);
 			sessiones.add(s);
-			s.start();
+//			s.start();
 	}
 	public Escenario getEscenario() {
 		return escenario;
@@ -53,6 +53,11 @@ public class Sala extends Thread{
 		SessionBot s= new SessionBot(this.escenario,null);
 		s.start();
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	
 	
 	
 	

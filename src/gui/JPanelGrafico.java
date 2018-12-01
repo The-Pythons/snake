@@ -35,7 +35,7 @@ public class JPanelGrafico extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		try{
-		g.drawImage(this.background, 0, 0, 905, 748, null);
+		g.drawImage(this.background, 0, 0, 900, 680, null);
 		Iterator<Dibujable> iterador = elementos.iterator();
 		while (iterador.hasNext()) {
 			Dibujable d = iterador.next();
