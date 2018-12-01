@@ -79,10 +79,12 @@ public class ThreadUsuario extends Thread {
 						if (user.getLogState())
 							salida.writeObject((new MsjSalida(false, "El usuario ya se encuentra logueado")));
 						else {
+
 							salida.writeObject((new MsjSalida(true, "Bienvenido")));
 						}
 					}
 				}
+
 
 			} while (user ==null || !user.getLogState() && !mensaje.isRegistrar());
 

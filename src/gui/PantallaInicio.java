@@ -261,4 +261,13 @@ public class PantallaInicio extends JFrame {
 		new PantallaInicio();
 	}
 
+	public ConexionCliente getConex() {
+		return conex;
+	}
+
+	public ObjectOutputStream getSalida() {
+		return salida;
+	}
+
+	
 }

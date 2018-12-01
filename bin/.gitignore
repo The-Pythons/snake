@@ -1,6 +1,10 @@
+/hibernate/
+/mensajes/
+/obstaculo/
 /powerups/
-/frutas/
+/servidor/
 /snake/
 /logica/
+/frutas/
 /gui/
-/obstaculo/
+/io/
