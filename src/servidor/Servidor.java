@@ -15,21 +15,14 @@ public class Servidor {
 	public Servidor() {
 		this.baseDeDatos = new HibernateApp();
 		new ThreadServidor(this);
+		listaSalas= new ArrayList<Sala>();
 	}
 	
 	public static void main(String[] args) {
 		new Servidor();
 	}
 	
-	public void crearSala() {
-//		new sala();
-		
-	}
 	
-//	public Sala unirASala() {
-//		
-//	}
-
 	public HibernateApp getBaseDeDatos() {
 		return baseDeDatos;
 	}

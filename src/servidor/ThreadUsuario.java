@@ -81,6 +81,7 @@ public class ThreadUsuario extends Thread {
 						else {
 
 							salida.writeObject((new MsjSalida(true, "Bienvenido")));
+							user.setLogState(true);
 						}
 					}
 				}
@@ -108,6 +109,7 @@ public class ThreadUsuario extends Thread {
 				mensaje = (MsjSala) entrada.readObject();
 				if (mensaje.isCrear()) {
 					this.servidorPrincipal.crearSala(mensaje.getNombreSala(),mensaje.getPasswordSala());
+					salida.writeObject(new MsjSalida(true, "Sala creada"));
 				}
 				
 				if (mensaje.isLoguerase()) {
