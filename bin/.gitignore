@@ -1,10 +1,12 @@
+/Audio/
+/frutas/
+/gui/
+/hibernate.cfg.xml
 /hibernate/
+/io/
+/logica/
 /mensajes/
 /obstaculo/
 /powerups/
 /servidor/
 /snake/
-/logica/
-/frutas/
-/gui/
-/io/

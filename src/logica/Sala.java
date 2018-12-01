@@ -23,8 +23,8 @@ public class Sala extends Thread{
 		this.escenario.crearParedes();
 		this.escenario.crearFrutaAzar(cant_fruta);
 	//	this.escenario.crearPowerUpAzar(4, "achicar");
-		SessionBot s= new SessionBot(this.escenario,null);
-		s.start();
+		//SessionBot s= new SessionBot(this.escenario,null);
+		//s.start();
 	}
 	
 	public void run() {

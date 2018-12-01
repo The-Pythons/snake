@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Graphics;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -29,10 +30,11 @@ public class GameFirstClass extends JFrame {
 	Escenario escenario;
 	private JPanelGrafico contentPane;
 	ArrayList<Dibujable> elementos;
-	ConexionCliente entrada;
+	//ConexionCliente entrada;
+	ObjectInputStream entrada;
 
 	// Window Basics
-	public GameFirstClass(ConexionCliente entrada, ObjectOutputStream salida) {
+	public GameFirstClass(ObjectInputStream entrada, ObjectOutputStream salida) {
 
 		setTitle("Snake");
 		this.entrada=entrada;
@@ -41,7 +43,7 @@ public class GameFirstClass extends JFrame {
 		//setResizable(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.escenario = new Escenario(l/Dibujable.TAMANO, h/Dibujable.TAMANO);
+		//this.escenario = new Escenario(l/Dibujable.TAMANO, h/Dibujable.TAMANO);
 		ConexionUsuario usuario= new ConexionUsuario();// solo para testeo
 		this.controles = new AL(salida);
 		//Sala sala = new Sala("Test",5);// solo para testeo
@@ -90,7 +92,7 @@ public class GameFirstClass extends JFrame {
 		//g.drawImage(dbImage, 0, 0, this);
 	}*/
 	
-	public void paintComponent(Graphics g) {
+	/*public void paintComponent(Graphics g) {
 		g.fillOval(x, y, 10, 10);
 		tarea = new TimerTask() {
 			@Override
@@ -100,6 +102,6 @@ public class GameFirstClass extends JFrame {
 		};
 		tiempo = new Timer();
 		//tiempo.scheduleAtFixedRate(tarea, 0, 2000);
-		tiempo.schedule(tarea, 70);
-	}
+		tiempo.schedule(tarea, 170);
+	}*/
 }

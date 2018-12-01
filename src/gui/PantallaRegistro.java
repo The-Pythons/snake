@@ -21,6 +21,7 @@ import mensajes.MsjSalida;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.awt.event.ActionEvent;
@@ -34,6 +35,7 @@ public class PantallaRegistro extends JDialog {
 	private ConexionCliente conex;
 	private Socket socket;
 	private ObjectOutputStream salida;
+	private ObjectInputStream entrada;
 
 	public PantallaRegistro(PantallaInicio inicio) {
 		setModal(true);
@@ -101,9 +103,11 @@ public class PantallaRegistro extends JDialog {
 	private void registrar() throws IOException {
 		if(socket==null){
 			socket = new Socket("localhost",5000);
-			conex= new ConexionCliente(socket);
-			conex.start();
+		
+			//conex= new ConexionCliente(socket);
+			//conex.start();
 			salida = new ObjectOutputStream(socket.getOutputStream());
+			this.entrada = new ObjectInputStream(socket.getInputStream());
 			}
 		char[] claveTxt = passwordField.getPassword();
 		String clave = new String(claveTxt);
@@ -114,7 +118,7 @@ public class PantallaRegistro extends JDialog {
 		} else {
 			try {
 				salida.writeObject(new MsjLogin(usuario, clave, true));
-				MsjSalida respuesta = (MsjSalida) conex.entrada.readObject();
+				MsjSalida respuesta = (MsjSalida) entrada.readObject();
 				if(respuesta.isRespuesta()) {
 					JOptionPane.showMessageDialog(null, "¡Te has registrado con exito!", "Usuario REGISTRADO",
 							JOptionPane.INFORMATION_MESSAGE);
