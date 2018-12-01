@@ -6,6 +6,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import frutas.Fruta;
 import frutas.frutaDibujable;
 import obstaculo.*;
+import powerups.PowerUp;
+import powerups.PowerUpDibujable;
 import snake.Cuerpo;
 import snake.Orientacion;
 import snake.Serpiente;
@@ -157,6 +159,16 @@ public class Escenario extends Thread {
 		agregarALaLista(fs);
 		this.frutas++;
 	}
+	public void crearPowerUp(Punto2D pos,String tipo) {
+		if (!pos.puntoCorrecto(dim_x, dim_y))
+			return;
+		PowerUp f = new PowerUp(pos,tipo);
+		Dibujable fs = new PowerUpDibujable(f);
+		//area[pos.x][pos.y] = f;
+		agregarArea(pos,f);
+		agregarALaLista(fs);
+		//this.frutas++;
+	}
 	public  void  agregarALaLista(Dibujable o){
 		elementos.add(o);
 	}
@@ -186,6 +198,19 @@ public class Escenario extends Thread {
 			} while (!posicionVacia(new Punto2D(x,y)));// genero enteros al azar para x e y hasta que encuentro una ubicacion vacia
 			// area[x][y] = new Fruta(x, y);// creo una fruta en ese lugar
 			crearFruta(new Punto2D(x, y));
+			this.frutas++;
+		}
+		this.frutaactual=0;
+	}
+	
+	synchronized public void crearPowerUpAzar(int cantidad,String tipo) {
+		int x, y, i;
+		for (i = 0; i < cantidad; i++) {
+			do {
+				x = ThreadLocalRandom.current().nextInt(1, dim_x - 1);
+				y = ThreadLocalRandom.current().nextInt(1, dim_y - 1);
+			} while (!posicionVacia(new Punto2D(x,y)));
+			crearPowerUp(new Punto2D(x, y),tipo);
 			this.frutas++;
 		}
 		this.frutaactual=0;

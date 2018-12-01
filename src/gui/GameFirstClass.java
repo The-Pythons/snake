@@ -30,7 +30,7 @@ public class GameFirstClass extends JFrame {
 	public GameFirstClass() {
 
 		setTitle("Snake");
-		setBounds(100, 100, 600, 500);
+		setBounds(100, 100, 905, 748);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -146,7 +146,10 @@ public class Serpiente  implements Choques{
 		escenario.limpiarSerpiente(this);
 		
 	}
-
+	public void achicar() {
+		if(cuerpo.size()>2)
+		cuerpo.remove(cuerpo.size()-1);
+	}
 
 	public long getVelocidad() {
 		return this.velocidad;
