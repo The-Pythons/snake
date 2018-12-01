@@ -43,6 +43,7 @@ public class ThreadUsuario extends Thread {
 	public void run() {
 //		Usuario user = null;
 		MsjLogin mensaje;
+		boolean logeado=false; 
 		try {
 			do {
 				mensaje = (MsjLogin) entrada.readObject();
@@ -76,18 +77,19 @@ public class ThreadUsuario extends Thread {
 					}
 
 					else {
-						if (user.getLogState())
-							salida.writeObject((new MsjSalida(false, "El usuario ya se encuentra logueado")));
-						else {
+						//*if (user.getLogState())
+							//salida.writeObject((new MsjSalida(false, "El usuario ya se encuentra logueado")));
+						//else {
 
 							salida.writeObject((new MsjSalida(true, "Bienvenido")));
-							user.setLogState(true);
+							//user.setLogState(true);
+							logeado = true;
 						}
 					}
 				}
 
 
-			} while (user ==null || !user.getLogState() && !mensaje.isRegistrar());
+			 while (user ==null || !logeado && !mensaje.isRegistrar());
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
