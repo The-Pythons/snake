@@ -21,6 +21,12 @@ public class MsjSalida implements Serializable {
 	public String getDetalleError() {
 		return detalleError;
 	}
+	public void setRespuesta(boolean respuesta) {
+		this.respuesta = respuesta;
+	}
+	public void setDetalleError(String detalleError) {
+		this.detalleError = detalleError;
+	}
 	
 	
 	

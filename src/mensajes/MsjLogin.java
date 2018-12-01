@@ -26,6 +26,15 @@ public class MsjLogin implements Serializable {
 	public boolean isRegistrar() {
 		return registrar;
 	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public void setRegistrar(boolean registrar) {
+		this.registrar = registrar;
+	}
 	
 	
 	

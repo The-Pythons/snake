@@ -1,10 +1,3 @@
-/Audio/
-/frutas/
 /gui/
-/io/
-/hibernate/
-/logica/
-/mensajes/
-/obstaculo/
 /servidor/
-/snake/
+/mensajes/

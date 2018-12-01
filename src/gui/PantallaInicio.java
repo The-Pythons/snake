@@ -14,12 +14,16 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
+import com.google.gson.*;
 
 public class PantallaInicio extends JFrame {
 
@@ -33,8 +37,10 @@ public class PantallaInicio extends JFrame {
 	private PlayerThread elReproductor = null;
 	ConexionCliente conex;
 	private Socket socket;
-	private ObjectInputStream entrada;
-	private ObjectOutputStream salida;
+	private BufferedReader entrada;
+	private PrintWriter salida;
+//	private ObjectInputStream entrada;
+//	private ObjectOutputStream salida;
 
 	public PantallaInicio() throws IOException, ClassNotFoundException {
 		setResizable(false);
@@ -185,14 +191,17 @@ public class PantallaInicio extends JFrame {
 		}
 	*/
 		try {
-			salida = new ObjectOutputStream(socket.getOutputStream());
+//			salida = new ObjectOutputStream(socket.getOutputStream());
+			salida = new PrintWriter(socket.getOutputStream());
 		}
 		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		conex= new ConexionCliente(socket);
-		conex.start();
+		
+		entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//		conex= new ConexionCliente(socket);
+//		conex.start();
 		//System.out.println(entrada.readObject());
 		//System.out.println("holaa");
 		
@@ -210,8 +219,18 @@ public class PantallaInicio extends JFrame {
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			// Aca hay qe leer la respuesta
-			salida.writeObject(new MsjLogin(usuario, clave, false));
-			MsjSalida respuesta = (MsjSalida) conex.entrada.readObject();
+			Gson gson = new Gson();
+			MsjLogin login = new MsjLogin(usuario, clave, false);
+			String json = gson.toJson(login);
+			System.out.println(json);
+			salida.write(json);
+//			salida.writeObject(new MsjLogin(usuario, clave, false));
+//			MsjSalida respuesta
+			System.out.println(json);
+			json = entrada.readLine();
+			System.out.println(json);
+			MsjSalida respuesta = gson.fromJson(json,MsjSalida.class);
+//			MsjSalida respuesta = (MsjSalida) conex.entrada.readObject();
 			if (!respuesta.isRespuesta()) {
 				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
 						JOptionPane.INFORMATION_MESSAGE);
