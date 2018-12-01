@@ -17,6 +17,7 @@ public class Servidor {
 		this.baseDeDatos = new HibernateApp();
 		new ThreadServidor(this);
 		listaSalas= new ArrayList<Sala>();
+		listaNombreSalas = new ArrayList<String>();
 	}
 	
 	public static void main(String[] args) {
