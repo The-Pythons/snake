@@ -25,7 +25,13 @@ public class GameFirstClass extends JFrame {
 	private AL controles;
 	Escenario escenario;
 	private JPanelGrafico contentPane;
+	
+	///			INICIO AGREGAR EL PROYECTO
+	
+	static String fondo = "madera";
 
+	///			FIN AGREGAR AL PROYECTO
+	
 	// Window Basics
 	public GameFirstClass() {
 
@@ -43,7 +49,14 @@ public class GameFirstClass extends JFrame {
 		addKeyListener(this.controles);
 		//escenario.start();
 		//this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/clover.jpg").getImage());
-		this.contentPane = new JPanelGrafico(sala.getEscenario(), new ImageIcon("recursos/arena.jpg").getImage());
+
+		//this.contentPane = new JPanelGrafico(sala.getEscenario(), new ImageIcon("recursos/arena.jpg").getImage());
+		
+		///		ESTA ES LA LINEA QUE VA. LAS ANTERIORES NO 
+		
+		this.contentPane = new JPanelGrafico(sala.getEscenario(), new ImageIcon("recursos/" + fondo + ".jpg").getImage());
+		
+		
 		setContentPane(this.contentPane);
 		contentPane.setLayout(null);
 		new Repintar(this).start();;

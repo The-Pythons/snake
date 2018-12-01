@@ -108,6 +108,21 @@ public class PantallaInicio extends JFrame {
 		});
 		btnConfig.setBounds(10, 200, 101, 23);
 		contentPane.add(btnConfig);
+		
+		///		INICIO AGREGADO NUEVO
+		
+		JButton btnFondo = new JButton("Escenario");
+		btnFondo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ElegirEscenario ee = new ElegirEscenario();
+				ee.setVisible(true);
+			}
+		});
+		btnFondo.setBounds(10, 170, 101, 23);
+		contentPane.add(btnFondo);
+		
+		///		FIN AGREGADO NUEVO
+		
 
 		JLabel lblSnake = new JLabel("SNAKE");
 		lblSnake.setHorizontalAlignment(SwingConstants.CENTER);
