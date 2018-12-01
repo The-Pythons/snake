@@ -11,24 +11,27 @@ public class Servidor {
 	private ServerSocket socketServer;
 	private HibernateApp baseDeDatos;
 	private  ArrayList<Sala> listaSalas;
+	private ArrayList<String> listaNombreSalas;
 	
 	public Servidor() {
 		this.baseDeDatos = new HibernateApp();
 		new ThreadServidor(this);
 		listaSalas= new ArrayList<Sala>();
+		listaNombreSalas = new ArrayList<String>();
 	}
 	
 	public static void main(String[] args) {
 		new Servidor();
 	}
 	
+
 	public HibernateApp getBaseDeDatos() {
 		return baseDeDatos;
 	}
 
 	public void crearSala(String nombreSala, String passwordSala) {
 		listaSalas.add(new Sala(nombreSala, passwordSala));
-		
+		listaNombreSalas.add(nombreSala);		
 	}
 
 
@@ -45,6 +48,10 @@ public class Servidor {
 	public void eliminarSala(String nombreSala) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public ArrayList<String> getListaNombreSalas() {
+		return listaNombreSalas;
 	}
 	
 	

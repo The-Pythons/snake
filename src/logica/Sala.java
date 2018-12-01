@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class Sala extends Thread{
 	
-	ArrayList<Session>sessiones;
-	String nombre;
-	Escenario escenario;
+	private ArrayList<Session>sessiones;
+	private String nombre;
+	private String pass;
+	private Escenario escenario;
 	boolean eliminar;
 	int cant_frutasmaxima;
 	//private int cant_frutasmaxima;
@@ -51,10 +52,16 @@ public class Sala extends Thread{
 		this.escenario = new Escenario(30, 24);
 		this.escenario.crearParedes();
 		SessionBot s= new SessionBot(this.escenario,null);
+		this.nombre = nombre;
+		this.pass = contraseña;
 		s.start();
 	}
 
 	public String getNombre() {
+		return nombre;
+	}
+	
+	public String getPass() {
 		return nombre;
 	}
 	
