@@ -45,12 +45,12 @@ public class PantallaSeleccionSala extends JFrame {
 	private String clave;
 	private String sala;
 	private ObjectOutputStream salida;
-	private ObjectInputStream entrada;
+	private ConexionCliente entrada;
 
 	public PantallaSeleccionSala(PantallaInicio inicio) {
 		this.inicio = inicio;
 		this.salida = inicio.getSalida();
-		this.entrada = inicio.getConex().entrada;
+		this.entrada = inicio.getConex();
 
 		setResizable(false);
 
@@ -137,9 +137,7 @@ public class PantallaSeleccionSala extends JFrame {
 		});
 		listaSalas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		modelo = new DefaultListModel<String>();
-		modelo.addElement("Sala1");
-		modelo.addElement("Sala2");
-		modelo.addElement("Sala3");
+		
 		listaSalas.setModel(modelo);
 
 		JScrollPane scrollPane = new JScrollPane(listaSalas);
@@ -147,7 +145,7 @@ public class PantallaSeleccionSala extends JFrame {
 		scrollPane.setViewportView(listaSalas);
 		contentPane.add(scrollPane);
 
-		JButton btnIngrersar = new JButton("Ingrersar");
+		JButton btnIngrersar = new JButton("Ingresar");
 		btnIngrersar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -174,7 +172,7 @@ public class PantallaSeleccionSala extends JFrame {
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			salida.writeObject(new MsjSala(sala, clave, false, true, false));
-			MsjSalida respuesta = (MsjSalida) entrada.readObject();
+			MsjSalida respuesta = (MsjSalida) entrada.entrada.readObject();
 			if (!respuesta.isRespuesta()) {
 				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
 						JOptionPane.INFORMATION_MESSAGE);
@@ -211,7 +209,7 @@ public class PantallaSeleccionSala extends JFrame {
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			salida.writeObject(new MsjSala(sala, clave, true, false, false));
-			MsjSalida respuesta = (MsjSalida) entrada.readObject();
+			MsjSalida respuesta = (MsjSalida) entrada.entrada.readObject();
 			if (!respuesta.isRespuesta()) {
 				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
 						JOptionPane.INFORMATION_MESSAGE);
