@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -26,25 +27,46 @@ public class JPanelGrafico extends JPanel {
 	 * Create the panel.
 	 */
 	
-	ConexionCliente cliente;
+	ObjectInputStream entrada;
+	ObjectOutputStream salida;
 	Image background;
 	ArrayList<Dibujable> elementos;
 
+//	public JPanelGrafico(ObjectInputStream cliente, Image background) {
 	public JPanelGrafico(ArrayList<Dibujable> elementos, Image background) {
 		//PlayerThread elReproductor = new PlayerThread("./Audios/perdiste.mp3");
 		//elReproductor.start();
 		//this.elementos = escenario.getElementos();
 		this.elementos=elementos;
-		this.cliente=cliente;
+//		this.entrada=cliente;
 		this.background = background;
 	}
 
+	public JPanelGrafico(ObjectInputStream entrada2, ObjectOutputStream salida, Image image) {
+		this.entrada=entrada2;
+		this.salida =salida;
+		this.background = image;
+	}
+
 	public void paintComponent(Graphics g) {
-		
+		ArrayList<Dibujable> aux = null;
+		try {
+			 aux=(ArrayList<Dibujable>) entrada.readObject();
+//			 salida.writeObject("ok");
+			 
+			 System.out.println(aux.size());
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		try{
 		g.drawImage(this.background, 0, 0, 900, 680, null);
-		Iterator<Dibujable> iterador = elementos.iterator();
+		Iterator<Dibujable> iterador = aux.iterator();
+//		Iterator<Dibujable> iterador = elementos.iterator();
 		while (iterador.hasNext()) {
 			Dibujable d = iterador.next();
 			if (d != null && !d.getEstado(g))

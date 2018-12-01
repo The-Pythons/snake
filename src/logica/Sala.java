@@ -1,5 +1,6 @@
 package logica;
 
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Sala extends Thread{
@@ -23,8 +24,8 @@ public class Sala extends Thread{
 		this.escenario.crearParedes();
 		this.escenario.crearFrutaAzar(cant_fruta);
 	//	this.escenario.crearPowerUpAzar(4, "achicar");
-		SessionBot s= new SessionBot(this.escenario,null);
-		s.start();
+		//SessionBot s= new SessionBot(this.escenario,null);
+		//s.start();
 	}
 	
 	public void run() {
@@ -41,9 +42,10 @@ public class Sala extends Thread{
 		
 		}
 	
-	public void nuevaSession(ConexionUsuario usuario) {
-			Session s = new Session(escenario,usuario);
+	public Session nuevaSession(ConexionUsuario usuario, ObjectOutputStream salida) {
+			Session s = new Session(escenario,usuario,salida);
 			sessiones.add(s);
+			return s;
 //			s.start();
 	}
 	public Escenario getEscenario() {
@@ -52,7 +54,7 @@ public class Sala extends Thread{
 	public Sala(String nombre,String contraseña) {
 		super();
 		this.sessiones = new ArrayList<Session>();
-		this.escenario = new Escenario(30, 24);
+		this.escenario = new Escenario(50, 38);
 		this.escenario.crearParedes();
 		//SessionBot s= new SessionBot(this.escenario,null);
 		this.nombre = nombre;
@@ -73,12 +75,14 @@ public class Sala extends Thread{
 			if(!s.estoyListoUsuario())
 				return false;
 		}
+		
 		return true;
 	}
 
 	public void jugar() {
 		for(Session s:sessiones)
 			s.start();
+		this.start();
 		
 	}
 	

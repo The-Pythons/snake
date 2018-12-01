@@ -45,12 +45,12 @@ public class PantallaSeleccionSala extends JFrame {
 	private String clave;
 	private String sala;
 	private ObjectOutputStream salida;
-	private ConexionCliente entrada;
+	private ObjectInputStream entrada;
 
 	public PantallaSeleccionSala(PantallaInicio inicio) {
 		this.inicio = inicio;
 		this.salida = inicio.getSalida();
-		this.entrada = inicio.getConex();
+		this.entrada = inicio.getEntrada();
 
 		setResizable(false);
 
@@ -172,7 +172,7 @@ public class PantallaSeleccionSala extends JFrame {
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			salida.writeObject(new MsjSala(sala, clave, false, true, false));
-			MsjSalida respuesta = (MsjSalida) entrada.entrada.readObject();
+			MsjSalida respuesta = (MsjSalida) entrada.readObject();
 			if (!respuesta.isRespuesta()) {
 				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
 						JOptionPane.INFORMATION_MESSAGE);
@@ -209,7 +209,7 @@ public class PantallaSeleccionSala extends JFrame {
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			salida.writeObject(new MsjSala(sala, clave, true, false, false));
-			MsjSalida respuesta = (MsjSalida) entrada.entrada.readObject();
+			MsjSalida respuesta = (MsjSalida) entrada.readObject();
 			if (!respuesta.isRespuesta()) {
 				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
 						JOptionPane.INFORMATION_MESSAGE);

@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Graphics;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -29,10 +30,10 @@ public class GameFirstClass extends JFrame {
 	Escenario escenario;
 	private JPanelGrafico contentPane;
 	ArrayList<Dibujable> elementos;
-	ConexionCliente entrada;
+	ObjectInputStream entrada;
 
 	// Window Basics
-	public GameFirstClass(ConexionCliente entrada, ObjectOutputStream salida) {
+	public GameFirstClass(ObjectInputStream entrada, ObjectOutputStream salida) {
 
 		setTitle("Snake");
 		this.entrada=entrada;
@@ -41,8 +42,8 @@ public class GameFirstClass extends JFrame {
 		//setResizable(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.escenario = new Escenario(l/Dibujable.TAMANO, h/Dibujable.TAMANO);
-		ConexionUsuario usuario= new ConexionUsuario();// solo para testeo
+//		this.escenario = new Escenario(l/Dibujable.TAMANO, h/Dibujable.TAMANO);
+		//ConexionUsuario usuario= new ConexionUsuario();// solo para testeo
 		this.controles = new AL(salida);
 		//Sala sala = new Sala("Test",5);// solo para testeo
 		//sala.start();
@@ -50,7 +51,10 @@ public class GameFirstClass extends JFrame {
 		addKeyListener(this.controles);
 		//escenario.start();
 		//this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/clover.jpg").getImage());
-		this.contentPane = new JPanelGrafico(elementos, new ImageIcon("recursos/arena.jpg").getImage());
+//		ThreadLeerEnrada lectura = new ThreadLeerEnrada(entrada, salida);
+//		lectura.start();
+//		this.contentPane = new JPanelGrafico(lectura.getElementos(), new ImageIcon("recursos/arena.jpg").getImage());
+		this.contentPane = new JPanelGrafico(entrada, salida, new ImageIcon("recursos/arena.jpg").getImage());
 		setContentPane(this.contentPane);
 		contentPane.setLayout(null);
 		new Repintar(this).start();

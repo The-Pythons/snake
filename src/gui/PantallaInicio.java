@@ -190,9 +190,10 @@ public class PantallaInicio extends JFrame {
 	private void ingresar() throws Exception {
 		if(socket==null){
 			socket = new Socket("localhost",5000);
-			conex= new ConexionCliente(socket);
-			conex.start();
+//			conex= new ConexionCliente(socket);
+//			conex.start();
 			salida = new ObjectOutputStream(socket.getOutputStream());
+			entrada = new ObjectInputStream(socket.getInputStream());
 			}
 		usuario = txtUsuario.getText();
 		char[] claveTxt = txtClave.getPassword();
@@ -204,7 +205,7 @@ public class PantallaInicio extends JFrame {
 			// Aca hay qe leer la respuesta
 			salida.writeObject(new MsjLogin(usuario, clave, false));
 			
-			MsjSalida respuesta = (MsjSalida) conex.entrada.readObject();
+			MsjSalida respuesta = (MsjSalida) entrada.readObject();
 			
 			if (!respuesta.isRespuesta()) {
 				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
@@ -267,6 +268,10 @@ public class PantallaInicio extends JFrame {
 
 	public ObjectOutputStream getSalida() {
 		return salida;
+	}
+
+	public ObjectInputStream getEntrada() {
+		return entrada;
 	}
 
 	

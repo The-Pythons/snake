@@ -21,6 +21,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -34,12 +35,12 @@ public class PantallaSala extends JFrame {
 	private String sala;
 	private String usuario;
 	private ObjectOutputStream salida;
-	private ConexionCliente entrada;
+	private ObjectInputStream entrada;
 
 	public PantallaSala(PantallaSeleccionSala seleccionSala, String sala, String usuario) {
 		this.seleccionSala = seleccionSala;
 		this.salida = seleccionSala.getInicio().getSalida();
-		this.entrada = seleccionSala.getInicio().getConex();
+		this.entrada = seleccionSala.getInicio().getEntrada();
 		this.sala = sala;
 		this.usuario = usuario;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,7 +125,7 @@ public class PantallaSala extends JFrame {
 			modelo.addElement(usuario);
 		}
 		MsjSalida msj;
-		msj = (MsjSalida)entrada.entrada.readObject();
+		msj = (MsjSalida)entrada.readObject();
 		if(msj.isRespuesta())
 			new GameFirstClass(this.entrada,this.salida);
 

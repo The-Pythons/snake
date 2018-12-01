@@ -20,6 +20,7 @@ public class EnviarObjetos extends Thread{
 		while(true) {
 			try {
 				salida.writeObject(dibujables);
+				System.out.println("enviar dibujable");
 			//	System.out.println("holaserver");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

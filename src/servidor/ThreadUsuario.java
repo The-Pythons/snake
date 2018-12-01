@@ -15,6 +15,7 @@ import io.HibernateApp;
 import io.Usuario;
 import logica.ConexionUsuario;
 import logica.Sala;
+import logica.Session;
 
 public class ThreadUsuario extends Thread {
 
@@ -26,6 +27,7 @@ public class ThreadUsuario extends Thread {
 	private Usuario user;
 	private ConexionUsuario usuarioEnJuego;
 	private Sala sala;
+	private Session sesion;
 
 	public ThreadUsuario(Socket socket, Servidor servidorPrincipal) {
 		this.servidorPrincipal = servidorPrincipal;
@@ -145,10 +147,10 @@ public class ThreadUsuario extends Thread {
 		}
 		this.sala.jugar();
 
-		RecibirMovimientos recv = new RecibirMovimientos(usuarioEnJuego, entrada);
+		RecibirMovimientos recv = new RecibirMovimientos(usuarioEnJuego, entrada,salida);
 		recv.start();
-		EnviarObjetos obj = new EnviarObjetos(salida, sala.getEscenario().getElementos());
-		obj.start();
+//		EnviarObjetos obj = new EnviarObjetos(salida, sala.getEscenario().getElementos());
+//		obj.start();
 
 	}
 
@@ -170,7 +172,7 @@ public class ThreadUsuario extends Thread {
 					else {
 						salida.writeObject(new MsjSalida(true, "Te conectaste a una sala, felicitaciones"));
 						usuarioConectado = true;
-						sala.nuevaSession(usuarioEnJuego);
+						sesion = sala.nuevaSession(usuarioEnJuego,salida);
 						return;
 					}
 				}

@@ -21,26 +21,16 @@ public class Repintar extends Thread {
 
 	public void run(){
 		long tf, ti;
-		try {
-			c.elementos = (ArrayList<Dibujable>) c.entrada.entrada.readObject();
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	
 		while (true) {
 			
-			ti = System.currentTimeMillis();
+//			try {
+////				Thread.sleep(17);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			c.repaint();
-			try {
-				tf = System.currentTimeMillis();
-				Thread.sleep(17 - (tf - ti));
-
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 
 		}
 		
