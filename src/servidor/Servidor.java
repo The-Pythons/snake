@@ -30,9 +30,16 @@ public class Servidor {
 		return baseDeDatos;
 	}
 
-	public void crearSala(String nombreSala, String passwordSala) {
+	public boolean crearSala(String nombreSala, String passwordSala) {
+		Iterator<Sala> it = listaSalas.iterator();
+		while(it.hasNext()){
+			Sala tmp = it.next();
+			if(nombreSala.equals(tmp.getNombre()))
+				return false;
+		}
 		listaSalas.add(new Sala(nombreSala, passwordSala));
-		listaNombreSalas.add(nombreSala);		
+		listaNombreSalas.add(nombreSala);	
+		return true;
 	}
 
 
