@@ -3,7 +3,6 @@ package io;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Query;
-//import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -58,9 +57,6 @@ public class HibernateApp {
 	 * 		   -1 en caso USUARIO YA EXISTE
 	 */
 	public int agregarUsuario(Usuario user) throws Exception{
-		/* Encriptamos pw por seguridad */
-		//String cad = user.getPassword();
-		user.setPassword(Seguridad.cifra(user.getPassword()));
 		Transaction tx = session.beginTransaction();
 		try{
 			try{
@@ -142,9 +138,6 @@ public class HibernateApp {
 			e.printStackTrace();
 			return null;//Fallo Transaccion
 		} 
-			/* Desciframos password */
-		if(us != null)
-			us.setPassword(Seguridad.descifra(us.getPassword()));
 		return us;//Si no existe en la BD, us es null.
 	}
 	
@@ -155,7 +148,6 @@ public class HibernateApp {
 	 */
 	public boolean updateUsuario(Usuario user){
 		Transaction tx = session.beginTransaction();
-		user.setPassword(Seguridad.cifra(user.getPassword()));
 		try{
 			session.merge(user);
 			tx.commit();

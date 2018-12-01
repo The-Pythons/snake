@@ -7,7 +7,6 @@ import org.junit.Test;
 import io.HibernateApp;
 import io.HistorialP;
 import io.Usuario;
-import io.Seguridad;
 import io.Partida;
 
 public class TestHibernate {
@@ -134,11 +133,10 @@ public class TestHibernate {
 			System.out.println(usuario);
 
 		//Recupero datos de 1 usuario a updatear
-		Usuario user = obj.existeUsuario("fernando");
+		Usuario user = obj.existeUsuario("rnsalva");
 		
 		//Modifico datos
 		user.setLogState(true);
-		user.setPassword(Seguridad.cifra("1252a"));
 
 		//Update
 		obj.updateUsuario(user);

@@ -18,6 +18,8 @@ import io.HibernateApp;
 import io.Usuario;
 
 import java.awt.event.ActionListener;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.awt.event.ActionEvent;
 
 public class PantallaRegistro extends JDialog {
@@ -86,6 +88,7 @@ public class PantallaRegistro extends JDialog {
 	}
 
 	private void registrar() {
+	
 		char[] claveTxt = passwordField.getPassword();
 		String clave = new String(claveTxt);
 		String usuario = new String(textField.getText());

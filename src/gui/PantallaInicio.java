@@ -46,7 +46,7 @@ public class PantallaInicio extends JFrame {
 		contentPane.setBackground(Color.DARK_GRAY);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		crearConexionServidor();
+		
 		
 
 		JLabel lblUsuario_1 = new JLabel("Usuario");
@@ -201,6 +201,16 @@ public class PantallaInicio extends JFrame {
 	private void ingresar() throws Exception {
 //		HibernateApp obj = new HibernateApp();
 //		Usuario user;
+		//crearConexionServidor();
+		//socket = new Socket("localhost",5000);
+		if(socket==null){
+			socket = new Socket("localhost",5000);
+			conex= new ConexionCliente(socket);
+			conex.start();
+			salida = new ObjectOutputStream(socket.getOutputStream());
+			}
+		
+	
 		usuario = txtUsuario.getText();
 		char[] claveTxt = txtClave.getPassword();
 		clave = new String(claveTxt);
@@ -211,7 +221,9 @@ public class PantallaInicio extends JFrame {
 		} else {
 			// Aca hay qe leer la respuesta
 			salida.writeObject(new MsjLogin(usuario, clave, false));
+			System.out.println("se queda aca 1");
 			MsjSalida respuesta = (MsjSalida) conex.entrada.readObject();
+			System.out.println("se queda aca 2");
 			if (!respuesta.isRespuesta()) {
 				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
 						JOptionPane.INFORMATION_MESSAGE);

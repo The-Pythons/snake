@@ -36,9 +36,11 @@ public class ThreadUsuario  extends Thread{
 
 	public void run() {
 		Usuario user = null;
+		MsjLogin mensaje;
 		try {
 			do {
-				MsjLogin mensaje = (MsjLogin) entrada.readObject();
+				mensaje = (MsjLogin) entrada.readObject();
+				System.out.println("empieza iteración");
 				try {
 					user = baseDeDatos.existeUsuario(mensaje.getLogin());
 				} catch (Exception e) {
@@ -48,19 +50,22 @@ public class ThreadUsuario  extends Thread{
 				if (user == null) {
 					salida.writeObject((new MsjSalida(false, "El usuario y/o contraseña es/son incorrecta/s")));
 				} else {
-					if (!user.getPassword().equals(mensaje.getPassword()))
+					if (!user.getPassword().equals(mensaje.getPassword())) {
 						salida.writeObject((new MsjSalida(false, "El usuario y/o contraseña es/son incorrecta/s")));
+						user=null;
+						}
+					
 					else {
-						if (user.getLogState())
+						if (user.getLogState()) 
 							salida.writeObject((new MsjSalida(false, "El usuario ya se encuentra logueado")));
 						else {
 							user.setLogState(true);
-							baseDeDatos.updateUsuario(user);
+							//baseDeDatos.updateUsuario(user);
 							salida.writeObject((new MsjSalida(true, "Bienvenido")));
 						}
 					}
 				}
-			} while (!user.getLogState());
+			} while (user ==null || !user.getLogState());
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
