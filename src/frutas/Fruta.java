@@ -10,9 +10,9 @@ import logica.Punto2D;
 import snake.Serpiente;
 
 public class Fruta implements Choques {
-	Punto2D pos;
+	public Punto2D pos;
 	String tipo = "F";
-	boolean estado = false;
+	protected boolean estado = false;
 	
 	public Fruta(int x, int y){
 		this.pos = new Punto2D(x,y);
