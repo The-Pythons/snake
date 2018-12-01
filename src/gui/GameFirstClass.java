@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import io.Usuario;
 import logica.ConexionUsuario;
+import logica.Dibujable;
 import logica.Escenario;
 import logica.Sala;
 
@@ -30,11 +31,12 @@ public class GameFirstClass extends JFrame {
 	public GameFirstClass() {
 
 		setTitle("Snake");
-		setBounds(100, 100, 905, 748);
-		setResizable(false);
+		int h=700,l=960;
+		setBounds(100,100, l-45, h+20);
+		//setResizable(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.escenario = new Escenario(30, 24);
+		this.escenario = new Escenario(l/Dibujable.TAMANO, h/Dibujable.TAMANO);
 		ConexionUsuario usuario= new ConexionUsuario();// solo para testeo
 		this.controles = new AL(usuario);
 		Sala sala = new Sala("Test",5);// solo para testeo
