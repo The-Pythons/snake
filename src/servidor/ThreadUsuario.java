@@ -40,7 +40,21 @@ public class ThreadUsuario  extends Thread{
 		try {
 			do {
 				mensaje = (MsjLogin) entrada.readObject();
-				System.out.println("empieza iteración");
+				if(mensaje.isRegistrar()){
+					try {
+						int resp=this.baseDeDatos.agregarUsuario(new Usuario(mensaje.getLogin(),mensaje.getPassword(),false));
+						if(resp==1)
+							salida.writeObject((new MsjSalida(true, "Estas registrado con existo!!")));
+						else
+							salida.writeObject((new MsjSalida(false, "Error, usuario ya existe")));
+						socket.close();
+						return;
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
 				try {
 					user = baseDeDatos.existeUsuario(mensaje.getLogin());
 				} catch (Exception e) {
@@ -59,13 +73,11 @@ public class ThreadUsuario  extends Thread{
 						if (user.getLogState()) 
 							salida.writeObject((new MsjSalida(false, "El usuario ya se encuentra logueado")));
 						else {
-							user.setLogState(true);
-							//baseDeDatos.updateUsuario(user);
 							salida.writeObject((new MsjSalida(true, "Bienvenido")));
 						}
 					}
 				}
-			} while (user ==null || !user.getLogState());
+			} while (user ==null || !user.getLogState() && !mensaje.isRegistrar());
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

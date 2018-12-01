@@ -1,7 +1,7 @@
 package mensajes;
 
 import java.io.Serializable;
-
+//no usar
 /*
  * registrar: true si es registro, false para logueo normal  
  */

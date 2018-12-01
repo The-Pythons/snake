@@ -37,6 +37,7 @@ public class PantallaInicio extends JFrame {
 	private ObjectOutputStream salida;
 
 	public PantallaInicio() throws IOException, ClassNotFoundException {
+		socket=null;
 		setResizable(false);
 		setForeground(new Color(0, 0, 0));
 		setBounds(100, 100, 450, 300);
@@ -209,21 +210,18 @@ public class PantallaInicio extends JFrame {
 			conex.start();
 			salida = new ObjectOutputStream(socket.getOutputStream());
 			}
-		
-	
 		usuario = txtUsuario.getText();
 		char[] claveTxt = txtClave.getPassword();
 		clave = new String(claveTxt);
-//		user = new Usuario(usuario,clave,false);
 		if (usuario.equals("") || clave.equals("")) {
 			JOptionPane.showMessageDialog(null, "Ingresa un usuario y contraseña", "ATENCION!",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			// Aca hay qe leer la respuesta
 			salida.writeObject(new MsjLogin(usuario, clave, false));
-			System.out.println("se queda aca 1");
+			
 			MsjSalida respuesta = (MsjSalida) conex.entrada.readObject();
-			System.out.println("se queda aca 2");
+			
 			if (!respuesta.isRespuesta()) {
 				JOptionPane.showMessageDialog(null, respuesta.getDetalleError(), "ERROR",
 						JOptionPane.INFORMATION_MESSAGE);
@@ -276,7 +274,6 @@ public class PantallaInicio extends JFrame {
 	}
 
 	private void jugar() {
-		// Hay que ver bien donde va...
 		String[] canciones = new String[] { "./Audios/gameTheme1.mp3", "./Audios/gameTheme2.mp3",
 				"./Audios/gameTheme3.mp3" };
 		PlayerThread elReproductor = new PlayerThread(canciones[(int) (Math.random() * 3)]);

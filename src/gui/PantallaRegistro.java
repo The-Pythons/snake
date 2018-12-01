@@ -16,8 +16,11 @@ import javax.swing.border.EmptyBorder;
 
 import io.HibernateApp;
 import io.Usuario;
+import mensajes.MsjLogin;
+import mensajes.MsjSalida;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.awt.event.ActionEvent;
@@ -28,6 +31,9 @@ public class PantallaRegistro extends JDialog {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private PantallaInicio inicio;
+	private ConexionCliente conex;
+	private Socket socket;
+	private ObjectOutputStream salida;
 
 	public PantallaRegistro(PantallaInicio inicio) {
 		setModal(true);
@@ -77,7 +83,12 @@ public class PantallaRegistro extends JDialog {
 		JButton btnRegistrate = new JButton("Registrate!");
 		btnRegistrate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				registrar();
+				try {
+					registrar();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnRegistrate.setBounds(180, 212, 97, 23);
@@ -87,30 +98,38 @@ public class PantallaRegistro extends JDialog {
 		setVisible(true);
 	}
 
-	private void registrar() {
-	
+	private void registrar() throws IOException {
+		if(socket==null){
+			socket = new Socket("localhost",5000);
+			conex= new ConexionCliente(socket);
+			conex.start();
+			salida = new ObjectOutputStream(socket.getOutputStream());
+			}
 		char[] claveTxt = passwordField.getPassword();
 		String clave = new String(claveTxt);
 		String usuario = new String(textField.getText());
-		HibernateApp obj = new HibernateApp();
-		Usuario user = new Usuario(usuario,clave,false);
 		if (usuario.equals("") || clave.equals("")) {
 			JOptionPane.showMessageDialog(null, "Ingresa un usuario y contraseña", "ATENCION!",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			try {
-				obj.agregarUsuario(user);
-				JOptionPane.showMessageDialog(null, "¡Te has registrado con exito!", "Usuario REGISTRADO",
+				salida.writeObject(new MsjLogin(usuario, clave, true));
+				MsjSalida respuesta = (MsjSalida) conex.entrada.readObject();
+				if(respuesta.isRespuesta()) {
+					JOptionPane.showMessageDialog(null, "¡Te has registrado con exito!", "Usuario REGISTRADO",
 							JOptionPane.INFORMATION_MESSAGE);
-				obj.cierreSessFac();
-				inicio.escribirUsuarioClave(usuario, clave);
-				dispose();
+					socket.close();
+					inicio.escribirUsuarioClave(usuario, clave);
+					dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "El usuario ya existe","Warning",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "El usuario ya existe", "ERROR",
-							JOptionPane.INFORMATION_MESSAGE);
-			}
 			
+			}
 		}
+		socket.close();
 	}
-
 }
