@@ -20,7 +20,7 @@ public class Sala extends Thread{
 		//escenario.setFrutamaxima(cant_fruta);
 		this.escenario.crearParedes();
 		this.escenario.crearFrutaAzar(cant_fruta);
-		this.escenario.crearPowerUpAzar(4, "achicar");
+	//	this.escenario.crearPowerUpAzar(4, "achicar");
 		SessionBot s= new SessionBot(this.escenario,null);
 		s.start();
 	}

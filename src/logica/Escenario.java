@@ -190,6 +190,7 @@ public class Escenario extends Thread {
 
 	synchronized public void crearFrutaAzar(int cantidad) {
 		int x, y, i;
+		String powerups[]= {"achicar"};
 		for (i = 0; i < cantidad; i++) {
 			do {
 				// https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html
@@ -197,8 +198,11 @@ public class Escenario extends Thread {
 				y = ThreadLocalRandom.current().nextInt(1, dim_y - 1);
 			} while (!posicionVacia(new Punto2D(x,y)));// genero enteros al azar para x e y hasta que encuentro una ubicacion vacia
 			// area[x][y] = new Fruta(x, y);// creo una fruta en ese lugar
-			crearFruta(new Punto2D(x, y));
-			this.frutas++;
+			if(ThreadLocalRandom.current().nextInt(0, 100)<15)
+				crearPowerUp(new Punto2D(x,y),powerups[0]);
+			else
+			{crearFruta(new Punto2D(x, y));
+			this.frutas++;}
 		}
 		this.frutaactual=0;
 	}
