@@ -190,10 +190,12 @@ public class PantallaInicio extends JFrame {
 	private void ingresar() throws Exception {
 		if(socket==null){
 			socket = new Socket("localhost",5000);
-//			conex= new ConexionCliente(socket);
-//			conex.start();
-			salida = new ObjectOutputStream(socket.getOutputStream());
-			entrada = new ObjectInputStream(socket.getInputStream());
+			
+			this.salida = new ObjectOutputStream(socket.getOutputStream());
+			this.entrada = new ObjectInputStream(socket.getInputStream());
+			//conex= new ConexionCliente(socket);
+			//conex.start();
+			
 			}
 		usuario = txtUsuario.getText();
 		char[] claveTxt = txtClave.getPassword();
@@ -270,7 +272,9 @@ public class PantallaInicio extends JFrame {
 		return salida;
 	}
 
-	public ObjectInputStream getEntrada() {
+
+	public  ObjectInputStream getEntrada() {
+		
 		return entrada;
 	}
 

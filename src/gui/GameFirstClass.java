@@ -42,8 +42,7 @@ public class GameFirstClass extends JFrame {
 		//setResizable(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		this.escenario = new Escenario(l/Dibujable.TAMANO, h/Dibujable.TAMANO);
-		//ConexionUsuario usuario= new ConexionUsuario();// solo para testeo
+
 		this.controles = new AL(salida);
 		//Sala sala = new Sala("Test",5);// solo para testeo
 		//sala.start();
@@ -54,13 +53,16 @@ public class GameFirstClass extends JFrame {
 //		ThreadLeerEnrada lectura = new ThreadLeerEnrada(entrada, salida);
 //		lectura.start();
 //		this.contentPane = new JPanelGrafico(lectura.getElementos(), new ImageIcon("recursos/arena.jpg").getImage());
-		this.contentPane = new JPanelGrafico(entrada, salida, new ImageIcon("recursos/arena.jpg").getImage());
 		setContentPane(this.contentPane);
 		contentPane.setLayout(null);
 		new Repintar(this).start();
 		setVisible(true);
 
 	}
+
+//	public GameFirstClass(ObjectInputStream entrada2, ObjectOutputStream salida) {
+//		// TODO Auto-generated constructor stub
+//	}
 
 	/*public void repintar() {
 		long tf, ti;
@@ -94,7 +96,7 @@ public class GameFirstClass extends JFrame {
 		//g.drawImage(dbImage, 0, 0, this);
 	}*/
 	
-	public void paintComponent(Graphics g) {
+	/*public void paintComponent(Graphics g) {
 		g.fillOval(x, y, 10, 10);
 		tarea = new TimerTask() {
 			@Override
@@ -104,6 +106,6 @@ public class GameFirstClass extends JFrame {
 		};
 		tiempo = new Timer();
 		//tiempo.scheduleAtFixedRate(tarea, 0, 2000);
-		tiempo.schedule(tarea, 70);
-	}
+		tiempo.schedule(tarea, 170);
+	}*/
 }

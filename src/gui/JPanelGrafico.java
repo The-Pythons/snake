@@ -48,7 +48,12 @@ public class JPanelGrafico extends JPanel {
 		this.background = image;
 	}
 
+//	public JPanelGrafico(ObjectInputStream entrada2, ObjectOutputStream salida2, Image image) {
+//		// TODO Auto-generated constructor stub
+//	}
+
 	public void paintComponent(Graphics g) {
+
 		ArrayList<Dibujable> aux = null;
 		try {
 			 aux=(ArrayList<Dibujable>) entrada.readObject();
@@ -62,6 +67,7 @@ public class JPanelGrafico extends JPanel {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+
 		
 		try{
 		g.drawImage(this.background, 0, 0, 900, 680, null);

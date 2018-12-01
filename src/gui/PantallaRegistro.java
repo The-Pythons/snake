@@ -109,6 +109,7 @@ public class PantallaRegistro extends JDialog {
 //			conex.start();
 			salida = new ObjectOutputStream(socket.getOutputStream());
 			entrada = new ObjectInputStream(socket.getInputStream());
+
 			}
 		char[] claveTxt = passwordField.getPassword();
 		String clave = new String(claveTxt);
