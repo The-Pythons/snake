@@ -15,18 +15,19 @@ public class frutaDibujable extends Dibujable {
 	 */
 	private static final long serialVersionUID = 1L;
 	Fruta f;
-	private Image image;
+	//private Image image;
 	
 	public frutaDibujable (Fruta f) {
 		this.f = f;
-		image = new ImageIcon("recursos/manzana.png").getImage();
+		
 	}
 	
 	@Override
 	public void dibujar(Graphics g) {
 		//g.setColor(Color.BLUE);
 		//g.fillOval(f.pos.x*10, f.pos.y*10, 10, 10);
-		g.drawImage(this.image, f.pos.x*super.TAMANO, f.pos.y*super.TAMANO, super.TAMANO, super.TAMANO, null);
+		Image image = new ImageIcon("recursos/manzana.png").getImage();
+		g.drawImage(image, f.pos.x*super.TAMANO, f.pos.y*super.TAMANO, super.TAMANO, super.TAMANO, null);
 	}
 
 	@Override

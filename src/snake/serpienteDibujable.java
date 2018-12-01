@@ -14,8 +14,7 @@ import logica.ConexionUsuario;
 public class serpienteDibujable extends Dibujable {
 	
 	Serpiente s;
-	Image imagenCabeza;
-	Image imagenCuerpo;
+	Skin skin;
 /*	static final int ROSA = 1;
 	static final int VERDE = 2;
 	static final int AMARILLO = 3;
@@ -23,8 +22,14 @@ public class serpienteDibujable extends Dibujable {
 */		
 	public serpienteDibujable(Serpiente s, Skin color) {
 		this.s = s;
+		
+		this.skin=color;
+	}
+	
+	@Override
+	public void dibujar(Graphics g) {
 		String cabezaString = null, cuerpoString = null;
-		switch (color) {
+		switch (this.skin) {
 		case ROSA:
 			cabezaString = "recursos/Cabeza snake rosa.png";
 			cuerpoString = "recursos/Cuerpo snake rosa.png";
@@ -50,21 +55,16 @@ public class serpienteDibujable extends Dibujable {
 			cuerpoString = "recursos/Cuerpo snake dorada.png";
 			break;
 		}
-		this.imagenCabeza = new ImageIcon(cabezaString).getImage();
-		this.imagenCuerpo = new ImageIcon(cuerpoString).getImage();
-	}
-	
-	@Override
-	public void dibujar(Graphics g) {
-		
+		Image imagenCabeza = new ImageIcon(cabezaString).getImage();
+		Image imagenCuerpo = new ImageIcon(cuerpoString).getImage();
 		Punto2D pos=s.cabeza.getPosicion();
 		//g.setColor(Color.RED);
-		g.drawImage(this.imagenCabeza, pos.x*super.TAMANO, pos.y*super.TAMANO, super.TAMANO, super.TAMANO, null);
+		g.drawImage(imagenCabeza, pos.x*super.TAMANO, pos.y*super.TAMANO, super.TAMANO, super.TAMANO, null);
 		//g.fillRect(pos.x * super.TAMANO,pos.y*super.TAMANO, super.TAMANO, super.TAMANO);		
 		for (Iterator<Cuerpo> it = s.cuerpo.iterator(); it.hasNext();) {
 			pos = it.next().getPosicion();
 			//g.setColor(Color.yellow);
-			g.drawImage(this.imagenCuerpo, pos.x*super.TAMANO, pos.y*super.TAMANO, super.TAMANO, super.TAMANO, null);
+			g.drawImage(imagenCuerpo, pos.x*super.TAMANO, pos.y*super.TAMANO, super.TAMANO, super.TAMANO, null);
 			//g.fillRect(pos.x*super.TAMANO,pos.y*super.TAMANO,super.TAMANO, super.TAMANO);
 		}
 	

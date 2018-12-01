@@ -54,10 +54,10 @@ public class Sala extends Thread{
 		this.sessiones = new ArrayList<Session>();
 		this.escenario = new Escenario(30, 24);
 		this.escenario.crearParedes();
-		SessionBot s= new SessionBot(this.escenario,null);
+		//SessionBot s= new SessionBot(this.escenario,null);
 		this.nombre = nombre;
 		this.pass = contraseña;
-		s.start();
+		//s.start();
 	}
 
 	public String getNombre() {

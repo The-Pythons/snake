@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Graphics;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.ImageIcon;
@@ -27,11 +28,14 @@ public class GameFirstClass extends JFrame {
 	private AL controles;
 	Escenario escenario;
 	private JPanelGrafico contentPane;
+	ArrayList<Dibujable> elementos;
+	ConexionCliente entrada;
 
 	// Window Basics
 	public GameFirstClass(ConexionCliente entrada, ObjectOutputStream salida) {
 
 		setTitle("Snake");
+		this.entrada=entrada;
 		int h=700,l=960;
 		setBounds(100,100, l-45, h+20);
 		//setResizable(true);
@@ -40,13 +44,13 @@ public class GameFirstClass extends JFrame {
 		this.escenario = new Escenario(l/Dibujable.TAMANO, h/Dibujable.TAMANO);
 		ConexionUsuario usuario= new ConexionUsuario();// solo para testeo
 		this.controles = new AL(salida);
-		Sala sala = new Sala("Test",5);// solo para testeo
-		sala.start();
-		sala.nuevaSession(usuario); // solo para testeo
+		//Sala sala = new Sala("Test",5);// solo para testeo
+		//sala.start();
+		//sala.nuevaSession(usuario); // solo para testeo
 		addKeyListener(this.controles);
 		//escenario.start();
 		//this.contentPane = new JPanelGrafico(escenario, new ImageIcon("recursos/clover.jpg").getImage());
-		this.contentPane = new JPanelGrafico(entrada, new ImageIcon("recursos/arena.jpg").getImage());
+		this.contentPane = new JPanelGrafico(elementos, new ImageIcon("recursos/arena.jpg").getImage());
 		setContentPane(this.contentPane);
 		contentPane.setLayout(null);
 		new Repintar(this).start();
